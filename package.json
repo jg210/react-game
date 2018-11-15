@@ -7,10 +7,14 @@
     "react-dom": "16.6.3",
     "react-scripts": "2.1.1"
   },
+  "devDependencies": {
+    "eslint": "5.9.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "eslint": "eslint src",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
