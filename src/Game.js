@@ -12,19 +12,26 @@ export class Game extends Component {
   constructor() {
     super();
     this.engine = Engine.create();
-    const ball = Bodies.circle(50, 50, 64, {
+    const radius = 27;
+    const x = radius;
+    const y = radius;
+    const ball = Bodies.circle(x, y, radius, {
       render: {
         sprite: {
           texture: 'sprite.png'
         }
-      }
+      },
+      restitution: 0.99
     });
-    // const box = Bodies.rectangle(0, 0, 1000, 1000, {
-    //   isStatic: true
-    // });
+    const wallOptions = {
+      isStatic: true
+    }
     World.add(this.engine.world, [
       ball,
-      //box
+      Bodies.rectangle(400, 0, 800, 50, { ...wallOptions }),
+      Bodies.rectangle(400, 600, 800, 50, { ...wallOptions }),
+      Bodies.rectangle(800, 300, 50, 600, { ...wallOptions }),
+      Bodies.rectangle(0, 300, 50, 600, { ...wallOptions })
     ]);
     this.renderer = null;
   }
@@ -44,7 +51,9 @@ export class Game extends Component {
       engine: this.engine,
       options: {
         background: "transparent",
-        wireframes: false
+        wireframes: false,
+        width: 800,
+        height: 600
       }
     });
     Engine.run(this.engine);
