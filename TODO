@@ -1,6 +1,3 @@
-* Stop bar moving out of box.
-  - collide with wall?
-
 * Ball velocity can change.
   - fix velocity on collision?
 
@@ -8,12 +5,21 @@
 
 * Accelerating bar movement.
   - add impulse on key press (and damping), don't just move bar?
+    - make bar collide with walls?
 
-* change favicon.ico.
+* Mouse-based movement?
 
-* add back publish script.
+* Gravity well?
+
+* Change favicon.ico.
+
+* Add back publish script.
   - inject URL via env. var.
 
-* test server.
+* Goal posts.
+
+* Score keeping.
+
+* Test server.
 
 * TypeScript.
