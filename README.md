@@ -24,7 +24,6 @@ As above, but instead of running "npm start", run:
 
 ```
 npm run build
-npm run publish
 ```
 
 ## Development Environment
