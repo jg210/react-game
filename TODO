@@ -1,11 +1,13 @@
-* Movable bar.
+* Stop bar moving out of box.
+  - collide with wall?
 
 * Ball velocity can change.
   - fix velocity on collision?
 
-* Proper size calculations.
+* Proper Component size calculations.
 
-* Moving bar.
+* Accelerating bar movement.
+  - add impulse on key press (and damping), don't just move bar?
 
 * change favicon.ico.
 

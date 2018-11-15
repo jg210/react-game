@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import {
   Bodies,
+  Body,
   Engine,
   Events,
   Render,
@@ -15,6 +16,8 @@ export class Game extends Component {
   constructor() {
     super();
     this.renderer = null;
+    this.bar = null;
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   render() {
@@ -23,6 +26,24 @@ export class Game extends Component {
         <div id={this.CONTAINER_ID} />
       </div>
     );
+  }
+
+  handleKeyPress(event) {
+    if (this.bar === null) {
+      return;
+    }
+    let deltaX = 0;
+    if (event.key === 'ArrowLeft') {
+      deltaX = -20;
+    } else if (event.key === 'ArrowRight') {
+      deltaX = 20;
+    }
+    if (deltaX !== 0) {
+      Body.setPosition(this.bar, {
+        x: this.bar.position.x + deltaX,
+        y: this.bar.position.y
+      });
+    }
   }
 
   componentDidMount() {
@@ -48,7 +69,7 @@ export class Game extends Component {
       frictionAir: 0,
       frictionStatic: 0
     });
-    const bar = Bodies.rectangle(100, 500, 100, 10, {
+    this.bar = Bodies.rectangle(100, 500, 100, 10, {
       isStatic: true,
       friction: 0
     });
@@ -58,7 +79,7 @@ export class Game extends Component {
     }
     World.add(engine.world, [
       ball,
-      bar,
+      this.bar,
       Bodies.rectangle(400, 0, 800, 50, { ...wallOptions }),
       Bodies.rectangle(400, 600, 800, 50, { ...wallOptions }),
       Bodies.rectangle(800, 300, 50, 600, { ...wallOptions }),
@@ -89,12 +110,15 @@ export class Game extends Component {
     });
     Engine.run(engine);
     Render.run(this.renderer);
+    document.addEventListener('keydown', this.handleKeyPress);
   }
 
   componentWillUnmount() {
     Render.stop(this.renderer);
     Engine.stop(this.renderer.engine);
     this.renderer = null;
+    this.bar = null;
+    document.removeEventListener('keydown', this.handleKeyPress);
   }
 
 }
