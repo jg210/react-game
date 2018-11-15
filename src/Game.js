@@ -11,12 +11,8 @@ export class Game extends Component {
 
   constructor() {
     super();
-    this.containerRef = React.createRef();
+    //this.containerRef = React.createRef();
     this.engine = Engine.create();
-    this.renderer = Render.create({
-      element: this.containerRef.current,
-      engine: this.engine
-    });
     const ball = Bodies.circle(50, 50, 10, {
       // render: {
       //   sprite: {
@@ -28,17 +24,27 @@ export class Game extends Component {
       isStatic: true
     });
     World.add(this.engine.world, [ball, box])
+    this.renderer = null;
   }
 
   render() {
     return (
-      <div ref={this.containerRef} />
+      <div>
+        <div id="matter_container" />
+      </div>
     );
   }
 
   componentDidMount() {
+    const container = document.getElementById('matter_container')
+    this.renderer = Render.create({
+      element: container,
+      engine: this.engine
+    });
     Engine.run(this.engine);
     Render.run(this.renderer);
   }
+
+  // TODO Stop Render and Engine.
 
 }
