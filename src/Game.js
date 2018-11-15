@@ -39,11 +39,24 @@ export class Game extends Component {
       deltaX = 20;
     }
     if (deltaX !== 0) {
+      let x = this.bar.position.x + deltaX;
+      const minX = 100;
+      const maxX = 800 - 100;
       Body.setPosition(this.bar, {
-        x: this.bar.position.x + deltaX,
+        x: this.clamp(x, minX, maxX),
         y: this.bar.position.y
       });
     }
+  }
+
+  clamp(x, min, max) {
+    if (x < min) {
+      x = min;
+    }
+    if (x > max) {
+      x = max;
+    }
+    return x;
   }
 
   componentDidMount() {
@@ -89,7 +102,7 @@ export class Game extends Component {
       event.pairs.forEach(pair => {
         [pair.bodyA, pair.bodyB].forEach(body => {
           if (body === ball) {
-            // Collisions in matter.js aren't elastic enough, so
+            // Collisions in matter.js aren't 100% elastic, so
             // invert the velocity when the ball hits something.
             body.velocity.x = -body.velocity.x;
             body.velocity.y = -body.velocity.y;
