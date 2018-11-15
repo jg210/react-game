@@ -1,5 +1,7 @@
 * start to implement a game.
 
+* change favicon.ico.
+
 * add back publish script.
   - inject URL via env. var.
 
