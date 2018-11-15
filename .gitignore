@@ -1,0 +1,10 @@
+# emacs
+*~
+.#*
+\#*#
+
+# node
+node_modules
+
+# react
+build
