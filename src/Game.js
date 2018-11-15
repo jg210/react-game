@@ -23,11 +23,13 @@ export class Game extends Component {
       },
       restitution: 0.99
     });
+    const bar = Bodies.rectangle(100, 500, 100, 10, {isStatic: true});
     const wallOptions = {
       isStatic: true
     }
     World.add(this.engine.world, [
       ball,
+      bar,
       Bodies.rectangle(400, 0, 800, 50, { ...wallOptions }),
       Bodies.rectangle(400, 600, 800, 50, { ...wallOptions }),
       Bodies.rectangle(800, 300, 50, 600, { ...wallOptions }),

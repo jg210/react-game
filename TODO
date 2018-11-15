@@ -1,4 +1,8 @@
-* start to implement a game.
+* Stop engine and renderer when Component unmounted.
+
+* Proper size calculations.
+
+* Moving bar.
 
 * change favicon.ico.
 
