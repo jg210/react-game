@@ -13,7 +13,7 @@ export class Game extends Component {
     super();
     this.engine = Engine.create();
     const radius = 27;
-    const x = radius;
+    const x = 100;
     const y = radius;
     const ball = Bodies.circle(x, y, radius, {
       render: {
@@ -21,11 +21,18 @@ export class Game extends Component {
           texture: 'sprite.png'
         }
       },
-      restitution: 0.99
+      restitution: 0.99,
+      friction: 0,
+      frictionAir: 0,
+      frictionStatic: 0
     });
-    const bar = Bodies.rectangle(100, 500, 100, 10, {isStatic: true});
+    const bar = Bodies.rectangle(100, 500, 100, 10, {
+      isStatic: true,
+      friction: 0
+    });
     const wallOptions = {
-      isStatic: true
+      isStatic: true,
+      friction: 0
     }
     World.add(this.engine.world, [
       ball,

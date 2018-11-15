@@ -1,3 +1,6 @@
+* Collisions aren't elastic enough.
+  - https://github.com/liabru/matter-js/issues/256
+
 * Stop engine and renderer when Component unmounted.
 
 * Proper size calculations.
