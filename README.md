@@ -6,6 +6,8 @@ version of node on PATH):
 * https://github.com/nodenv/nodenv#installation
 * https://github.com/nodenv/node-build#installation
 
+Then run this:
+
 ```
 nodenv install $(cat .node-version)
 npm install
