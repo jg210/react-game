@@ -10,6 +10,8 @@ import {
 
 export class Game extends Component {
 
+  CONTAINER_ID = "matter_js_container";
+
   constructor() {
     super();
     this.renderer = null;
@@ -18,7 +20,7 @@ export class Game extends Component {
   render() {
     return (
       <div>
-        <div id="matter_container" />
+        <div id={this.CONTAINER_ID} />
       </div>
     );
   }
@@ -74,7 +76,7 @@ export class Game extends Component {
         });
       });
     });
-    const container = document.getElementById('matter_container')
+    const container = document.getElementById(this.CONTAINER_ID);
     this.renderer = Render.create({
       element: container,
       engine: engine,
