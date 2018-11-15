@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {
   Bodies,
   Engine,
+  Events,
   Render,
   World
 } from 'matter-js'
@@ -15,13 +16,20 @@ export class Game extends Component {
     const radius = 27;
     const x = 100;
     const y = radius;
+    // Infinite inertia reduces conversion of linear to angular
+    // momentum, making ball bounce longer:
+    //
+    // https://github.com/liabru/matter-js/issues/21#issuecomment-42775549
+    const ballInertia = Infinity;
     const ball = Bodies.circle(x, y, radius, {
       render: {
         sprite: {
           texture: 'sprite.png'
         }
       },
-      restitution: 0.99,
+      restitution: 1,
+      inertia: ballInertia,
+      inverseInertia: 1 / ballInertia,
       friction: 0,
       frictionAir: 0,
       frictionStatic: 0
@@ -43,6 +51,18 @@ export class Game extends Component {
       Bodies.rectangle(0, 300, 50, 600, { ...wallOptions })
     ]);
     this.renderer = null;
+    Events.on(this.engine, 'collisionStart', event => {
+      event.pairs.forEach(pair => {
+        [pair.bodyA, pair.bodyB].forEach(body => {
+          if (body === ball) {
+            // Collisions in matter.js aren't elastic enough, so
+            // invert the velocity when the ball hits something.
+            body.velocity.x = -body.velocity.x;
+            body.velocity.y = -body.velocity.y;
+          }
+        });
+      });
+    });
   }
 
   render() {
