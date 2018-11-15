@@ -11,19 +11,21 @@ export class Game extends Component {
 
   constructor() {
     super();
-    //this.containerRef = React.createRef();
     this.engine = Engine.create();
-    const ball = Bodies.circle(50, 50, 10, {
-      // render: {
-      //   sprite: {
-      //     texture: 'sprite.png'
-      //   }
-      // }
+    const ball = Bodies.circle(50, 50, 64, {
+      render: {
+        sprite: {
+          texture: 'sprite.png'
+        }
+      }
     });
-    const box = Bodies.rectangle(0, 0, 100, 100, {
-      isStatic: true
-    });
-    World.add(this.engine.world, [ball, box])
+    // const box = Bodies.rectangle(0, 0, 1000, 1000, {
+    //   isStatic: true
+    // });
+    World.add(this.engine.world, [
+      ball,
+      //box
+    ]);
     this.renderer = null;
   }
 
@@ -39,7 +41,11 @@ export class Game extends Component {
     const container = document.getElementById('matter_container')
     this.renderer = Render.create({
       element: container,
-      engine: this.engine
+      engine: this.engine,
+      options: {
+        background: "transparent",
+        wireframes: false
+      }
     });
     Engine.run(this.engine);
     Render.run(this.renderer);
