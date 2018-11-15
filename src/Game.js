@@ -12,7 +12,19 @@ export class Game extends Component {
 
   constructor() {
     super();
-    this.engine = Engine.create();
+    this.renderer = null;
+  }
+
+  render() {
+    return (
+      <div>
+        <div id="matter_container" />
+      </div>
+    );
+  }
+
+  componentDidMount() {
+    const engine = Engine.create();
     const radius = 27;
     const x = 100;
     const y = radius;
@@ -42,7 +54,7 @@ export class Game extends Component {
       isStatic: true,
       friction: 0
     }
-    World.add(this.engine.world, [
+    World.add(engine.world, [
       ball,
       bar,
       Bodies.rectangle(400, 0, 800, 50, { ...wallOptions }),
@@ -50,8 +62,7 @@ export class Game extends Component {
       Bodies.rectangle(800, 300, 50, 600, { ...wallOptions }),
       Bodies.rectangle(0, 300, 50, 600, { ...wallOptions })
     ]);
-    this.renderer = null;
-    Events.on(this.engine, 'collisionStart', event => {
+    Events.on(engine, 'collisionStart', event => {
       event.pairs.forEach(pair => {
         [pair.bodyA, pair.bodyB].forEach(body => {
           if (body === ball) {
@@ -63,21 +74,10 @@ export class Game extends Component {
         });
       });
     });
-  }
-
-  render() {
-    return (
-      <div>
-        <div id="matter_container" />
-      </div>
-    );
-  }
-
-  componentDidMount() {
     const container = document.getElementById('matter_container')
     this.renderer = Render.create({
       element: container,
-      engine: this.engine,
+      engine: engine,
       options: {
         background: "transparent",
         wireframes: false,
@@ -85,10 +85,14 @@ export class Game extends Component {
         height: 600
       }
     });
-    Engine.run(this.engine);
+    Engine.run(engine);
     Render.run(this.renderer);
   }
 
-  // TODO Stop Render and Engine.
+  componentWillUnmount() {
+    Render.stop(this.renderer);
+    Engine.stop(this.renderer.engine);
+    this.renderer = null;
+  }
 
 }

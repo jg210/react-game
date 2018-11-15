@@ -3,8 +3,6 @@
 * Ball velocity can change.
   - fix velocity on collision?
 
-* Stop engine and renderer when Component unmounted.
-
 * Proper size calculations.
 
 * Moving bar.
