@@ -18,7 +18,8 @@ export class GameEngine {
     this.engine.world.gravity.y = 0.2;
     const ball = GameEngine.createBall();
     this.bar = GameEngine.createBar(this.boxHeight);
-    const walls = GameEngine.createWalls(this.boxHeight, this.boxWidth, 50);
+    const wallThickness = 50;
+    const walls = GameEngine.createWalls(this.boxHeight, this.boxWidth, wallThickness);
     const obstacles = GameEngine.createObstacles(this.boxHeight, this.boxWidth, level);
     World.add(this.engine.world, [
       ...walls,
@@ -88,12 +89,13 @@ export class GameEngine {
     }
     return x;
   }
-  //                 600,       800,      50
+  
   static createWalls(boxHeight, boxWidth, wallThickness) {
     const wallOptions = {
       isStatic: true,
       friction: 0
     };
+    // matter.js does positioning using centre of mass...
     const walls = [
       Bodies.rectangle(boxWidth / 2, 0,             boxWidth,      wallThickness, { ...wallOptions }), // top
       Bodies.rectangle(boxWidth / 2, boxHeight,     boxWidth,      wallThickness, { ...wallOptions }), // bottom
