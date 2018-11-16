@@ -8,13 +8,13 @@ import {
 import _ from 'lodash';
 import seedrandom from 'seedrandom';
 
-export function createEngine() {
+export function createEngine(level) {
   const engine = Engine.create();
   engine.world.gravity.y = 0.2;
   const ball = createBall();
   const bar = createBar();
   const walls = createWalls();
-  const obstacles = createObstacles(5);
+  const obstacles = createObstacles(level);
   World.add(engine.world, [
     ...walls,
     ball,
