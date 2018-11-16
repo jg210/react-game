@@ -1,3 +1,5 @@
+* Set keyboard focus after changing level.
+
 * Ball can get stuck at sides of box.
   - kinematic not stepped control of bar position?
   - uneven roof?
