@@ -17,7 +17,12 @@
 
 * A ball asset that shows rotation?
 
-* Mouse-based movement of bar?
+* Mouse-based movement of bar.
+  - MouseConstraint?
+    - https://www.youtube.com/watch?v=W-ou_sVlTWk&list=PLRqwX-V7Uu6akvoNKE4GAxf6ZeBYoJ4uh&index=24
+      - MouseConstraint connected to Mouse connected to canvas.elt
+      - Mouse.pixelRatio = pixelDensity(); // retina displays, p5 canvas required?
+      - add MouseConstraint to world.
 
 * Gravity well?
 
