@@ -106,7 +106,8 @@ export class GameEngine {
   }
 
   static createBall() {
-    const radius = 27;
+    const imageSize = 64; // pixels
+    const radius = 0.86 * imageSize / 2.0;
     const x = 100;
     const y = radius;
     // Infinite inertia reduces conversion of linear to angular
