@@ -19,11 +19,13 @@
 * fix min and max velocity on collision?
   - as function of bar height, conserving energy
 
-* Proper matter.js coordinate calculations.
+* Obstacle can overlap ball at startup, causing high CPU use due to many score updates.
 
 * Accelerating bar movement.
   - add impulse on key press (and damping), don't just move bar?
     - make bar collide with walls?
+
+* Score can be made arbitrarily high if ball ends up boucing straight up and down.
 
 * A ball asset that shows rotation?
 
@@ -36,7 +38,7 @@
 
 * Redux.
 
-* Score keeping.
+* High score.
 
 * Improve UI.
 

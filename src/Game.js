@@ -17,7 +17,10 @@ export class Game extends Component {
   }
 
   startEngine() {
-    this.gameEngine = new GameEngine(this.CONTAINER_ID, this.props.level);
+    this.gameEngine = new GameEngine(
+      this.CONTAINER_ID,
+      this.props.level,
+      this.props.onScoreUpdate);
     this.gameEngine.start();
   }
 
@@ -40,7 +43,7 @@ export class Game extends Component {
 
   // React lifecycle.
   componentDidUpdate(prevProps, prevState) {
-    if (this.props === prevProps) {
+    if (this.props.level === prevProps.level) {
       return;
     }
     this.stopEngine();

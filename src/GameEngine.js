@@ -2,6 +2,7 @@ import {
   Bodies,
   Body,
   Engine,
+  Events,
   Render,
   World
 } from 'matter-js'
@@ -10,19 +11,22 @@ import seedrandom from 'seedrandom';
 
 export class GameEngine {
 
-  constructor(containerId, level) {
+  constructor(containerId, level, onScoreUpdate) {
     this.boxHeight = 600;
     this.boxWidth = 800;
     this.wallThickness = 50;
     this.barWidth = 100;
     this.barHeight = 10;
     this.level = level;
+    this.onScoreUpdate = onScoreUpdate;
     this.container = document.getElementById(containerId);
     this.engine = Engine.create();
     this.engine.world.gravity.y = 0.2;
     const ball = this._createBall();
     this.bar = this._createBar();
-    const walls = this._createWalls();
+    const {walls, wallIds} = this._createWalls();
+    this.walls = walls;
+    this.wallIds = wallIds;
     const obstacles = this._createObstacles();
     World.add(this.engine.world, [
       ...walls,
@@ -41,6 +45,8 @@ export class GameEngine {
       }
     });
     this._handleKeyPress = this._handleKeyPress.bind(this);
+    this._handleCollision = this._handleCollision.bind(this);
+    Events.on(this.engine, 'collisionStart', this._handleCollision);
   }
 
   start() {
@@ -60,6 +66,18 @@ export class GameEngine {
     this.engine = null;
     this.renderer = null;
     this.bar = null;
+  }
+
+  _handleCollision(event) {
+    const that = this;
+    const pairs = event.pairs;
+    pairs.forEach(pair => {
+      [pair.bodyA, pair.bodyB].forEach(body => {
+        if (that.wallIds.has(body.id)) {
+          that.onScoreUpdate(that.wallIds.get(body.id));
+        }
+      });
+    });
   }
 
   _handleKeyPress(event) {
@@ -92,20 +110,25 @@ export class GameEngine {
     }
     return x;
   }
-  
+
   _createWalls() {
     const wallOptions = {
       isStatic: true,
       friction: 0
     };
     // matter.js does positioning using centre of mass...
-    const walls = [
-      Bodies.rectangle(this.boxWidth / 2, 0,                  this.boxWidth,      this.wallThickness, { ...wallOptions }), // top
-      Bodies.rectangle(this.boxWidth / 2, this.boxHeight,     this.boxWidth,      this.wallThickness, { ...wallOptions }), // bottom
-      Bodies.rectangle(this.boxWidth,     this.boxHeight / 2, this.wallThickness, this.boxHeight,     { ...wallOptions }), // right
-      Bodies.rectangle(0,                 this.boxHeight / 2, this.wallThickness, this.boxHeight,     { ...wallOptions })  // left
-    ];
-    return walls;
+    const wallTop =    Bodies.rectangle(this.boxWidth / 2, 0,                  this.boxWidth,      this.wallThickness, { ...wallOptions });
+    const wallBottom = Bodies.rectangle(this.boxWidth / 2, this.boxHeight,     this.boxWidth,      this.wallThickness, { ...wallOptions });
+    const wallRight =  Bodies.rectangle(this.boxWidth,     this.boxHeight / 2, this.wallThickness, this.boxHeight,     { ...wallOptions });
+    const wallLeft =   Bodies.rectangle(0,                 this.boxHeight / 2, this.wallThickness, this.boxHeight,     { ...wallOptions });
+    const walls = [wallTop, wallBottom, wallRight, wallLeft];
+    // A Map from wall Body id to game points. null means "game over".
+    const wallIds = new Map();
+    wallIds.set(wallTop.id, 1);
+    wallIds.set(wallBottom.id, null);
+    wallIds.set(wallRight.id, 1);
+    wallIds.set(wallLeft.id, 1);
+    return { walls, wallIds };
   }
 
   // Initial x coordinate of bar and ball.
@@ -148,7 +171,7 @@ export class GameEngine {
   }
 
   _createObstacles() {
-    const random = seedrandom(this.level);
+    const random = seedrandom(this.level + 484726723);
     const obstacles = []
     _.range(0, this.level).forEach(i => {
       const x = random() * this.boxWidth;
