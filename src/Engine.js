@@ -85,14 +85,17 @@ function createBall() {
 }
 
 function createObstacles(n) {
-  return _.range(0, n).map(i => {
-    const random = seedrandom(`${i * 100023213}`);
+  const random = seedrandom(n);
+  const obstacles = []
+  _.range(0, n).forEach(i => {
     const x = random() * 800;
     const y = random() * (0.8 * 600);
     const radius = 10 + random() * 5;
-    return Bodies.circle(x, y, radius, {
+    const obstacle = Bodies.circle(x, y, radius, {
       isStatic: true,
       friction: 0
     });
+    obstacles.push(obstacle);
   });
+  return obstacles;
 }
