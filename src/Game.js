@@ -4,7 +4,7 @@ import {
   Engine,
   Render,
 } from 'matter-js'
-import { createEngine, createRenderer } from './Engine';
+import { createEngine, createRenderer } from './GameEngine';
 
 export class Game extends Component {
 
