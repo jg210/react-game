@@ -1,4 +1,9 @@
-* Reversing momentum on collision is wrong.
+* Ball can get stuck at sides of box.
+  - kinematic not stepped control of bar position?
+  - uneven roof?
+  - rely on well timed nudge as ball passing bar?
+  - other obstacles?
+    => a way to increase difficulty.
 
 * Mouse-based movement of bar.
   - MouseConstraint?
@@ -11,14 +16,6 @@
 
 * fix min and max velocity on collision?
   - as function of bar height, conserving energy
-  - dev/speed_clamping
-
-* Ball can get stuck at sides of box.
-  - kinematic not stepped control of bar position?
-  - uneven roof?
-  - rely on well timed nudge as ball passing bar?
-  - other obstacles?
-    => a way to increase difficulty.
 
 * Proper matter.js coordinate calculations.
 
