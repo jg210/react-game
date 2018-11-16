@@ -11,13 +11,15 @@ import seedrandom from 'seedrandom';
 export class GameEngine {
 
   constructor(containerId, level) {
+    this.boxHeight = 600;
+    this.boxWidth = 800;
     this.container = document.getElementById(containerId);
     this.engine = Engine.create();
     this.engine.world.gravity.y = 0.2;
     const ball = GameEngine.createBall();
-    this.bar = GameEngine.createBar();
-    const walls = GameEngine.createWalls();
-    const obstacles = GameEngine.createObstacles(level);
+    this.bar = GameEngine.createBar(this.boxHeight);
+    const walls = GameEngine.createWalls(this.boxHeight, this.boxWidth, 50);
+    const obstacles = GameEngine.createObstacles(this.boxHeight, this.boxWidth, level);
     World.add(this.engine.world, [
       ...walls,
       ball,
@@ -30,8 +32,8 @@ export class GameEngine {
       options: {
         background: "transparent",
         wireframes: false,
-        width: 800,
-        height: 600
+        width: this.boxWidth,
+        height: this.boxHeight
       }
     });
     this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -69,7 +71,7 @@ export class GameEngine {
     if (deltaX !== 0) {
       let x = this.bar.position.x + deltaX;
       const minX = 100;
-      const maxX = 800 - 100;
+      const maxX = this.boxWidth - 100;
       Body.setPosition(this.bar, {
         x: this.clamp(x, minX, maxX),
         y: this.bar.position.y
@@ -86,23 +88,23 @@ export class GameEngine {
     }
     return x;
   }
-
-  static createWalls() {
+  //                 600,       800,      50
+  static createWalls(boxHeight, boxWidth, wallThickness) {
     const wallOptions = {
       isStatic: true,
       friction: 0
     };
     const walls = [
-      Bodies.rectangle(400, 0, 800, 50, { ...wallOptions }),
-      Bodies.rectangle(400, 600, 800, 50, { ...wallOptions }),
-      Bodies.rectangle(800, 300, 50, 600, { ...wallOptions }),
-      Bodies.rectangle(0, 300, 50, 600, { ...wallOptions })
+      Bodies.rectangle(boxWidth / 2, 0,             boxWidth,      wallThickness, { ...wallOptions }), // top
+      Bodies.rectangle(boxWidth / 2, boxHeight,     boxWidth,      wallThickness, { ...wallOptions }), // bottom
+      Bodies.rectangle(boxWidth,     boxHeight / 2, wallThickness, boxHeight,     { ...wallOptions }), // right
+      Bodies.rectangle(0,            boxHeight / 2, wallThickness, boxHeight,     { ...wallOptions })  // left
     ];
     return walls;
   }
 
-  static createBar() {
-    return Bodies.rectangle(100, 500, 100, 10, {
+  static createBar(boxHeight) {
+    return Bodies.rectangle(100, 0.8 * boxHeight, 100, 10, {
       isStatic: true,
       friction: 0
     });
@@ -135,12 +137,12 @@ export class GameEngine {
     return ball;
   }
 
-  static createObstacles(n) {
+  static createObstacles(boxHeight, boxWidth, n) {
     const random = seedrandom(n);
     const obstacles = []
     _.range(0, n).forEach(i => {
-      const x = random() * 800;
-      const y = random() * (0.8 * 600);
+      const x = random() * boxWidth;
+      const y = random() * (0.75 * boxHeight);
       const radius = 10 + random() * 15;
       const obstacle = Bodies.circle(x, y, radius, {
         isStatic: true,
