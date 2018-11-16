@@ -19,9 +19,7 @@ export class Game extends Component {
 
   render() {
     return (
-      <div>
-        <div id={this.CONTAINER_ID} />
-      </div>
+      <div id={this.CONTAINER_ID} />
     );
   }
 
