@@ -44,6 +44,9 @@ export class GameEngine {
   }
 
   stop() {
+    if (this.engine === null) {
+      throw new Error("Already stopped.");
+    }
     document.removeEventListener('keydown', this.handleKeyPress);
     Render.stop(this.renderer);
     this.renderer.canvas.remove();
