@@ -14,6 +14,8 @@ export class GameEngine {
     this.boxHeight = 600;
     this.boxWidth = 800;
     this.wallThickness = 50;
+    this.barWidth = 100;
+    this.barHeight = 10;
     this.level = level;
     this.container = document.getElementById(containerId);
     this.engine = Engine.create();
@@ -72,10 +74,10 @@ export class GameEngine {
     }
     if (deltaX !== 0) {
       let x = this.bar.position.x + deltaX;
-      const minX = 100;
-      const maxX = this.boxWidth - 100;
+      const minX = this.wallThickness / 2 + this.barWidth / 2 + 1;
+      const maxX = this.boxWidth - (this.wallThickness / 2 + this.barWidth / 2 + 1);
       Body.setPosition(this.bar, {
-        x: this.clamp(x, minX, maxX),
+        x: this._clamp(x, minX, maxX),
         y: this.bar.position.y
       });
     }
@@ -112,7 +114,7 @@ export class GameEngine {
   }
 
   _createBar() {
-    return Bodies.rectangle(this._initialX(), 0.8 * this.boxHeight, 100, 10, {
+    return Bodies.rectangle(this._initialX(), 0.8 * this.boxHeight, this.barWidth, this.barHeight, {
       isStatic: true,
       friction: 0
     });
