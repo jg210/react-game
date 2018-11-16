@@ -1,5 +1,6 @@
 import {
   Bodies,
+  Body,
   Engine,
   Render,
   World
@@ -73,7 +74,8 @@ function createBall() {
     inverseInertia: 1 / ballInertia,
     friction: 0,
     frictionAir: 0,
-    frictionStatic: 0
+    frictionStatic: 0,
   });
+  Body.setVelocity(ball, {x: 0, y: 5});
   return ball;
 }
