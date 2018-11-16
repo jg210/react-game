@@ -62,6 +62,65 @@ export class Game extends Component {
   componentDidMount() {
     const engine = Engine.create();
     engine.world.gravity.y = 0.2;
+    const ball = this.createBall();
+    this.bar = this.createBar();
+    const walls = this.createWalls();
+    World.add(engine.world, [
+      ...walls,
+      ball,
+      this.bar
+    ]);
+    Events.on(engine, 'collisionStart', this.createCollisionHandler(ball));
+    const container = document.getElementById(this.CONTAINER_ID);
+    this.renderer = this.createRenderer(container, engine);
+    Engine.run(engine);
+    Render.run(this.renderer);
+    document.addEventListener('keydown', this.handleKeyPress);
+  }
+
+  componentWillUnmount() {
+    Render.stop(this.renderer);
+    Engine.stop(this.renderer.engine);
+    this.renderer = null;
+    this.bar = null;
+    document.removeEventListener('keydown', this.handleKeyPress);
+  }
+
+  createRenderer(container, engine) {
+    return Render.create({
+      element: container,
+      engine: engine,
+      options: {
+        background: "transparent",
+        wireframes: false,
+        width: 800,
+        height: 600
+      }
+    });
+  }
+
+  createWalls() {
+    const wallOptions = {
+      isStatic: true,
+      friction: 0
+    };
+    const walls = [
+      Bodies.rectangle(400, 0, 800, 50, { ...wallOptions }),
+      Bodies.rectangle(400, 600, 800, 50, { ...wallOptions }),
+      Bodies.rectangle(800, 300, 50, 600, { ...wallOptions }),
+      Bodies.rectangle(0, 300, 50, 600, { ...wallOptions })
+    ];
+    return walls;
+  }
+
+  createBar() {
+    return Bodies.rectangle(100, 500, 100, 10, {
+      isStatic: true,
+      friction: 0
+    });
+  }
+
+  createBall() {
     const radius = 27;
     const x = 100;
     const y = radius;
@@ -83,23 +142,11 @@ export class Game extends Component {
       frictionAir: 0,
       frictionStatic: 0
     });
-    this.bar = Bodies.rectangle(100, 500, 100, 10, {
-      isStatic: true,
-      friction: 0
-    });
-    const wallOptions = {
-      isStatic: true,
-      friction: 0
-    }
-    World.add(engine.world, [
-      ball,
-      this.bar,
-      Bodies.rectangle(400, 0, 800, 50, { ...wallOptions }),
-      Bodies.rectangle(400, 600, 800, 50, { ...wallOptions }),
-      Bodies.rectangle(800, 300, 50, 600, { ...wallOptions }),
-      Bodies.rectangle(0, 300, 50, 600, { ...wallOptions })
-    ]);
-    Events.on(engine, 'collisionStart', event => {
+    return ball;
+  }
+
+  createCollisionHandler(ball) {
+    return event => {
       event.pairs.forEach(pair => {
         [pair.bodyA, pair.bodyB].forEach(body => {
           if (body === ball) {
@@ -110,29 +157,7 @@ export class Game extends Component {
           }
         });
       });
-    });
-    const container = document.getElementById(this.CONTAINER_ID);
-    this.renderer = Render.create({
-      element: container,
-      engine: engine,
-      options: {
-        background: "transparent",
-        wireframes: false,
-        width: 800,
-        height: 600
-      }
-    });
-    Engine.run(engine);
-    Render.run(this.renderer);
-    document.addEventListener('keydown', this.handleKeyPress);
-  }
-
-  componentWillUnmount() {
-    Render.stop(this.renderer);
-    Engine.stop(this.renderer.engine);
-    this.renderer = null;
-    this.bar = null;
-    document.removeEventListener('keydown', this.handleKeyPress);
+    };
   }
 
 }
