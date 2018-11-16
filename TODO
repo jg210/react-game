@@ -1,3 +1,8 @@
+* Score can increase by more than 1 when ball hits wall.
+
+* Score can be zeroed even when ball doesn't hit bottom wall.
+  - saw this when ball was bouncing vertically off bar right next to right wall.
+
 * Set keyboard focus after changing level.
 
 * Ball can get stuck at sides of box.
