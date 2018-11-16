@@ -10,8 +10,8 @@ export class Game extends Component {
 
   CONTAINER_ID = "matter_js_container";
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.renderer = null;
     this.bar = null;
     this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -56,8 +56,9 @@ export class Game extends Component {
     return x;
   }
 
-  componentDidMount() {
-    const { engine, bar } = createEngine();
+  // TODO encapsulate startEngine(), stopEngine() and associated state in class.
+  startEngine() {
+    const { engine, bar } = createEngine(this.props.level);
     this.bar = bar;
     const container = document.getElementById(this.CONTAINER_ID);
     this.renderer = createRenderer(container, engine);
@@ -66,12 +67,35 @@ export class Game extends Component {
     document.addEventListener('keydown', this.handleKeyPress);
   }
 
-  componentWillUnmount() {
+  stopEngine() {
     document.removeEventListener('keydown', this.handleKeyPress);
     Render.stop(this.renderer);
-    Engine.stop(this.renderer.engine);
+    this.renderer.canvas.remove();
     this.renderer = null;
     this.bar = null;
+  }
+
+  // React lifecycle.
+  componentDidMount() {
+    this.startEngine();
+  }
+
+  // React lifecycle.
+  componentWillUnmount() {
+    if (this.renderer) {
+      this.stopEngine();
+    }
+  }
+
+  // React lifecycle.
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props === prevProps) {
+      return;
+    }
+    if (this.renderer) {
+      this.stopEngine();
+    }
+    this.startEngine();
   }
 
 }
