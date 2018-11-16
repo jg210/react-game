@@ -1,9 +1,4 @@
 import React, { Component } from 'react';
-import {
-  Body,
-  Engine,
-  Render,
-} from 'matter-js'
 import { GameEngine } from './GameEngine';
 
 export class Game extends Component {
