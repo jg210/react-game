@@ -15,6 +15,8 @@
   - add impulse on key press (and damping), don't just move bar?
     - make bar collide with walls?
 
+* A ball asset that shows rotation?
+
 * Mouse-based movement of bar?
 
 * Gravity well?
@@ -22,17 +24,20 @@
 * Uneven roof?  
   - otherwise, have to use edge of bar if ball gets stuck bouncing straight up and down.
 
-* Change favicon.ico.
-
-* Add back publish script.
-  - inject URL via env. var.
-
 * Goal posts.
 
 * Redux.
 
 * Score keeping.
 
-* Test server.
+* Improve UI.
 
 * TypeScript/flow.
+
+* Change favicon.ico.
+
+* Add back publish script.
+  - inject URL via env. var.
+
+* Test server.
+
