@@ -1,3 +1,5 @@
+* Reversing momentum on collision is wrong.
+
 * Mouse-based movement of bar.
   - MouseConstraint?
     - https://www.youtube.com/watch?v=W-ou_sVlTWk&list=PLRqwX-V7Uu6akvoNKE4GAxf6ZeBYoJ4uh&index=24
@@ -5,6 +7,7 @@
       - Mouse.pixelRatio = pixelDensity(); // retina displays, p5 canvas required?
       - add MouseConstraint to world.
       - bar can't be static, but bar has to be static...
+      - tunnelling is likely to be a problem
 
 * fix min and max velocity on collision?
   - as function of bar height, conserving energy
