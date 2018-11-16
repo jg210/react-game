@@ -67,7 +67,7 @@ function createBall() {
   const ball = Bodies.circle(x, y, radius, {
     render: {
       sprite: {
-        texture: 'sprite.png'
+        texture: 'ball.png'
       }
     },
     restitution: 1,
