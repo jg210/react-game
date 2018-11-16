@@ -1,7 +1,6 @@
 import {
   Bodies,
   Engine,
-  Events,
   Render,
   World
 } from 'matter-js'
@@ -17,7 +16,6 @@ export function createEngine() {
     ball,
     bar
   ]);
-  Events.on(engine, 'collisionStart', createCollisionHandler(ball));
   return { engine, bar };
 }
 
@@ -78,19 +76,4 @@ function createBall() {
     frictionStatic: 0
   });
   return ball;
-}
-
-function createCollisionHandler(ball) {
-  return event => {
-    event.pairs.forEach(pair => {
-      [pair.bodyA, pair.bodyB].forEach(body => {
-        if (body === ball) {
-          // Collisions in matter.js aren't 100% elastic, so
-          // invert the velocity when the ball hits something.
-          body.velocity.x = -body.velocity.x;
-          body.velocity.y = -body.velocity.y;
-        }
-      });
-    });
-  };
 }
