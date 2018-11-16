@@ -67,11 +67,11 @@ export class Game extends Component {
   }
 
   componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyPress);
     Render.stop(this.renderer);
     Engine.stop(this.renderer.engine);
     this.renderer = null;
     this.bar = null;
-    document.removeEventListener('keydown', this.handleKeyPress);
   }
 
 }
