@@ -60,17 +60,8 @@ export class Game extends Component {
   }
 
   componentDidMount() {
-    const engine = Engine.create();
-    engine.world.gravity.y = 0.2;
-    const ball = this.createBall();
-    this.bar = this.createBar();
-    const walls = this.createWalls();
-    World.add(engine.world, [
-      ...walls,
-      ball,
-      this.bar
-    ]);
-    Events.on(engine, 'collisionStart', this.createCollisionHandler(ball));
+    const { engine, bar } = this.createEngine();
+    this.bar = bar;
     const container = document.getElementById(this.CONTAINER_ID);
     this.renderer = this.createRenderer(container, engine);
     Engine.run(engine);
@@ -84,6 +75,21 @@ export class Game extends Component {
     this.renderer = null;
     this.bar = null;
     document.removeEventListener('keydown', this.handleKeyPress);
+  }
+
+  createEngine() {
+    const engine = Engine.create();
+    engine.world.gravity.y = 0.2;
+    const ball = this.createBall();
+    const bar = this.createBar();
+    const walls = this.createWalls();
+    World.add(engine.world, [
+      ...walls,
+      ball,
+      bar
+    ]);
+    Events.on(engine, 'collisionStart', this.createCollisionHandler(ball));
+    return { engine, bar };
   }
 
   createRenderer(container, engine) {
