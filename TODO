@@ -1,5 +1,9 @@
 * Score can increase by more than 1 when ball hits wall.
 
+* Replace ball.png
+  - http://www.pngall.com/beach-ball-png/download/10042
+  - https://www.google.co.uk/search?q=beach+ball+wikimedia+commons&tbm=isch&tbs=rimg:CZ1E49xZPus9Ijj9qMObH7B-i0p6bvhuQUrV-xELC6jpK6dJwVUgHMUdHp5iLdDyfP7lFVFpdRvGKPU79SnK3OPmNCoSCf2ow5sfsH6LEfWuRbv2RgQfKhIJSnpu-G5BStUR5J24LHwlSR4qEgn7EQsLqOkrpxHUAnsUwZ39fCoSCUnBVSAcxR0eEQwdkPtih-8SKhIJnmIt0PJ8_1uURc_1DJUm86_1FkqEgkVUWl1G8Yo9RFmZOPJR1cLzyoSCTv1Kcrc4-Y0EQcMmX-SzWNm&tbo=u&sa=X&ved=2ahUKEwiYi6KU-tneAhUmsKQKHSb4C3kQ9C96BAgBEBg&biw=1863&bih=984&dpr=1
+
 * Score can be zeroed even when ball doesn't hit bottom wall.
   - saw this when ball was bouncing vertically off bar right next to right wall.
 
