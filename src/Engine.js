@@ -5,6 +5,8 @@ import {
   Render,
   World
 } from 'matter-js'
+import _ from 'lodash';
+import seedrandom from 'seedrandom';
 
 export function createEngine() {
   const engine = Engine.create();
@@ -12,10 +14,12 @@ export function createEngine() {
   const ball = createBall();
   const bar = createBar();
   const walls = createWalls();
+  const obstacles = createObstacles(5);
   World.add(engine.world, [
     ...walls,
     ball,
-    bar
+    bar,
+    ...obstacles
   ]);
   return { engine, bar };
 }
@@ -76,6 +80,19 @@ function createBall() {
     frictionAir: 0,
     frictionStatic: 0,
   });
-  Body.setVelocity(ball, {x: 0, y: 5});
+  Body.setVelocity(ball, { x: 0, y: 3 });
   return ball;
+}
+
+function createObstacles(n) {
+  return _.range(0, n).map(i => {
+    const random = seedrandom(`${i * 100023213}`);
+    const x = random() * 800;
+    const y = random() * (0.8 * 600);
+    const radius = 10 + random() * 5;
+    return Bodies.circle(x, y, radius, {
+      isStatic: true,
+      friction: 0
+    });
+  });
 }
