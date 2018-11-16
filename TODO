@@ -4,6 +4,10 @@
   - fix min and max velocity on collision?
     - as function of bar height
 
+* Ball can get stuck at right hand side of box.
+  - kinematic not stepped control of bar position?
+  - uneven roof?
+
 * Proper matter.js coordinate calculations.
 
 * Accelerating bar movement.
