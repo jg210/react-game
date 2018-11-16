@@ -18,10 +18,10 @@ export class GameEngine {
     this.container = document.getElementById(containerId);
     this.engine = Engine.create();
     this.engine.world.gravity.y = 0.2;
-    const ball = this.createBall();
-    this.bar = this.createBar();
-    const walls = this.createWalls();
-    const obstacles = this.createObstacles();
+    const ball = this._createBall();
+    this.bar = this._createBar();
+    const walls = this._createWalls();
+    const obstacles = this._createObstacles();
     World.add(this.engine.world, [
       ...walls,
       ball,
@@ -38,20 +38,20 @@ export class GameEngine {
         height: this.boxHeight
       }
     });
-    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this._handleKeyPress = this._handleKeyPress.bind(this);
   }
 
   start() {
     Engine.run(this.engine);
     Render.run(this.renderer);
-    document.addEventListener('keydown', this.handleKeyPress);
+    document.addEventListener('keydown', this._handleKeyPress);
   }
 
   stop() {
     if (this.engine === null) {
       throw new Error("Already stopped.");
     }
-    document.removeEventListener('keydown', this.handleKeyPress);
+    document.removeEventListener('keydown', this._handleKeyPress);
     Render.stop(this.renderer);
     this.renderer.canvas.remove();
     this.container = null;
@@ -60,7 +60,7 @@ export class GameEngine {
     this.bar = null;
   }
 
-  handleKeyPress(event) {
+  _handleKeyPress(event) {
     if (this.bar === null) {
       return;
     }
@@ -81,7 +81,7 @@ export class GameEngine {
     }
   }
 
-  clamp(x, min, max) {
+  _clamp(x, min, max) {
     if (x < min) {
       x = min;
     }
@@ -91,7 +91,7 @@ export class GameEngine {
     return x;
   }
   
-  createWalls() {
+  _createWalls() {
     const wallOptions = {
       isStatic: true,
       friction: 0
@@ -107,21 +107,21 @@ export class GameEngine {
   }
 
   // Initial x coordinate of bar and ball.
-  initialX() {
+  _initialX() {
     return this.boxWidth / 8 + this.wallThickness / 2
   }
 
-  createBar() {
-    return Bodies.rectangle(this.initialX(), 0.8 * this.boxHeight, 100, 10, {
+  _createBar() {
+    return Bodies.rectangle(this._initialX(), 0.8 * this.boxHeight, 100, 10, {
       isStatic: true,
       friction: 0
     });
   }
 
-  createBall() {
+  _createBall() {
     const imageSize = 64; // pixels
     const radius = 0.86 * imageSize / 2.0;
-    const x = this.initialX();
+    const x = this._initialX();
     const y = radius + this.wallThickness / 2;
     // Infinite inertia reduces conversion of linear to angular
     // momentum, making ball bounce longer:
@@ -145,7 +145,7 @@ export class GameEngine {
     return ball;
   }
 
-  createObstacles() {
+  _createObstacles() {
     const random = seedrandom(this.level);
     const obstacles = []
     _.range(0, this.level).forEach(i => {
