@@ -1,17 +1,18 @@
 * Ball velocity can change.
   - velocity can become high enough to allow ball to tunnel through the walls.
-  - fix velocity on collision?
+  - ball sticks to top of ceiling, even if drop it from lower height
+  - fix min and max velocity on collision?
+    - as function of bar height
 
-* Proper Component size calculations.
+* Proper matter.js coordinate calculations.
 
 * Accelerating bar movement.
   - add impulse on key press (and damping), don't just move bar?
     - make bar collide with walls?
 
-* Mouse-based movement?
+* Mouse-based movement of bar?
 
 * Gravity well?
-  => ball velocity not fixed though...
 
 * Change favicon.ico.
 
@@ -24,4 +25,4 @@
 
 * Test server.
 
-* TypeScript.
+* TypeScript/flow.
