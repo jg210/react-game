@@ -34,9 +34,9 @@ export class Game extends Component {
     }
     let deltaX = 0;
     if (event.key === 'ArrowLeft') {
-      deltaX = -20;
+      deltaX = -30;
     } else if (event.key === 'ArrowRight') {
-      deltaX = 20;
+      deltaX = 30;
     }
     if (deltaX !== 0) {
       let x = this.bar.position.x + deltaX;
@@ -61,6 +61,7 @@ export class Game extends Component {
 
   componentDidMount() {
     const engine = Engine.create();
+    engine.world.gravity.y = 0.2;
     const radius = 27;
     const x = 100;
     const y = radius;
