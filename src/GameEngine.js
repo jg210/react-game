@@ -15,7 +15,6 @@ export class GameEngine {
 
   // http://brm.io/matter-js/docs/classes/Body.html#property_collisionFilter
   COLLISION_CATEGORY_MARKERS = 0x02;
-  COLLISION_CATEGORY_STATIC_BAR = 0x04;
 
   constructor(containerId, level, onScoreUpdate) {
     this.boxHeight = 600;
@@ -35,8 +34,7 @@ export class GameEngine {
     this.engine = Engine.create();
     this.engine.world.gravity.y = 0.2;
     this.ball = this._createBall();
-    const { barStatic, barDynamic, barSprings } = this._createBar();
-    this.bar = barStatic;
+    this.bar = this._createBar();
     const { walls, wallIds } = this._createWalls();
     this.walls = walls;
     this.wallIds = wallIds;
@@ -44,9 +42,7 @@ export class GameEngine {
     World.add(this.engine.world, [
       ...walls,
       this.ball,
-      barStatic,
-      barDynamic,
-      ...barSprings,
+      this.bar,
       ...obstacles
     ]);
     console.log('Body ids:');
@@ -195,36 +191,10 @@ export class GameEngine {
   _createBar() {
     const x = this._initialX();
     const y = 0.8 * this.boxHeight;
-    const barStatic = Bodies.rectangle(x, y, this.barWidth, this.barHeight, {
-      label: "bar - static",
+    return  Bodies.rectangle(x, y, this.barWidth, this.barHeight, {
+      label: "bar",
       isStatic: true,
-      collisionFilter: {
-        category: this.COLLISION_CATEGORY_STATIC_BAR,
-        mask: this.COLLISION_CATEGORY_STATIC_BAR
-      }
     });
-    const barDynamic = Bodies.rectangle(x, y, this.barWidth, this.barHeight, {
-      label: "bar - dynamic",
-      friction: this.friction,
-      density: 1,
-      inertia: 0
-    });
-    const ends = [-1, 1];
-    const barSprings = _.map(ends, end => {
-      return Constraint.create({
-        bodyA: barStatic,
-        bodyB: barDynamic,
-        pointA: { x: end * this.barWidth / 2, y: 0 },
-        pointB: { x: end * this.barWidth / 2, y: 0 },
-        damping: 0.01,
-        stiffness: 0.8,
-        render: {
-          anchors: false,
-          visible: false
-        }
-      })
-    });
-    return { barStatic, barDynamic, barSprings };
   }
 
   _createBall() {
