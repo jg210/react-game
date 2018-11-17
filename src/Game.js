@@ -12,7 +12,11 @@ export class Game extends Component {
 
   render() {
     return (
-      <div id={this.CONTAINER_ID} />
+      // Need tabindex, otherwise can't get focus and capture key events.
+      <div
+        className="Game"
+        id={this.CONTAINER_ID}
+        tabindex="0" />
     );
   }
 
