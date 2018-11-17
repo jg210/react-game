@@ -242,7 +242,7 @@ export class GameEngine {
   _createObstacles() {
     const random = seedrandom(this.level + 484726723);
     const obstacles = []
-    _.range(0, this.level).forEach(i => {
+    _.range(0, this.level * 3).forEach(i => {
       const radius = 10 + random() * 15;
       const border = this.wallThickness / 2 + radius;
       const x = border + (random() * (this.boxWidth - 2 * border));
