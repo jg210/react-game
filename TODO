@@ -3,7 +3,8 @@
   - uneven roof?
   - rely on well timed nudge as ball passing bar?
   - shake up obstacles?
-  - Invisible static bar attached to visible non-static bar with spring Constraints?
+  - tiltable bar?
+  - invisible static bar attached to visible non-static bar with spring Constraints?
     - would look more interesting and be more skeuomorphic
     - would add a bit of randomness to ball collisions.
     - but no - it causes too much enery loss.
@@ -14,7 +15,9 @@
  
 * Accelerating bar movement.
   - add impulse on key press (and damping), don't just move bar?
-    - make bar collide with walls?
+    - no, since bar needs to be "static" for elastic collisions
+  - use hidden, dynamic bar to model physics, updating position of a
+    static bar on every update?
 
 * Redux.
 
