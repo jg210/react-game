@@ -18,6 +18,10 @@ export class GameEngine {
     this.barWidth = 100;
     this.barHeight = 10;
     this.friction = 0;
+    // Infinite inertia reduces conversion of linear to angular
+    // momentum, making ball bounce longer:
+    //
+    // https://github.com/liabru/matter-js/issues/21#issuecomment-42775549
     this.ballInertia = Infinity;
     this.level = level;
     this.onScoreUpdate = onScoreUpdate;
@@ -154,10 +158,6 @@ export class GameEngine {
     const radius = 1.025 * imageSize / 2.0;
     const x = this._initialX();
     const y = radius + this.wallThickness / 2;
-    // Infinite inertia reduces conversion of linear to angular
-    // momentum, making ball bounce longer:
-    //
-    // https://github.com/liabru/matter-js/issues/21#issuecomment-42775549
     const ball = Bodies.circle(x, y, radius, {
       label: "ball",
       render: {
