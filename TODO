@@ -1,6 +1,6 @@
 * Set keyboard focus after changing level.
 
-* Ball can get stuck at sides of box.
+* Ball can get stuck at sides of box or bounce up and down forever.
   - kinematic, not stepped, control of bar position?
   - uneven roof?
   - rely on well timed nudge as ball passing bar?
@@ -17,13 +17,11 @@
   - add impulse on key press (and damping), don't just move bar?
     - make bar collide with walls?
 
-* Score can be made arbitrarily high if ball ends up boucing straight up and down.
-
-* High score.
-
 * Redux.
 
 * TypeScript/flow.
+
+* Better UI layout.
 
 * Change favicon.ico.
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { Game } from './Game';
 import { LevelSelector } from './LevelSelector';
-import { Score } from './Score';
+import { Scores } from './Scores';
 
 class App extends Component {
 
@@ -10,7 +10,8 @@ class App extends Component {
     super(props);
     this.state = {
       level: 1,
-      score: 0
+      score: 0,
+      highScore: 0
     };
     this.handleLevelChange = this.handleLevelChange.bind(this);
     this.handleScoreUpdate = this.handleScoreUpdate.bind(this);
@@ -20,7 +21,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <Score score={this.state.score} />
+          <Scores score={this.state.score} highScore={this.state.highScore} />
           <Game
             level={this.state.level}
             onScoreUpdate={this.handleScoreUpdate}
@@ -39,13 +40,16 @@ class App extends Component {
   }
 
   handleScoreUpdate(points) {
-    var score = this.state.score;
+    var {score, highScore} = this.state;
     if (points === null) {
       score = 0;
     } else {
       score += points;
+      if (score > highScore) {
+        highScore = score;
+      }
     }
-    this.setState({ score: score});
+    this.setState({score, highScore});
   }
 
 }
