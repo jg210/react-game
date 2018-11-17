@@ -2,7 +2,6 @@ import {
   Bodies,
   Body,
   Composite,
-  Constraint,
   Engine,
   Events,
   Render,
