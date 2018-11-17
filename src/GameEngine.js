@@ -2,6 +2,7 @@ import {
   Bodies,
   Body,
   Composite,
+  Constraint,
   Engine,
   Events,
   Render,
@@ -11,6 +12,10 @@ import _ from 'lodash';
 import seedrandom from 'seedrandom';
 
 export class GameEngine {
+
+  // http://brm.io/matter-js/docs/classes/Body.html#property_collisionFilter
+  COLLISION_CATEGORY_MARKERS = 0x02;
+  COLLISION_CATEGORY_STATIC_BAR = 0x04;
 
   constructor(containerId, level, onScoreUpdate) {
     this.boxHeight = 600;
@@ -30,7 +35,8 @@ export class GameEngine {
     this.engine = Engine.create();
     this.engine.world.gravity.y = 0.2;
     this.ball = this._createBall();
-    this.bar = this._createBar();
+    const { barStatic, barDynamic, barSprings } = this._createBar();
+    this.bar = barStatic;
     const { walls, wallIds } = this._createWalls();
     this.walls = walls;
     this.wallIds = wallIds;
@@ -38,7 +44,9 @@ export class GameEngine {
     World.add(this.engine.world, [
       ...walls,
       this.ball,
-      this.bar,
+      barStatic,
+      barDynamic,
+      ...barSprings,
       ...obstacles
     ]);
     console.log('Body ids:');
@@ -105,13 +113,13 @@ export class GameEngine {
         const points = that.wallIds.get(other.id);
         console.log(`points: ${points}`);
         const activeContacts = pair.activeContacts;
-        this._markPoints(activeContacts);
+        this._markCollisionPoints(activeContacts);
         that.onScoreUpdate(points);
       }
     });
   }
 
-  _markPoints(activeContacts) {
+  _markCollisionPoints(activeContacts) {
     World.add(this.engine.world, _.map(activeContacts, contact => {
       return Bodies.circle(contact.vertex.x, contact.vertex.y, 2, {
         label: `contact`,
@@ -119,7 +127,10 @@ export class GameEngine {
         render: {
           fillStyle: "red"
         },
-        collisionFilter: { group: 2 },
+        collisionFilter: {
+          category: this.COLLISION_CATEGORY_MARKERS,
+          mask: this.COLLISION_CATEGORY_MARKERS
+        },
         friction: this.friction
       });
     }));
@@ -182,11 +193,38 @@ export class GameEngine {
   }
 
   _createBar() {
-    return Bodies.rectangle(this._initialX(), 0.8 * this.boxHeight, this.barWidth, this.barHeight, {
-      label: "bar",
+    const x = this._initialX();
+    const y = 0.8 * this.boxHeight;
+    const barStatic = Bodies.rectangle(x, y, this.barWidth, this.barHeight, {
+      label: "bar - static",
       isStatic: true,
-      friction: this.friction
+      collisionFilter: {
+        category: this.COLLISION_CATEGORY_STATIC_BAR,
+        mask: this.COLLISION_CATEGORY_STATIC_BAR
+      }
     });
+    const barDynamic = Bodies.rectangle(x, y, this.barWidth, this.barHeight, {
+      label: "bar - dynamic",
+      friction: this.friction,
+      density: 1,
+      inertia: 0
+    });
+    const ends = [-1, 1];
+    const barSprings = _.map(ends, end => {
+      return Constraint.create({
+        bodyA: barStatic,
+        bodyB: barDynamic,
+        pointA: { x: end * this.barWidth / 2, y: 0 },
+        pointB: { x: end * this.barWidth / 2, y: 0 },
+        damping: 0.01,
+        stiffness: 0.8,
+        render: {
+          anchors: false,
+          visible: false
+        }
+      })
+    });
+    return { barStatic, barDynamic, barSprings };
   }
 
   _createBall() {
