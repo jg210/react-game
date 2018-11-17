@@ -1,5 +1,3 @@
-* this.engine can become null when change level.
-
 * Non-rotating ball looks odd.
   - use symmetrical image?
   - very high inertia allows some rotation.

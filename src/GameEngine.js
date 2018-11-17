@@ -77,9 +77,13 @@ export class GameEngine {
     this.engine = null;
     this.renderer = null;
     this.bar = null;
+    this.ball = null;
   }
 
   _handleCollision(event) {
+    if (this.engine === null) {
+      return;
+    }
     const that = this;
     const pairs = event.pairs;
     pairs.forEach(pair => {
