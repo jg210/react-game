@@ -17,6 +17,8 @@ export class GameEngine {
     this.wallThickness = 50;
     this.barWidth = 100;
     this.barHeight = 10;
+    this.friction = 0;
+    this.ballInertia = Infinity;
     this.level = level;
     this.onScoreUpdate = onScoreUpdate;
     this.container = document.getElementById(containerId);
@@ -114,7 +116,7 @@ export class GameEngine {
   _createWalls() {
     const wallOptions = {
       isStatic: true,
-      friction: 0
+      friction: this.friction
     };
     // matter.js does positioning using centre of mass...
     const wallTop =    Bodies.rectangle(this.boxWidth / 2, 0,                  this.boxWidth,      this.wallThickness, { ...wallOptions });
@@ -139,7 +141,7 @@ export class GameEngine {
   _createBar() {
     return Bodies.rectangle(this._initialX(), 0.8 * this.boxHeight, this.barWidth, this.barHeight, {
       isStatic: true,
-      friction: 0
+      friction: this.friction
     });
   }
 
@@ -152,7 +154,6 @@ export class GameEngine {
     // momentum, making ball bounce longer:
     //
     // https://github.com/liabru/matter-js/issues/21#issuecomment-42775549
-    const ballInertia = Infinity;
     const ball = Bodies.circle(x, y, radius, {
       render: {
         sprite: {
@@ -160,9 +161,10 @@ export class GameEngine {
         }
       },
       restitution: 1,
-      inertia: ballInertia,
-      inverseInertia: 1 / ballInertia,
-      friction: 0,
+      density: 1,
+      inertia: this.ballInertia,
+      inverseInertia: 1 / this.ballInertia,
+      friction: this.friction,
       frictionAir: 0,
       frictionStatic: 0,
     });
@@ -179,7 +181,7 @@ export class GameEngine {
       const radius = 10 + random() * 15;
       const obstacle = Bodies.circle(x, y, radius, {
         isStatic: true,
-        friction: 0
+        friction: this.friction
       });
       obstacles.push(obstacle);
     });

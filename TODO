@@ -3,6 +3,14 @@
 * Score can be zeroed even when ball doesn't hit bottom wall.
   - saw this when ball was bouncing vertically off bar right next to right wall.
 
+* Non-rotating ball looks odd.
+  - use symmetrical image?
+  - very high inertia allows some rotation.
+    - would need to damp the rotation somehow too.
+  - could allow some friction too, for more realistic looking bounces
+    - but would need to give some way of adding energy to the system.
+      - flippers?
+
 * Set keyboard focus after changing level.
 
 * Ball can get stuck at sides of box.
