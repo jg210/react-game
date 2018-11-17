@@ -64,6 +64,7 @@ export class GameEngine {
     Engine.run(this.engine);
     Render.run(this.renderer);
     document.addEventListener('keydown', this._handleKeyPress);
+    this.container.focus();
   }
 
   stop() {
