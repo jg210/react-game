@@ -36,7 +36,9 @@
 * fix min and max velocity on collision?
   - as function of bar height, conserving energy
 
-* Obstacle can overlap ball at startup, causing high CPU use due to many score updates.
+* Obstacles can overlap ball at startup, causing high CPU use due to many score updates.
+
+* Obstacles can be placed inside the walls.
 
 * Accelerating bar movement.
   - add impulse on key press (and damping), don't just move bar?

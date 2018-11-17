@@ -1,6 +1,7 @@
 import {
   Bodies,
   Body,
+  Composite,
   Engine,
   Events,
   Render,
@@ -40,6 +41,10 @@ export class GameEngine {
       this.bar,
       ...obstacles
     ]);
+    console.log('Body ids:');
+    Composite.allBodies(this.engine.world).forEach(body => {
+      console.log(`${body.id} - ${body.label}`);
+    });
     this.renderer = Render.create({
       element: this.container,
       engine: this.engine,
@@ -78,15 +83,33 @@ export class GameEngine {
     const that = this;
     const pairs = event.pairs;
     pairs.forEach(pair => {
-      console.log(`collision - A: ${pair.bodyA.label} B: ${pair.bodyB.label}`);
+      const bodyA = pair.bodyA;
+      const bodyB = pair.bodyB;
+      console.log(`collision - A: ${bodyA.label} [${bodyA.id}] B: ${bodyB.label} [${bodyB.id}]`);
       [pair.bodyA, pair.bodyB].forEach(body => {
         if (that.wallIds.has(body.id)) {
           const points = that.wallIds.get(body.id);
           console.log(`points: ${points}`);
+          const activeContacts = pair.activeContacts;
+          this._markPoints(activeContacts);
           that.onScoreUpdate(points);
         }
       });
     });
+  }
+
+  _markPoints(activeContacts) {
+    World.add(this.engine.world, _.map(activeContacts, contact => {
+      return Bodies.circle(contact.vertex.x, contact.vertex.y, 2, {
+        label: `contact`,
+        isStatic: true,
+        render: {
+          fillStyle: "red"
+        },
+        collisionFilter: { group: 2 },
+        friction: this.friction
+      });
+    }));
   }
 
   _handleKeyPress(event) {
@@ -126,10 +149,10 @@ export class GameEngine {
       friction: this.friction
     };
     // matter.js does positioning using centre of mass...
-    const wallTop =    Bodies.rectangle(this.boxWidth / 2, 0,                  this.boxWidth,      this.wallThickness, { ...wallOptions, label: "wall (T)" });
-    const wallBottom = Bodies.rectangle(this.boxWidth / 2, this.boxHeight,     this.boxWidth,      this.wallThickness, { ...wallOptions, label: "wall (B)" });
-    const wallRight =  Bodies.rectangle(this.boxWidth,     this.boxHeight / 2, this.wallThickness, this.boxHeight,     { ...wallOptions, label: "wall (R)" });
-    const wallLeft =   Bodies.rectangle(0,                 this.boxHeight / 2, this.wallThickness, this.boxHeight,     { ...wallOptions, label: "wall (L)" });
+    const wallTop =    Bodies.rectangle(this.boxWidth / 2, 0,                  this.boxWidth,      this.wallThickness, { ...wallOptions, label: "wall - T" });
+    const wallBottom = Bodies.rectangle(this.boxWidth / 2, this.boxHeight,     this.boxWidth,      this.wallThickness, { ...wallOptions, label: "wall - B" });
+    const wallRight =  Bodies.rectangle(this.boxWidth,     this.boxHeight / 2, this.wallThickness, this.boxHeight,     { ...wallOptions, label: "wall - R" });
+    const wallLeft =   Bodies.rectangle(0,                 this.boxHeight / 2, this.wallThickness, this.boxHeight,     { ...wallOptions, label: "wall - L" });
     const walls = [wallTop, wallBottom, wallRight, wallLeft];
     // A Map from wall Body id to game points. null means "game over".
     const wallIds = new Map();
@@ -185,7 +208,7 @@ export class GameEngine {
       const y = random() * (0.75 * this.boxHeight);
       const radius = 10 + random() * 15;
       const obstacle = Bodies.circle(x, y, radius, {
-        label: `obstacle (${i})`,
+        label: `obstacle ${i}`,
         isStatic: true,
         friction: this.friction
       });
