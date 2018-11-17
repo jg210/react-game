@@ -74,9 +74,12 @@ export class GameEngine {
     const that = this;
     const pairs = event.pairs;
     pairs.forEach(pair => {
+      console.log(`collision - A: ${pair.bodyA.label} B: ${pair.bodyB.label}`);
       [pair.bodyA, pair.bodyB].forEach(body => {
         if (that.wallIds.has(body.id)) {
-          that.onScoreUpdate(that.wallIds.get(body.id));
+          const points = that.wallIds.get(body.id);
+          console.log(`points: ${points}`);
+          that.onScoreUpdate(points);
         }
       });
     });
@@ -119,10 +122,10 @@ export class GameEngine {
       friction: this.friction
     };
     // matter.js does positioning using centre of mass...
-    const wallTop =    Bodies.rectangle(this.boxWidth / 2, 0,                  this.boxWidth,      this.wallThickness, { ...wallOptions });
-    const wallBottom = Bodies.rectangle(this.boxWidth / 2, this.boxHeight,     this.boxWidth,      this.wallThickness, { ...wallOptions });
-    const wallRight =  Bodies.rectangle(this.boxWidth,     this.boxHeight / 2, this.wallThickness, this.boxHeight,     { ...wallOptions });
-    const wallLeft =   Bodies.rectangle(0,                 this.boxHeight / 2, this.wallThickness, this.boxHeight,     { ...wallOptions });
+    const wallTop =    Bodies.rectangle(this.boxWidth / 2, 0,                  this.boxWidth,      this.wallThickness, { ...wallOptions, label: "wall (T)" });
+    const wallBottom = Bodies.rectangle(this.boxWidth / 2, this.boxHeight,     this.boxWidth,      this.wallThickness, { ...wallOptions, label: "wall (B)" });
+    const wallRight =  Bodies.rectangle(this.boxWidth,     this.boxHeight / 2, this.wallThickness, this.boxHeight,     { ...wallOptions, label: "wall (R)" });
+    const wallLeft =   Bodies.rectangle(0,                 this.boxHeight / 2, this.wallThickness, this.boxHeight,     { ...wallOptions, label: "wall (L)" });
     const walls = [wallTop, wallBottom, wallRight, wallLeft];
     // A Map from wall Body id to game points. null means "game over".
     const wallIds = new Map();
@@ -140,6 +143,7 @@ export class GameEngine {
 
   _createBar() {
     return Bodies.rectangle(this._initialX(), 0.8 * this.boxHeight, this.barWidth, this.barHeight, {
+      label: "bar",
       isStatic: true,
       friction: this.friction
     });
@@ -155,6 +159,7 @@ export class GameEngine {
     //
     // https://github.com/liabru/matter-js/issues/21#issuecomment-42775549
     const ball = Bodies.circle(x, y, radius, {
+      label: "ball",
       render: {
         sprite: {
           texture: 'ball.png'
@@ -180,6 +185,7 @@ export class GameEngine {
       const y = random() * (0.75 * this.boxHeight);
       const radius = 10 + random() * 15;
       const obstacle = Bodies.circle(x, y, radius, {
+        label: `obstacle (${i})`,
         isStatic: true,
         friction: this.friction
       });
