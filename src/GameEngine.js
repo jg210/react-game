@@ -34,6 +34,7 @@ export class GameEngine {
     this.engine.world.gravity.y = 0.2;
     this.ball = this._createBall();
     this.bar = this._createBar();
+    this.barSpeed = 0;
     const { walls, wallIds } = this._createWalls();
     this.walls = walls;
     this.wallIds = wallIds;
@@ -60,13 +61,16 @@ export class GameEngine {
     });
     this._handleKeyPress = this._handleKeyPress.bind(this);
     this._handleCollision = this._handleCollision.bind(this);
-    Events.on(this.engine, 'collisionStart', this._handleCollision);
+    this._handleBeforeUpdate = this._handleBeforeUpdate.bind(this);
   }
 
   start() {
+    Events.on(this.engine, 'collisionStart', this._handleCollision);
+    Events.on(this.engine, 'beforeUpdate', this._handleBeforeUpdate);
     Engine.run(this.engine);
     Render.run(this.renderer);
     document.addEventListener('keydown', this._handleKeyPress);
+    document.addEventListener('keyup', this._handleKeyPress);
     this.container.focus();
   }
 
@@ -75,7 +79,10 @@ export class GameEngine {
       throw new Error("Already stopped.");
     }
     document.removeEventListener('keydown', this._handleKeyPress);
+    document.removeEventListener('keyup', this._handleKeyPress);
     Render.stop(this.renderer);
+    Events.off(this.engine, 'collisionStart');
+    Events.off(this.engine, 'beforeUpdate');
     this.renderer.canvas.remove();
     this.container = null;
     this.engine = null;
@@ -132,24 +139,36 @@ export class GameEngine {
   }
 
   _handleKeyPress(event) {
-    if (this.bar === null) {
+    if (this.bar === null || event.repeat) {
       return;
     }
-    let deltaX = 0;
-    if (event.key === 'ArrowLeft') {
-      deltaX = -30;
-    } else if (event.key === 'ArrowRight') {
-      deltaX = 30;
+    const barSpeed = 20;
+    if (event.type === "keydown") {
+      if (event.key === 'ArrowLeft') {
+        this.barSpeed = -barSpeed;
+      } else if (event.key === 'ArrowRight') {
+        this.barSpeed = barSpeed;
+      }
+    } else if (event.type === "keyup") {
+      this.barSpeed = 0;
+    } else {
+      throw new Error(event);
     }
-    if (deltaX !== 0) {
-      let x = this.bar.position.x + deltaX;
-      const minX = this.wallThickness / 2 + this.barWidth / 2 + 1;
-      const maxX = this.boxWidth - (this.wallThickness / 2 + this.barWidth / 2 + 1);
-      Body.setPosition(this.bar, {
-        x: this._clamp(x, minX, maxX),
-        y: this.bar.position.y
-      });
+    console.log(`bar speed: ${this.barSpeed}`);
+  }
+
+  _handleBeforeUpdate(event) {
+    if (!this.bar) {
+      return;
     }
+    const minX = this.wallThickness / 2 + this.barWidth / 2 + 1;
+    const maxX = this.boxWidth - (this.wallThickness / 2 + this.barWidth / 2 + 1);
+    const dx = this.barSpeed; // TODO base on event times.
+    const x = this._clamp(
+      this.bar.position.x + dx,
+      minX, maxX);
+    const y = this.bar.position.y;
+    Body.setPosition(this.bar, { x, y });
   }
 
   _clamp(x, min, max) {
@@ -190,7 +209,7 @@ export class GameEngine {
   _createBar() {
     const x = this._initialX();
     const y = 0.8 * this.boxHeight;
-    return  Bodies.rectangle(x, y, this.barWidth, this.barHeight, {
+    return Bodies.rectangle(x, y, this.barWidth, this.barHeight, {
       label: "bar",
       isStatic: true,
     });
@@ -231,7 +250,8 @@ export class GameEngine {
       const obstacle = Bodies.circle(x, y, radius, {
         label: `obstacle ${i}`,
         isStatic: random() > 0.5,
-        friction: this.friction
+        friction: this.friction,
+        gravityScale: 0
       });
       obstacles.push(obstacle);
     });
