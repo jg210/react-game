@@ -6,6 +6,7 @@
   - Invisible static bar attached to visible non-static bar with spring Constraints?
     - would look more interesting and be more skeuomorphic
     - would add a bit of randomness to ball collisions.
+    - but no - it causes too much enery loss.
 
 * Marked collisions leak memory.
   - remove them?
