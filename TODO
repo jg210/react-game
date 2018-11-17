@@ -1,3 +1,39 @@
+* Obstacles can be placed inside the walls.
+
+* Set keyboard focus after changing level.
+
+* Ball can get stuck at sides of box.
+  - kinematic, not stepped, control of bar position?
+  - uneven roof?
+  - rely on well timed nudge as ball passing bar?
+  - shake up obstacles?
+  - Invisible static bar attached to visible non-static bar with sprint Constraints?
+    - would look more interesting and be more skeuomorphic
+    - would add a bit of randomness to ball collisions.
+
+* Marked collisions leak memory.
+  - remove them?
+  - fade out with time?
+ 
+* Accelerating bar movement.
+  - add impulse on key press (and damping), don't just move bar?
+    - make bar collide with walls?
+
+* Score can be made arbitrarily high if ball ends up boucing straight up and down.
+
+* High score.
+
+* Redux.
+
+* TypeScript/flow.
+
+* Change favicon.ico.
+
+* Add back publish script.
+  - inject URL via env. var.
+
+* Test server.
+
 * Non-rotating ball looks odd.
   - use symmetrical image?
   - very high inertia allows some rotation.
@@ -5,19 +41,6 @@
   - could allow some friction too, for more realistic looking bounces
     - but would need to give some way of adding energy to the system.
       - flippers?
-
-* Set keyboard focus after changing level.
-
-* Ball can get stuck at sides of box.
-  - kinematic not stepped control of bar position?
-  - uneven roof?
-  - rely on well timed nudge as ball passing bar?
-  - other obstacles?
-    => a way to increase difficulty.
-
-* Invisible static bar attached to visible non-static bar with sprint Constraints?
-  - would look more interesting and be more skeuomorphic
-  - would add a bit of randomness to ball collisions.
 
 * Mouse-based movement of bar.
   - MouseConstraint?
@@ -31,35 +54,5 @@
 * fix min and max velocity on collision?
   - as function of bar height, conserving energy
 
-* Obstacles can overlap ball at startup, causing high CPU use due to many score updates.
-
-* Obstacles can be placed inside the walls.
-
-* Accelerating bar movement.
-  - add impulse on key press (and damping), don't just move bar?
-    - make bar collide with walls?
-
-* Score can be made arbitrarily high if ball ends up boucing straight up and down.
-
-* A ball asset that shows rotation?
-
-* Uneven roof?  
-  - otherwise, have to use edge of bar if ball gets stuck bouncing straight up and down.
-
-* Goal posts.
-
-* Redux.
-
-* High score.
-
-* Improve UI.
-
-* TypeScript/flow.
-
-* Change favicon.ico.
-
-* Add back publish script.
-  - inject URL via env. var.
-
-* Test server.
-
+* Toggle for marked collisions?
+  - connecting react to non-react JavaScript...
