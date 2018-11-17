@@ -1,7 +1,4 @@
-* Score can increase by more than 1 when ball hits wall.
-
-* Score can be zeroed even when ball doesn't hit bottom wall.
-  - saw this when ball was bouncing vertically off bar right next to right wall.
+* this.engine can become null when change level.
 
 * Non-rotating ball looks odd.
   - use symmetrical image?
