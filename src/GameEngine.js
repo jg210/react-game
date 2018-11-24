@@ -1,21 +1,49 @@
+// @flow
 import {
   Bodies,
   Body,
   Composite,
+  Contact,
   Engine,
   Events,
+  Pair,
   Render,
   World
 } from 'matter-js'
 import _ from 'lodash';
 import seedrandom from 'seedrandom';
 
+export type ScoreUpdate = (?number) => void;
+
 export class GameEngine {
 
   // http://brm.io/matter-js/docs/classes/Body.html#property_collisionFilter
   COLLISION_CATEGORY_MARKERS = 0x02;
 
-  constructor(containerId, level, onScoreUpdate) {
+  started: boolean;
+  stopped: boolean;
+  boxHeight: number;
+  boxWidth: number;
+  wallThickness: number;
+  barWidth: number;
+  barHeight: number;
+  friction: number;
+  ballInertia: number;
+  level: number;
+  onScoreUpdate: ScoreUpdate;
+  container: HTMLElement;
+  engine: Engine;
+  ball: Body;
+  barSpeed: number;
+  bar: Body;
+  walls: Body[];
+  wallIds: Map<number,?number>;
+  renderer: Render;
+  _handleKeyPress: (KeyboardEvent) => void;
+
+  constructor(containerId: string, level: number, onScoreUpdate: ScoreUpdate) {
+    this.started = false;
+    this.stopped = false;
     this.boxHeight = 600;
     this.boxWidth = 800;
     this.wallThickness = 50;
@@ -29,7 +57,7 @@ export class GameEngine {
     this.ballInertia = Infinity;
     this.level = level;
     this.onScoreUpdate = onScoreUpdate;
-    this.container = document.getElementById(containerId);
+    this.container = this._nonNull(document.getElementById(containerId));
     this.engine = Engine.create();
     this.engine.world.gravity.y = 0.2;
     this.ball = this._createBall();
@@ -46,7 +74,7 @@ export class GameEngine {
       ...obstacles
     ]);
     console.log('Body ids:');
-    Composite.allBodies(this.engine.world).forEach(body => {
+    Composite.allBodies(this.engine.world).forEach((body: Body) => {
       console.log(`${body.id} - ${body.label}`);
     });
     this.renderer = Render.create({
@@ -59,12 +87,15 @@ export class GameEngine {
         height: this.boxHeight
       }
     });
-    this._handleKeyPress = this._handleKeyPress.bind(this);
-    this._handleCollision = this._handleCollision.bind(this);
-    this._handleBeforeUpdate = this._handleBeforeUpdate.bind(this);
   }
 
   start() {
+    if (this.started) {
+      throw new Error("already started.");
+    }
+    if (this.stopped) {
+      throw new Error("cannot restart.");
+    }
     Events.on(this.engine, 'collisionStart', this._handleCollision);
     Events.on(this.engine, 'beforeUpdate', this._handleBeforeUpdate);
     Engine.run(this.engine);
@@ -72,11 +103,15 @@ export class GameEngine {
     document.addEventListener('keydown', this._handleKeyPress);
     document.addEventListener('keyup', this._handleKeyPress);
     this.container.focus();
+    this.started = true;
   }
 
   stop() {
-    if (this.engine === null) {
-      throw new Error("Already stopped.");
+    if (!this.started) {
+      throw new Error("not started.");
+    }
+    if (this.stopped) {
+      throw new Error("already stopped");
     }
     document.removeEventListener('keydown', this._handleKeyPress);
     document.removeEventListener('keyup', this._handleKeyPress);
@@ -84,22 +119,16 @@ export class GameEngine {
     Events.off(this.engine, 'collisionStart');
     Events.off(this.engine, 'beforeUpdate');
     this.renderer.canvas.remove();
-    this.container = null;
-    this.engine = null;
-    this.renderer = null;
-    this.bar = null;
-    this.ball = null;
+    this.started = false;
+    this.stopped = true;
   }
 
-  _handleCollision(event) {
-    if (this.engine === null) {
-      return;
-    }
+  _handleCollision = (event: (pairs: [Pair]) => void) => {
     const that = this;
     const pairs = event.pairs;
-    pairs.forEach(pair => {
-      let ball = null;
-      let other = null;
+    pairs.forEach((pair: Pair) => {
+      let ball: Body = null;
+      let other: Body = null;
       if (pair.bodyA.id === that.ball.id) {
         ball = pair.bodyA;
         other = pair.bodyB;
@@ -112,8 +141,15 @@ export class GameEngine {
       }
       console.log(`ball collided with: ${other.label} [${other.id}]`);
       if (that.wallIds.has(other.id)) {
-        const points = that.wallIds.get(other.id);
-        console.log(`points: ${points}`);
+        const otherId: number = other.id;
+        const points: ?number = that.wallIds.get(otherId);
+        if (points === null) {
+          console.log("game over.");
+        } else if (points === undefined) {
+          throw new Error(); // Keep flow quiet.
+        } else {
+          console.log(`points: ${points}`);
+        }
         const activeContacts = pair.activeContacts;
         this._markCollisionPoints(activeContacts);
         that.onScoreUpdate(points);
@@ -121,8 +157,8 @@ export class GameEngine {
     });
   }
 
-  _markCollisionPoints(activeContacts) {
-    World.add(this.engine.world, _.map(activeContacts, contact => {
+  _markCollisionPoints(activeContacts: [Contact]) {
+    World.add(this.engine.world, _.map(activeContacts, (contact: Contact) => {
       return Bodies.circle(contact.vertex.x, contact.vertex.y, 2, {
         label: `contact`,
         isStatic: true,
@@ -138,8 +174,8 @@ export class GameEngine {
     }));
   }
 
-  _handleKeyPress(event) {
-    if (this.bar === null || event.repeat) {
+  _handleKeyPress = (event: KeyboardEvent) => {
+    if (event.repeat) {
       return;
     }
     const barSpeed = 20;
@@ -157,13 +193,10 @@ export class GameEngine {
     console.log(`bar speed: ${this.barSpeed}`);
   }
 
-  _handleBeforeUpdate(event) {
-    if (!this.bar) {
-      return;
-    }
+  _handleBeforeUpdate = (event: {timestamp: number}) => {
     const minX = this.wallThickness / 2 + this.barWidth / 2 + 1;
     const maxX = this.boxWidth - (this.wallThickness / 2 + this.barWidth / 2 + 1);
-    const dx = this.barSpeed; // TODO base on event times.
+    const dx = this.barSpeed; // TODO base on event timestamp.
     const x = this._clamp(
       this.bar.position.x + dx,
       minX, maxX);
@@ -171,7 +204,7 @@ export class GameEngine {
     Body.setPosition(this.bar, { x, y });
   }
 
-  _clamp(x, min, max) {
+  _clamp(x: number, min: number, max: number): number {
     if (x < min) {
       x = min;
     }
@@ -181,7 +214,7 @@ export class GameEngine {
     return x;
   }
 
-  _createWalls() {
+  _createWalls(): { walls: Body[], wallIds: Map<number,?number> } {
     const wallOptions = {
       isStatic: true,
       friction: this.friction
@@ -202,11 +235,11 @@ export class GameEngine {
   }
 
   // Initial x coordinate of bar and ball.
-  _initialX() {
+  _initialX(): number {
     return this.boxWidth / 8 + this.wallThickness / 2
   }
 
-  _createBar() {
+  _createBar(): Body {
     const x = this._initialX();
     const y = 0.8 * this.boxHeight;
     return Bodies.rectangle(x, y, this.barWidth, this.barHeight, {
@@ -215,7 +248,7 @@ export class GameEngine {
     });
   }
 
-  _createBall() {
+  _createBall(): Body {
     const imageSize = 64; // pixels
     const radius = 1.025 * imageSize / 2.0;
     const x = this._initialX();
@@ -239,10 +272,10 @@ export class GameEngine {
     return ball;
   }
 
-  _createObstacles() {
+  _createObstacles(): Body[] {
     const random = seedrandom(this.level + 484726723);
     const obstacles = []
-    _.range(0, this.level * 3).forEach(i => {
+    _.range(0, this.level * 3).forEach((i: number) => {
       const radius = 10 + random() * 15;
       const border = this.wallThickness / 2 + radius;
       const x = border + (random() * (this.boxWidth - 2 * border));
@@ -256,6 +289,16 @@ export class GameEngine {
       obstacles.push(obstacle);
     });
     return obstacles;
+  }
+
+  _nonNull<T>(value: ?T): T {
+    if (value === null) {
+      throw new Error("null value.");
+    }
+    if (value === undefined) {
+      throw new Error("undefined value.");
+    }
+    return value;
   }
 
 }
