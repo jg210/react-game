@@ -1,6 +1,12 @@
+// @flow
 import React from 'react';
 
-export const Scores = props => {
+type Props = {
+  score: number,
+  highScore: number
+}
+
+export const Scores = (props: Props) => {
   return (
     <div className="Scores">
       <div>score: {props.score}</div>

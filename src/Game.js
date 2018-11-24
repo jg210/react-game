@@ -1,11 +1,23 @@
+// @flow
 import React, { Component } from 'react';
 import { GameEngine } from './GameEngine';
+import type {  ScoreUpdate } from './GameEngine';
 
-export class Game extends Component {
+type Props = {
+  level: number,
+  onScoreUpdate: ScoreUpdate
+}
+
+type State = {
+}
+
+export class Game extends Component<Props,State> {
 
   CONTAINER_ID = "matter_js_container";
 
-  constructor(props) {
+  gameEngine: ?GameEngine;
+
+  constructor(props: Props) {
     super(props);
     this.gameEngine = null;
   }
@@ -46,7 +58,7 @@ export class Game extends Component {
   }
 
   // React lifecycle.
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps: Props, prevState: State) {
     if (this.props.level === prevProps.level) {
       return;
     }

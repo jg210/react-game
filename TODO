@@ -1,3 +1,6 @@
+* flow.
+  - fix remaining flow failures.
+
 * Ball can get stuck at sides of box or bounce up and down forever.
   - kinematic, not stepped, control of bar position?
   - uneven roof?
@@ -20,8 +23,6 @@
     static bar on every update?
 
 * Redux.
-
-* TypeScript/flow.
 
 * Better UI layout.
 

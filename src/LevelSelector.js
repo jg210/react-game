@@ -1,25 +1,33 @@
+// @flow
 import React, { Component } from 'react';
 import _ from 'lodash';
 
-export class LevelSelector extends Component {
+type Props = {
+  level: number,
+  numberOfLevels: number,
+  onClick: (number) => void
+}
 
-  constructor(props) {
+export class LevelSelector extends Component<Props> {
+
+  // eslint-disable-next-line no-useless-constructor
+  constructor(props: Props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
   }
 
   render() {
     return <select value={this.props.level} onChange={this.handleClick}> 
-      {_.range(1, this.props.numberOfLevels).map(i =>
+      {_.range(1, this.props.numberOfLevels).map((i: number) =>
         <option key={i} value={i}>{i}</option>
       )}
     </select>;
   }
 
-  handleClick(event) {
-    const target = event.target;
+  handleClick = (event: SyntheticEvent<HTMLSelectElement>) => {
+    const target: HTMLSelectElement = event.currentTarget;
     if (target) {
-      this.props.onClick(event.target.value);
+      const level: number = parseInt(target.value);
+      this.props.onClick(level);
     }
   }
 

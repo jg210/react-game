@@ -36,6 +36,8 @@ Same as Build Instructions, but also need to:
 
 * Restart VSC after installing plugins, otherwise chrome debugger doesn't work.
 
+* Disable both VSC @builtin TypeScript extensions in VSC preferences.
+
 * Install Google Chrome (for debugging with VSC).
 
 * Install React Developer Tools in Chrome.

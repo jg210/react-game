@@ -1,20 +1,29 @@
+// @flow
+
 import React, { Component } from 'react';
 import './App.css';
 import { Game } from './Game';
 import { LevelSelector } from './LevelSelector';
 import { Scores } from './Scores';
 
-class App extends Component {
+type Props = {
+};
 
-  constructor(props) {
+type State = {
+  level: number,
+  score: number,
+  highScore: number
+};
+
+class App extends Component<Props,State> {
+
+  constructor(props: Props) {
     super(props);
     this.state = {
       level: 1,
       score: 0,
       highScore: 0
     };
-    this.handleLevelChange = this.handleLevelChange.bind(this);
-    this.handleScoreUpdate = this.handleScoreUpdate.bind(this);
   }
 
   render() {
@@ -24,22 +33,22 @@ class App extends Component {
           <Scores score={this.state.score} highScore={this.state.highScore} />
           <Game
             level={this.state.level}
-            onScoreUpdate={this.handleScoreUpdate}
+            onScoreUpdate={this._handleScoreUpdate}
           />
           <LevelSelector
             level={this.state.level}
             numberOfLevels={10}
-            onClick={this.handleLevelChange} />
+            onClick={this._handleLevelChange} />
         </header>
       </div>
     );
   }
 
-  handleLevelChange(level) {
+  _handleLevelChange = (level: number) => {
     this.setState({ level: level });
   }
 
-  handleScoreUpdate(points) {
+  _handleScoreUpdate = (points: ?number) => {
     var {score, highScore} = this.state;
     if (points === null) {
       score = 0;
