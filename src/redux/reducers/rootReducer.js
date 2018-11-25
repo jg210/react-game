@@ -1,4 +1,4 @@
 import { combineReducers } from "redux";
-import { scoreUpdate } from "./scoreUpdate";
+import { scores } from "./scores";
 
-export const rootReducer = combineReducers({ scoreUpdate });
+export const rootReducer = combineReducers({ scores });
