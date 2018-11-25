@@ -1,10 +1,12 @@
 // @flow
 import React, { Component } from 'react';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
+import { Action } from 'redux';
 import { GameEngine } from './GameEngine';
 
 type Props = {
-  level: number
+  level: number,
+  dispatch: (Action) => void
 }
 
 type State = {

@@ -13,6 +13,7 @@ import {
 import _ from 'lodash';
 import seedrandom from 'seedrandom';
 import { gameOver, scoreUpdate } from './redux/actions';
+import { Action } from 'redux';
 
 export class GameEngine {
 
@@ -21,7 +22,7 @@ export class GameEngine {
 
   started: boolean;
   stopped: boolean;
-  dispatch: () => void;
+  dispatch: (Action) => void;
   boxHeight: number;
   boxWidth: number;
   wallThickness: number;
