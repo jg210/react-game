@@ -5,6 +5,8 @@
   - add any container components
   - replace ScoreUpdate event with action and reducer
     - add actions.js
+  - manage level using redux
+  - separate SCORE_UPDATE and GAME_OVER actions?
   - unit tests
   - review redux documentation etc. and refine implementation
 

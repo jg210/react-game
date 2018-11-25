@@ -1,11 +1,10 @@
 // @flow
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import { GameEngine } from './GameEngine';
-import type {  ScoreUpdate } from './GameEngine';
 
 type Props = {
-  level: number,
-  onScoreUpdate: ScoreUpdate
+  level: number
 }
 
 type State = {
@@ -36,7 +35,7 @@ export class Game extends Component<Props,State> {
     this.gameEngine = new GameEngine(
       this.CONTAINER_ID,
       this.props.level,
-      this.props.onScoreUpdate);
+      this.props.dispatch);
     this.gameEngine.start();
   }
 
@@ -67,3 +66,5 @@ export class Game extends Component<Props,State> {
   }
 
 }
+
+export default connect(null, null)(Game);
