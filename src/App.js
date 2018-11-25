@@ -1,10 +1,13 @@
 // @flow
 
 import React, { Component } from 'react';
+import Provider from 'react-redux';
+
 import './App.css';
 import { Game } from './Game';
 import { LevelSelector } from './LevelSelector';
 import { Scores } from './Scores';
+import createStore from './redux/store';
 
 type Props = {
 };
@@ -17,8 +20,11 @@ type State = {
 
 class App extends Component<Props,State> {
 
+  store: any;
+
   constructor(props: Props) {
     super(props);
+    this.store = createStore();
     this.state = {
       level: 1,
       score: 0,
@@ -28,6 +34,7 @@ class App extends Component<Props,State> {
 
   render() {
     return (
+      <Provider store={this.store}>
       <div className="App">
         <header className="App-header">
           <Scores score={this.state.score} highScore={this.state.highScore} />
@@ -41,6 +48,7 @@ class App extends Component<Props,State> {
             onClick={this._handleLevelChange} />
         </header>
       </div>
+      </Provider>
     );
   }
 

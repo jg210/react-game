@@ -1,4 +1,18 @@
 * Redux.
+  - add react-redux
+  - add a store
+  - https://flow.org/en/docs/react/redux/
+  - add any container components
+  - replace ScoreUpdate event with action and reducer
+    - add actions.js
+  - unit tests
+  - review redux documentation etc. and refine implementation
+
+* no typescript extensions => no js formatter in VSC?
+
+* logging library.
+
+* Add some jest snaphshot tests.
 
 * Ball can get stuck at sides of box or bounce up and down forever.
   - domed or triangular bar?
