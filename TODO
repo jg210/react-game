@@ -1,5 +1,7 @@
+* VSC isn't reporting flow issues.
+
 * Redux.
-  - separate SCORE_UPDATE and GAME_OVER actions?
+  - why is eslint confused by scores.js switch indentation?
   - manage level using redux
   - unit tests
   - review redux documentation etc. and refine implementation
