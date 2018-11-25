@@ -12,7 +12,7 @@ import {
 } from 'matter-js'
 import _ from 'lodash';
 import seedrandom from 'seedrandom';
-import { scoreUpdate } from './redux/actions';
+import { gameOver, scoreUpdate } from './redux/actions';
 
 export class GameEngine {
 
@@ -145,12 +145,13 @@ export class GameEngine {
         const points: ?number = that.wallIds.get(otherId);
         if (points === null) {
           console.log("game over.");
+          this.dispatch(gameOver());
         } else if (points === undefined) {
           throw new Error(); // Keep flow quiet.
         } else {
           console.log(`points: ${points}`);
+          this.dispatch(scoreUpdate(points));
         }
-        this.dispatch(scoreUpdate(points));
         const activeContacts = pair.activeContacts;
         this._markCollisionPoints(activeContacts);
       }
