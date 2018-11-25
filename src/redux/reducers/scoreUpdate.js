@@ -1,17 +1,17 @@
 // @flow
 import { SCORE_UPDATE } from '../actionTypes';
 
-type State = {
+export type ScoreState = {
   +score: number,
   +highScore: number
 }
 
-const initialState: State = {
+const initialState: ScoreState = {
   score: 0,
   highScore: 0
 }
 
-export const scoreUpdate = (state: State = initialState, action: any) => {
+export const scoreUpdate = (state: ScoreState = initialState, action: ScoreUpdate) => {
   let { score, highScore } = state;
   switch (action.type) {
   case SCORE_UPDATE: {
