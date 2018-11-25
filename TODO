@@ -1,10 +1,6 @@
 * Redux.
-  - add react-redux
-  - add a store
-  - https://flow.org/en/docs/react/redux/
-  - add any container components
-  - replace ScoreUpdate event with action and reducer
-    - add actions.js
+  - remove use of any flow types
+  - don't want scores to be under a scoreUpdate key in store.
   - manage level using redux
   - separate SCORE_UPDATE and GAME_OVER actions?
   - unit tests
