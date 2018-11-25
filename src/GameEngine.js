@@ -12,8 +12,7 @@ import {
 } from 'matter-js'
 import _ from 'lodash';
 import seedrandom from 'seedrandom';
-
-export type ScoreUpdate = (?number) => void;
+import { scoreUpdate } from './redux/actions';
 
 export class GameEngine {
 
@@ -22,6 +21,7 @@ export class GameEngine {
 
   started: boolean;
   stopped: boolean;
+  dispatch: any;
   boxHeight: number;
   boxWidth: number;
   wallThickness: number;
@@ -30,7 +30,6 @@ export class GameEngine {
   friction: number;
   ballInertia: number;
   level: number;
-  onScoreUpdate: ScoreUpdate;
   container: HTMLElement;
   engine: Engine;
   ball: Body;
@@ -41,9 +40,11 @@ export class GameEngine {
   renderer: Render;
   _handleKeyPress: (KeyboardEvent) => void;
 
-  constructor(containerId: string, level: number, onScoreUpdate: ScoreUpdate) {
+  constructor(containerId: string, level: number, dispatch: any) {
+    
     this.started = false;
     this.stopped = false;
+    this.dispatch = dispatch;
     this.boxHeight = 600;
     this.boxWidth = 800;
     this.wallThickness = 50;
@@ -56,7 +57,6 @@ export class GameEngine {
     // https://github.com/liabru/matter-js/issues/21#issuecomment-42775549
     this.ballInertia = Infinity;
     this.level = level;
-    this.onScoreUpdate = onScoreUpdate;
     this.container = this._nonNull(document.getElementById(containerId));
     this.engine = Engine.create();
     this.engine.world.gravity.y = 0.2;
@@ -150,9 +150,9 @@ export class GameEngine {
         } else {
           console.log(`points: ${points}`);
         }
+        this.dispatch(scoreUpdate(points));
         const activeContacts = pair.activeContacts;
         this._markCollisionPoints(activeContacts);
-        that.onScoreUpdate(points);
       }
     });
   }
