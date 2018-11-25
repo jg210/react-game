@@ -21,7 +21,7 @@ export class GameEngine {
 
   started: boolean;
   stopped: boolean;
-  dispatch: any;
+  dispatch: () => void;
   boxHeight: number;
   boxWidth: number;
   wallThickness: number;
@@ -40,7 +40,7 @@ export class GameEngine {
   renderer: Render;
   _handleKeyPress: (KeyboardEvent) => void;
 
-  constructor(containerId: string, level: number, dispatch: any) {
+  constructor(containerId: string, level: number, dispatch: () => void) {
     
     this.started = false;
     this.stopped = false;
