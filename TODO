@@ -1,8 +1,6 @@
 * Redux.
-  - remove use of any flow types
-  - don't want scores to be under a scoreUpdate key in store.
-  - manage level using redux
   - separate SCORE_UPDATE and GAME_OVER actions?
+  - manage level using redux
   - unit tests
   - review redux documentation etc. and refine implementation
 
