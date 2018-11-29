@@ -1,20 +1,18 @@
 // @flow
 
 import React, { Component } from 'react';
-import { connect, Provider } from 'react-redux';
+import { Provider } from 'react-redux';
 
 import './App.css';
 import Game from './Game';
 import LevelSelector from './LevelSelector';
 import Scores from './Scores';
 import { store } from './redux/store';
-import type { LevelState } from './redux/reducers/level';
 
 type Props = {
 };
 
 type State = {
-  level: number
 };
 
 class App extends Component<Props,State> {
@@ -25,9 +23,6 @@ class App extends Component<Props,State> {
   constructor(props: Props) {
     super(props);
     this.store = store;
-    this.state = {
-      level: 1,
-    };
   }
 
   render() {
@@ -36,11 +31,8 @@ class App extends Component<Props,State> {
         <div className="App">
           <header className="App-header">
             <Scores />
-            <Game
-              level={this.state.level}
-            />
+            <Game />
             <LevelSelector
-              level={this.state.level}
               numberOfLevels={10}
             />
           </header>
@@ -51,9 +43,4 @@ class App extends Component<Props,State> {
 
 }
 
-const mapStateToProps = (state: {level: LevelState}) => {
-  const level = state.level.current;
-  return { level };
-};
-const actionCreators = {};
-export default connect(mapStateToProps, actionCreators)(App);
+export default App;

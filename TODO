@@ -1,14 +1,7 @@
 * Redux.
-  - manage level using redux
-    - Game and LevelSelector need to subscribe to level
-      - can't make App subscribe to state changes since it's outside of Provider component
-      => either
-        - subscribe everything separately?
-        - add component inside App but outside everything that needs level.
-        - move things inside Game?
   - why is eslint confused by scores.js switch indentation?
   - unit tests
-  - review redux documentation etc. and refine implementation
+  - review redux and react-redux documentation etc. and refine implementation
 
 * no typescript extensions => no js formatter in VSC?
 

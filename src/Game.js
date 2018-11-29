@@ -6,7 +6,7 @@ import { GameEngine } from './GameEngine';
 
 type Props = {
   level: number,
-  dispatch: (Action) => void
+  dispatch: (Action) => void // TODO Pass react-redux wrapped action creator into GameEngine, not dispatch()
 }
 
 type State = {
@@ -69,4 +69,9 @@ export class Game extends Component<Props,State> {
 
 }
 
-export default connect(null, null)(Game);
+const mapStateToProps = (state: {level: LevelState}) => {
+  const level = state.level.current;
+  return { level };
+};
+
+export default connect(mapStateToProps, null)(Game);
