@@ -1,3 +1,6 @@
+* Should GameOver saga handle score change?
+  - currently, GAME_OVER Action triggers reducer and saga.
+
 * why is eslint confused by reducers' switch indentation?
 
 * unit tests
