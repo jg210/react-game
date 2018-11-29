@@ -4,7 +4,7 @@ import { level } from "./level";
 import { score } from "./score";
 import { screen } from "./screen";
 
-export const rootReducer = combineReducers({
+export default combineReducers({
   level,
   score,
   screen
