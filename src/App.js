@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 
 import './App.css';
 import Game from './Game';
-import LevelSelector from './LevelSelector';
+import Level from './Level';
 import Scores from './Scores';
 import { store } from './redux/store';
 
@@ -32,7 +32,7 @@ class App extends Component<Props,State> {
           <header className="App-header">
             <Scores />
             <Game />
-            <LevelSelector
+            <Level
               numberOfLevels={10}
             />
           </header>
