@@ -19,6 +19,6 @@ export const screen = (state: ScreenState = initialState, action: Action): Scree
   }
   default: {
     return state;
-  }
-  }};
+  }}
+};
 
