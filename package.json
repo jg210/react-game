@@ -10,6 +10,7 @@
     "react-redux": "5.1.1",
     "react-scripts": "2.1.1",
     "redux": "4.0.1",
+    "redux-saga": "0.16.2",
     "seedrandom": "2.4.4"
   },
   "devDependencies": {
@@ -22,7 +23,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eslint": "eslint src",
-    "flow": "flow check",
+    "flow": "flow status",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

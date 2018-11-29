@@ -1,5 +1,18 @@
 // @flow
-import { createStore } from "redux";
-import { rootReducer } from "./reducers/rootReducer";
 
-export const store = createStore(rootReducer);
+import { createStore, applyMiddleware } from 'redux'
+import createSagaMiddleware from 'redux-saga'
+import { rootReducer } from "./reducers/rootReducer";
+import sagas from './sagas';
+
+const sagaMiddleware = createSagaMiddleware()
+export const store = createStore(
+  rootReducer,
+  applyMiddleware(sagaMiddleware)
+)
+sagas.forEach((saga: Generator<*,*,*>) => {
+  sagaMiddleware.run(saga);
+});
+
+
+
