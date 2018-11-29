@@ -1,5 +1,5 @@
 // @flow
 import { combineReducers } from "redux";
-import { scores } from "./scores";
+import { score } from "./score";
 
-export const rootReducer = combineReducers({ scores });
+export const rootReducer = combineReducers({ score });

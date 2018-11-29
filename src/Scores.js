@@ -1,10 +1,10 @@
 // @flow
 import React from 'react';
 import { connect } from "react-redux";
-import type { ScoreState } from './redux/reducers/scores';
+import type { ScoreState } from './redux/reducers/score';
 
 type Props = {
-  scores: {
+  score: {
     current: number,
     high: number
   }
@@ -13,15 +13,15 @@ type Props = {
 const Scores = (props: Props) => {
   return (
     <div className="Scores">
-      <div>score: {props.scores.current}</div>
-      <div>highest score: {props.scores.high}</div>
+      <div>score: {props.score.current}</div>
+      <div>highest score: {props.score.high}</div>
     </div>
   );
 }
 
-const mapStateToProps = (state: {scores: ScoreState}) => {
-  const { scores } = state;
-  return { scores };
+const mapStateToProps = (state: {score: ScoreState}) => {
+  const { score } = state;
+  return { score };
 }
 
 export default connect(mapStateToProps)(Scores);
