@@ -1,5 +1,6 @@
 // @flow
 
+import React from 'react';
 import { connect } from 'react-redux';
 
 import type { ScreenState } from '../redux/reducers/screen';
@@ -18,7 +19,8 @@ type Props = {
 }
 
 const Screens = (props: Props) => {
-  return screens[props.screen]();
+  const component = screens[props.screen];
+  return React.createElement(component, {}, null);
 }
 
 const mapStateToProps = (state: {screen: ScreenState}) => {
