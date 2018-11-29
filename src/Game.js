@@ -28,7 +28,7 @@ export class Game extends Component<Props,State> {
 
   render() {
     return (
-      // Need tabindex, otherwise can't get focus and capture key events.
+      // Need tabIndex, otherwise can't get focus and capture key events.
       <div
         className="Game"
         id={this.CONTAINER_ID}
