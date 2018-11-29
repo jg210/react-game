@@ -36,7 +36,10 @@ class LevelSelector extends Component<Props> {
 
 }
 
-const mapStateToProps = null;
+const mapStateToProps = (state: {level: LevelState}) => {
+  const level = state.level.current;
+  return { level };
+};
 const actionCreators = {
   levelChange
 };

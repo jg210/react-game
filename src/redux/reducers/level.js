@@ -13,8 +13,8 @@ const initialState: LevelState = {
 export const level = (state: LevelState = initialState, action: Action): LevelState => {
   switch (action.type) {
   case LEVEL_CHANGE: {
-    const level: number = action.payload.level;
-    return {...state, level};
+    const current: number = action.payload.level;
+    return {...state, current};
   }
   default: {
     return state;
