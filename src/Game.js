@@ -1,12 +1,12 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Action } from 'redux';
+
 import { GameEngine } from './GameEngine';
+import { gameOver, scoreUpdate } from './redux/actions';
 
 type Props = {
-  level: number,
-  dispatch: (Action) => void // TODO Pass react-redux wrapped action creator into GameEngine, not dispatch()
+  level: number
 }
 
 type State = {
@@ -37,7 +37,8 @@ export class Game extends Component<Props,State> {
     this.gameEngine = new GameEngine(
       this.CONTAINER_ID,
       this.props.level,
-      this.props.dispatch);
+      this.props.gameOver,
+      this.props.scoreUpdate);
     this.gameEngine.start();
   }
 
@@ -73,5 +74,8 @@ const mapStateToProps = (state: {level: LevelState}) => {
   const level = state.level.current;
   return { level };
 };
-
-export default connect(mapStateToProps, null)(Game);
+const actionCreators = {
+  gameOver,
+  scoreUpdate
+}
+export default connect(mapStateToProps, actionCreators)(Game);
