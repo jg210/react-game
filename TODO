@@ -1,6 +1,6 @@
-* Implement game over toast
+* Implement game over toast/screen.
   - replace reducer with a saga that
-    - shows toast
+    - shows screen
     - updates scores
     - waits
     - hides toast.
