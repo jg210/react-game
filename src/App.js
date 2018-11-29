@@ -3,11 +3,9 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 
-import './App.css';
-import Game from './Game';
-import Level from './Level';
-import Scores from './Scores';
 import { store } from './redux/store';
+import './App.css';
+import GameScreen from './GameScreen';
 
 type Props = {
 };
@@ -30,11 +28,7 @@ class App extends Component<Props,State> {
       <Provider store={this.store}>
         <div className="App">
           <header className="App-header">
-            <Scores />
-            <Game />
-            <Level
-              numberOfLevels={10}
-            />
+            <GameScreen/>
           </header>
         </div>
       </Provider>
