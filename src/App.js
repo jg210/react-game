@@ -1,13 +1,14 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Provider } from 'react-redux';
+import { connect, Provider } from 'react-redux';
 
 import './App.css';
 import Game from './Game';
-import { LevelSelector } from './LevelSelector';
+import LevelSelector from './LevelSelector';
 import Scores from './Scores';
 import { store } from './redux/store';
+import type { LevelState } from './redux/reducers/level';
 
 type Props = {
 };
@@ -41,17 +42,18 @@ class App extends Component<Props,State> {
             <LevelSelector
               level={this.state.level}
               numberOfLevels={10}
-              onClick={this._handleLevelChange} />
+            />
           </header>
         </div>
       </Provider>
     );
   }
 
-  _handleLevelChange = (level: number) => {
-    this.setState({ level: level });
-  }
-
 }
 
-export default App;
+const mapStateToProps = (state: {level: LevelState}) => {
+  const level = state.level.current;
+  return { level };
+};
+const actionCreators = {};
+export default connect(mapStateToProps, actionCreators)(App);

@@ -1,14 +1,20 @@
-* VSC isn't reporting flow issues.
-
 * Redux.
-  - why is eslint confused by scores.js switch indentation?
   - manage level using redux
+    - Game and LevelSelector need to subscribe to level
+      - can't make App subscribe to state changes since it's outside of Provider component
+      => either
+        - subscribe everything separately?
+        - add component inside App but outside everything that needs level.
+        - move things inside Game?
+  - why is eslint confused by scores.js switch indentation?
   - unit tests
   - review redux documentation etc. and refine implementation
 
 * no typescript extensions => no js formatter in VSC?
 
 * logging library.
+
+* https://www.npmjs.com/package/eslint-plugin-react-redux?
 
 * Add some jest snaphshot tests.
 
@@ -66,3 +72,6 @@
 
 * Toggle for marked collisions?
   - connecting react to non-react JavaScript...
+
+* Importing Foo wrapped with react-redux connect as Foo using default export is unclear.
+  - it's not immediately obvious that component Foo is wrapped.

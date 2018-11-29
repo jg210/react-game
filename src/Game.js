@@ -29,7 +29,7 @@ export class Game extends Component<Props,State> {
       <div
         className="Game"
         id={this.CONTAINER_ID}
-        tabindex="0" />
+        tabIndex="0" />
     );
   }
 
