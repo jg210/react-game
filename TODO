@@ -1,11 +1,4 @@
-* Implement game over toast/screen.
-  - replace reducer with a saga that
-    - shows screen
-    - updates scores
-    - waits
-    - hides toast.
-
-* Why is eslint confused by reducers' switch indentation?
+* why is eslint confused by reducers' switch indentation?
 
 * unit tests
 
@@ -17,18 +10,7 @@
 
 * https://www.npmjs.com/package/eslint-plugin-react-redux?
 
-* Add some jest snaphshot tests.
-
-* Ball can get stuck at sides of box or bounce up and down forever.
-  - domed or triangular bar?
-  - uneven roof?  
-  - rely on well timed nudge as ball passing bar?
-  - shake up obstacles?
-  - tiltable bar?
-  X invisible static bar attached to visible non-static bar with spring Constraints?
-    X would look more interesting and be more skeuomorphic
-    X would add a bit of randomness to ball collisions.
-    X but no - it causes too much enery loss.
+* add some jest snaphshot tests.
 
 * kinematic, not stepped, control of bar position.
 
