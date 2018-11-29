@@ -12,7 +12,6 @@ import {
 } from 'matter-js'
 import _ from 'lodash';
 import seedrandom from 'seedrandom';
-import { Action } from 'redux';
 
 export class GameEngine {
 
@@ -21,7 +20,8 @@ export class GameEngine {
 
   started: boolean;
   stopped: boolean;
-  dispatch: (Action) => void;
+  gameOver: () => void;
+  scoreUpdate: (points: number) => void;
   boxHeight: number;
   boxWidth: number;
   wallThickness: number;
