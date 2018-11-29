@@ -1,14 +1,17 @@
 // @flow
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import _ from 'lodash';
+
+import { levelChange } from './redux/actions'
 
 type Props = {
   level: number,
   numberOfLevels: number,
-  onClick: (number) => void
+  levelChange: (number) => void
 }
 
-export class LevelSelector extends Component<Props> {
+class LevelSelector extends Component<Props> {
 
   // eslint-disable-next-line no-useless-constructor
   constructor(props: Props) {
@@ -27,8 +30,14 @@ export class LevelSelector extends Component<Props> {
     const target: HTMLSelectElement = event.currentTarget;
     if (target) {
       const level: number = parseInt(target.value);
-      this.props.onClick(level);
+      this.props.levelChange(level);
     }
   }
 
 }
+
+const mapStateToProps = null;
+const actionCreators = {
+  levelChange
+};
+export default connect(mapStateToProps, actionCreators)(LevelSelector);
