@@ -7,7 +7,7 @@
     "flowtype"
   ],
   "rules":{
-    "indent": ["error", 2],
+    "indent": ["error", 2, {"SwitchCase": 1}],
     "flowtype/boolean-style": [
       2,
       "boolean"
