@@ -1,7 +1,15 @@
-* Redux.
-  - why is eslint confused by scores.js switch indentation?
-  - unit tests
-  - review redux and react-redux documentation etc. and refine implementation
+* Implement game over toast
+  - replace reducer with a saga that
+    - shows toast
+    - updates scores
+    - waits
+    - hides toast.
+
+* Why is eslint confused by reducers' switch indentation?
+
+* unit tests
+
+* review redux and react-redux documentation etc. and refine implementation
 
 * no typescript extensions => no js formatter in VSC?
 
