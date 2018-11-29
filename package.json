@@ -22,6 +22,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eslint": "eslint src",
+    "flow": "flow check",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

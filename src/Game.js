@@ -4,9 +4,12 @@ import { connect } from 'react-redux';
 
 import { GameEngine } from './GameEngine';
 import { gameOver, scoreUpdate } from './redux/actions';
+import type { LevelState } from './redux/reducers/level'
 
 type Props = {
-  level: number
+  level: number,
+  gameOver: () => void,
+  scoreUpdate: (points: number) => void
 }
 
 type State = {

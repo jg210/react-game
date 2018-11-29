@@ -18,7 +18,7 @@ type State = {
 class App extends Component<Props,State> {
 
   // eslint-disable-next-line flowtype/no-weak-types
-  store: any;
+  store: Object;
 
   constructor(props: Props) {
     super(props);
