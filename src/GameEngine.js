@@ -12,7 +12,6 @@ import {
 } from 'matter-js'
 import _ from 'lodash';
 import seedrandom from 'seedrandom';
-import { gameOver, scoreUpdate } from './redux/actions';
 import { Action } from 'redux';
 
 export class GameEngine {
@@ -41,11 +40,16 @@ export class GameEngine {
   renderer: Render;
   _handleKeyPress: (KeyboardEvent) => void;
 
-  constructor(containerId: string, level: number, dispatch: () => void) {
+  constructor(
+    containerId: string,
+    level: number,
+    gameOver: () => void,
+    scoreUpdate: (points: number) => void) {
     
     this.started = false;
     this.stopped = false;
-    this.dispatch = dispatch;
+    this.gameOver = gameOver;
+    this.scoreUpdate = scoreUpdate;
     this.boxHeight = 600;
     this.boxWidth = 800;
     this.wallThickness = 50;
@@ -146,12 +150,12 @@ export class GameEngine {
         const points: ?number = that.wallIds.get(otherId);
         if (points === null) {
           console.log("game over.");
-          this.dispatch(gameOver());
+          this.gameOver();
         } else if (points === undefined) {
           throw new Error(); // Keep flow quiet.
         } else {
           console.log(`points: ${points}`);
-          this.dispatch(scoreUpdate(points));
+          this.scoreUpdate(points);
         }
         const activeContacts = pair.activeContacts;
         this._markCollisionPoints(activeContacts);
