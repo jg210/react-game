@@ -248,7 +248,17 @@ export class GameEngine {
   _createBar(): Body {
     const x = this._initialX();
     const y = 0.8 * this.boxHeight;
-    return Bodies.rectangle(x, y, this.barWidth, this.barHeight, {
+    const w = this.barWidth;
+    const h = this.barHeight;
+    const peakHeight = h * 0.2;
+    const vertices = [
+      { x: -w / 2, y: - h / 2 },
+      { x:      0, y: - h / 2 - peakHeight },
+      { x:  w / 2, y: - h / 2 },
+      { x:  w / 2, y:   h / 2},
+      { x: -w / 2, y:   h / 2}
+    ];
+    return Bodies.fromVertices(x, y, vertices, {
       label: "bar",
       isStatic: true,
     });
