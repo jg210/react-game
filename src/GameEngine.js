@@ -25,16 +25,16 @@ export class GameEngine {
   boxHeight: number;
   boxWidth: number;
   wallThickness: number;
-  barWidth: number;
-  barHeight: number;
+  magnetWidth: number;
+  magnetHeight: number;
   level: number;
   container: HTMLElement;
   engine: Engine;
   ball: Body;
   ballHeight: number;
   ballWidth: number;
-  barSpeed: number;
-  bar: Body;
+  magnetSpeed: number;
+  magnet: Body;
   magnetConstraint: ?Constraint;
   walls: Body[];
   renderer: Render;
@@ -53,27 +53,27 @@ export class GameEngine {
     this.boxHeight = 600;
     this.boxWidth = 800;
     this.wallThickness = 50;
-    this.barWidth = 50;
-    this.barHeight = 15;
+    this.magnetWidth = 50;
+    this.magnetHeight = 15;
     // this.friction = 0.1;
     // this.ballInertia = 0.1;
     this.level = level;
     this.container = this._nonNull(document.getElementById(containerId));
     this.engine = Engine.create();
     this.engine.world.gravity.y = 0.2;
-    this.bar = this._createBar();
-    const { ball, ballHeight, ballWidth, magnetConstraint } = this._createBall(this.bar);
+    this.magnet = this._createMagnet();
+    const { ball, ballHeight, ballWidth, magnetConstraint } = this._createBall(this.magnet);
     this.ball = ball;
     this.ballHeight = ballHeight;
     this.ballWidth = ballWidth;
     this.magnetConstraint = magnetConstraint;
-    this.barSpeed = 0;
+    this.magnetSpeed = 0;
     const walls = this._createWalls();
     const objects = this._createObjects();
     World.add(this.engine.world, [
       ...walls,
       this.ball,
-      this.bar,
+      this.magnet,
       this.magnetConstraint,
       ...objects
     ]);
@@ -171,33 +171,33 @@ export class GameEngine {
     if (event.repeat) {
       return;
     }
-    const barSpeed = 20;
+    const magnetSpeed = 20;
     if (event.type === "keydown") {
       if (event.key === 'ArrowLeft') {
-        this.barSpeed = -barSpeed;
+        this.magnetSpeed = -magnetSpeed;
       } else if (event.key === 'ArrowRight') {
-        this.barSpeed = barSpeed;
+        this.magnetSpeed = magnetSpeed;
       }
     } else if (event.type === "keyup") {
-      this.barSpeed = 0;
+      this.magnetSpeed = 0;
     } else {
       throw new Error(event);
     }
-    console.log(`bar speed: ${this.barSpeed}`);
+    console.log(`magnet speed: ${this.magnetSpeed}`);
   }
 
   _handleBeforeUpdate = (event: {timestamp: number}) => {
     const xLimit = this.wallThickness / 2 +
-      Math.max(this.barWidth / 2, this.ballWidth / 2) +
+      Math.max(this.magnetWidth / 2, this.ballWidth / 2) +
       0.01 * this.boxWidth;
     const minX = xLimit;
     const maxX = this.boxWidth - xLimit;
-    const dx = this.barSpeed; // TODO base on event timestamp.
+    const dx = this.magnetSpeed; // TODO base on event timestamp.
     const x = this._clamp(
-      this.bar.position.x + dx,
+      this.magnet.position.x + dx,
       minX, maxX);
-    const y = this.bar.position.y;
-    Body.setPosition(this.bar, { x, y });
+    const y = this.magnet.position.y;
+    Body.setPosition(this.magnet, { x, y });
   }
 
   _clamp(x: number, min: number, max: number): number {
@@ -223,16 +223,16 @@ export class GameEngine {
     return walls;
   }
 
-  // Initial x coordinate of bar and ball.
+  // Initial x coordinate of magnet and ball.
   _initialX(): number {
     return this.boxWidth / 8 + this.wallThickness / 2
   }
 
-  _createBar(): Body {
+  _createMagnet(): Body {
     const x = this._initialX();
-    const y = this.wallThickness / 2 + 0.01 * this.boxHeight + this.barHeight / 2;
-    const w = this.barWidth;
-    const h = this.barHeight;
+    const y = this.wallThickness / 2 + 0.01 * this.boxHeight + this.magnetHeight / 2;
+    const w = this.magnetWidth;
+    const h = this.magnetHeight;
     const peakHeight = h * 0.2;
     const vertices = [
       { x: -w / 2, y: - h / 2 },
@@ -242,16 +242,16 @@ export class GameEngine {
       { x: -w / 2, y:   h / 2}
     ];
     return Bodies.fromVertices(x, y, vertices, {
-      label: "bar",
+      label: "magnet",
       isStatic: true,
     });
   }
 
-  _createBall(bar: Body): Body {
+  _createBall(magnet: Body): Body {
     const imageSize = 64; // pixels
     const radius = 1.025 * imageSize / 2.0;
-    const x = bar.position.x;
-    const y = bar.position.y + this.barHeight / 2 + radius;
+    const x = magnet.position.x;
+    const y = magnet.position.y + this.magnetHeight / 2 + radius;
     const ball = Bodies.circle(x, y, radius, {
       label: "ball",
       render: {
@@ -265,7 +265,7 @@ export class GameEngine {
       frictionStatic: 0,
     });
     const magnetConstraint = Constraint.create({
-      bodyA: bar,
+      bodyA: magnet,
       bodyB: ball,
       render: {
         visible: false
@@ -286,7 +286,7 @@ export class GameEngine {
       const radius = 10 + random() * 15;
       const border = this.wallThickness / 2 + radius;
       const x = border + (random() * (this.boxWidth - 2 * border));
-      const y = border + this.barHeight + this.ballHeight + (random() * (this.boxHeight - 2 * border - this.barHeight - this.ballHeight));
+      const y = border + this.magnetHeight + this.ballHeight + (random() * (this.boxHeight - 2 * border - this.magnetHeight - this.ballHeight));
       const object = Bodies.circle(x, y, radius, {
         label: `object ${i}`,
         isStatic: random() > 0.5,
