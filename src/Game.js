@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { GameEngine } from './GameEngine';
-import { gameOver, scoreUpdate } from './redux/actions';
+import { nextLevel, scoreUpdate } from './redux/actions';
 import type { LevelState } from './redux/reducers/level'
 
 type Props = {
   level: number,
-  gameOver: () => void,
+  nextLevel: () => void,
   scoreUpdate: (points: number) => void
 }
 
@@ -40,7 +40,7 @@ export class Game extends Component<Props,State> {
     this.gameEngine = new GameEngine(
       this.CONTAINER_ID,
       this.props.level,
-      this.props.gameOver,
+      this.props.nextLevel,
       this.props.scoreUpdate);
     this.gameEngine.start();
   }
@@ -78,7 +78,7 @@ const mapStateToProps = (state: {level: LevelState}) => {
   return { level };
 };
 const actionCreators = {
-  gameOver,
+  nextLevel,
   scoreUpdate
 }
 export default connect(mapStateToProps, actionCreators)(Game);

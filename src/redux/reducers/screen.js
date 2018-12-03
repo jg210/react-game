@@ -13,12 +13,13 @@ const initialState: ScreenState = {
 
 export const screen = (state: ScreenState = initialState, action: Action): ScreenState => {
   switch (action.type) {
-  case SCREEN_CHANGE: {
-    const current: ScreenType = action.payload.screen;
-    return {...state, current};
+    case SCREEN_CHANGE: {
+      const current: ScreenType = action.payload.screen;
+      return {...state, current};
+    }
+    default: {
+      return state;
+    }
   }
-  default: {
-    return state;
-  }}
 };
 
