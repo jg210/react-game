@@ -8,6 +8,7 @@ import {
   Events,
   Pair,
   Render,
+  Sleeping,
   World
 } from 'matter-js'
 import _ from 'lodash';
@@ -15,8 +16,10 @@ import seedrandom from 'seedrandom';
 
 export class GameEngine {
 
+  // Object anchors do not collide with anything, they just exist to keep objects in place until they collide with something.
+  //
   // http://brm.io/matter-js/docs/classes/Body.html#property_collisionFilter
-  COLLISION_CATEGORY_MARKERS = 0x02;
+  //COLLISION_CATEGORY_OBJECT_ANCHOR = 0x02;
 
   started: boolean;
   stopped: boolean;
@@ -55,12 +58,11 @@ export class GameEngine {
     this.wallThickness = 50;
     this.magnetWidth = 50;
     this.magnetHeight = 15;
-    // this.friction = 0.1;
-    // this.ballInertia = 0.1;
     this.level = level;
     this.container = this._nonNull(document.getElementById(containerId));
     this.engine = Engine.create();
     this.engine.world.gravity.y = 0.2;
+    this.engine.enableSleeping = true;
     this.magnet = this._createMagnet();
     const { ball, ballHeight, ballWidth, magnetConstraint } = this._createBall(this.magnet);
     this.ball = ball;
@@ -131,37 +133,11 @@ export class GameEngine {
     const that = this;
     const pairs = event.pairs;
     pairs.forEach((pair: Pair) => {
-      let ball: Body = null;
-      let other: Body = null;
-      if (pair.bodyA.id === that.ball.id) {
-        ball = pair.bodyA;
-        other = pair.bodyB;
-      } else if (pair.bodyB.id === that.ball.id) {
-        ball = pair.bodyA;
-        other = pair.bodyB;
-      }
-      if (ball === null) {
-        return;
-      }
-      console.log(`ball collided with: ${other.label} [${other.id}]`);
+      [pair.bodyA, pair.bodyB].forEach((body: Body) => {
+        Sleeping.set(body, false);
+      });
     });
   }
-
-  // _markCollisionPoints(activeContacts: [Contact]) {
-  //   World.add(this.engine.world, _.map(activeContacts, (contact: Contact) => {
-  //     return Bodies.circle(contact.vertex.x, contact.vertex.y, 2, {
-  //       label: `contact`,
-  //       isStatic: true,
-  //       render: {
-  //         fillStyle: "red"
-  //       },
-  //       collisionFilter: {
-  //         category: this.COLLISION_CATEGORY_MARKERS,
-  //         mask: this.COLLISION_CATEGORY_MARKERS
-  //       }
-  //     });
-  //   }));
-  // }
 
   _handleKeyPress = (event: KeyboardEvent) => {
     if (event.type === "keydown" && event.key === " " && this.magnetConstraint) {      
@@ -287,11 +263,23 @@ export class GameEngine {
       const border = this.wallThickness / 2 + radius;
       const x = border + (random() * (this.boxWidth - 2 * border));
       const y = border + this.magnetHeight + this.ballHeight + (random() * (this.boxHeight - 2 * border - this.magnetHeight - this.ballHeight));
+      // const objectAnchor = Bodies.circle(x, y, radius, {
+      //   label: `object anchor ${i}`,
+      //   isStatic: true,
+      //   render: {
+      //     fillStyle: "red"
+      //   },
+      //   collisionFilter: {
+      //     category: this.COLLISION_CATEGORY_OBJECT_ANCHOR,
+      //     mask: this.COLLISION_CATEGORY_OBJECT_ANCHOR
+      //   }
+      // });
       const object = Bodies.circle(x, y, radius, {
         label: `object ${i}`,
-        isStatic: random() > 0.5,
-        gravityScale: 0
+        isStatic: false,
+        isSleeping: true
       });
+      //objects.push(objectAnchor);
       objects.push(object);
     });
     return objects;
