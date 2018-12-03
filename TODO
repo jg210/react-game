@@ -1,5 +1,4 @@
 * Demolition game.
-  - make obstacles stick to initial position
   - score points when objects dislodged.
   - shape bar to "hold" the ball
     - otherwise ball wobbles too much when move bar.
