@@ -3,7 +3,7 @@ import {
   Bodies,
   Body,
   Composite,
-  Contact,
+  Constraint,
   Engine,
   Events,
   Pair,
@@ -27,16 +27,16 @@ export class GameEngine {
   wallThickness: number;
   barWidth: number;
   barHeight: number;
-  friction: number;
-  ballInertia: number;
   level: number;
   container: HTMLElement;
   engine: Engine;
   ball: Body;
+  ballHeight: number;
+  ballWidth: number;
   barSpeed: number;
   bar: Body;
+  magnet: ?Constraint;
   walls: Body[];
-  wallIds: Map<number,?number>;
   renderer: Render;
   _handleKeyPress: (KeyboardEvent) => void;
 
@@ -53,29 +53,28 @@ export class GameEngine {
     this.boxHeight = 600;
     this.boxWidth = 800;
     this.wallThickness = 50;
-    this.barWidth = 100;
-    this.barHeight = 10;
-    this.friction = 0;
-    // Infinite inertia reduces conversion of linear to angular
-    // momentum, making ball bounce longer:
-    //
-    // https://github.com/liabru/matter-js/issues/21#issuecomment-42775549
-    this.ballInertia = Infinity;
+    this.barWidth = 50;
+    this.barHeight = 15;
+    // this.friction = 0.1;
+    // this.ballInertia = 0.1;
     this.level = level;
     this.container = this._nonNull(document.getElementById(containerId));
     this.engine = Engine.create();
     this.engine.world.gravity.y = 0.2;
-    this.ball = this._createBall();
     this.bar = this._createBar();
+    const { ball, ballHeight, ballWidth, magnet } = this._createBall(this.bar);
+    this.ball = ball;
+    this.ballHeight = ballHeight;
+    this.ballWidth = ballWidth;
+    this.magnet = magnet;
     this.barSpeed = 0;
-    const { walls, wallIds } = this._createWalls();
-    this.walls = walls;
-    this.wallIds = wallIds;
+    const walls = this._createWalls();
     const obstacles = this._createObstacles();
     World.add(this.engine.world, [
       ...walls,
       this.ball,
       this.bar,
+      this.magnet,
       ...obstacles
     ]);
     console.log('Body ids:');
@@ -145,42 +144,30 @@ export class GameEngine {
         return;
       }
       console.log(`ball collided with: ${other.label} [${other.id}]`);
-      if (that.wallIds.has(other.id)) {
-        const otherId: number = other.id;
-        const points: ?number = that.wallIds.get(otherId);
-        if (points === null) {
-          console.log("game over.");
-          this.gameOver();
-        } else if (points === undefined) {
-          throw new Error(); // Keep flow quiet.
-        } else {
-          console.log(`points: ${points}`);
-          this.scoreUpdate(points);
-        }
-        const activeContacts = pair.activeContacts;
-        this._markCollisionPoints(activeContacts);
-      }
     });
   }
 
-  _markCollisionPoints(activeContacts: [Contact]) {
-    World.add(this.engine.world, _.map(activeContacts, (contact: Contact) => {
-      return Bodies.circle(contact.vertex.x, contact.vertex.y, 2, {
-        label: `contact`,
-        isStatic: true,
-        render: {
-          fillStyle: "red"
-        },
-        collisionFilter: {
-          category: this.COLLISION_CATEGORY_MARKERS,
-          mask: this.COLLISION_CATEGORY_MARKERS
-        },
-        friction: this.friction
-      });
-    }));
-  }
+  // _markCollisionPoints(activeContacts: [Contact]) {
+  //   World.add(this.engine.world, _.map(activeContacts, (contact: Contact) => {
+  //     return Bodies.circle(contact.vertex.x, contact.vertex.y, 2, {
+  //       label: `contact`,
+  //       isStatic: true,
+  //       render: {
+  //         fillStyle: "red"
+  //       },
+  //       collisionFilter: {
+  //         category: this.COLLISION_CATEGORY_MARKERS,
+  //         mask: this.COLLISION_CATEGORY_MARKERS
+  //       }
+  //     });
+  //   }));
+  // }
 
   _handleKeyPress = (event: KeyboardEvent) => {
+    if (event.type === "keydown" && event.key === " " && this.magnet) {      
+      World.remove(this.engine.world, this.magnet);
+      this.magnet = null;
+    }
     if (event.repeat) {
       return;
     }
@@ -200,8 +187,11 @@ export class GameEngine {
   }
 
   _handleBeforeUpdate = (event: {timestamp: number}) => {
-    const minX = this.wallThickness / 2 + this.barWidth / 2 + 1;
-    const maxX = this.boxWidth - (this.wallThickness / 2 + this.barWidth / 2 + 1);
+    const xLimit = this.wallThickness / 2 +
+      Math.max(this.barWidth / 2, this.ballWidth / 2) +
+      0.01 * this.boxWidth;
+    const minX = xLimit;
+    const maxX = this.boxWidth - xLimit;
     const dx = this.barSpeed; // TODO base on event timestamp.
     const x = this._clamp(
       this.bar.position.x + dx,
@@ -220,10 +210,9 @@ export class GameEngine {
     return x;
   }
 
-  _createWalls(): { walls: Body[], wallIds: Map<number,?number> } {
+  _createWalls(): Body[] {
     const wallOptions = {
       isStatic: true,
-      friction: this.friction
     };
     // matter.js does positioning using centre of mass...
     const wallTop = Bodies.rectangle(this.boxWidth / 2, 0, this.boxWidth, this.wallThickness, { ...wallOptions, label: "wall - T" });
@@ -231,13 +220,7 @@ export class GameEngine {
     const wallRight = Bodies.rectangle(this.boxWidth, this.boxHeight / 2, this.wallThickness, this.boxHeight, { ...wallOptions, label: "wall - R" });
     const wallLeft = Bodies.rectangle(0, this.boxHeight / 2, this.wallThickness, this.boxHeight, { ...wallOptions, label: "wall - L" });
     const walls = [wallTop, wallBottom, wallRight, wallLeft];
-    // A Map from wall Body id to game points. null means "game over".
-    const wallIds = new Map();
-    wallIds.set(wallTop.id, 1);
-    wallIds.set(wallBottom.id, null);
-    wallIds.set(wallRight.id, 1);
-    wallIds.set(wallLeft.id, 1);
-    return { walls, wallIds };
+    return walls;
   }
 
   // Initial x coordinate of bar and ball.
@@ -247,7 +230,7 @@ export class GameEngine {
 
   _createBar(): Body {
     const x = this._initialX();
-    const y = 0.8 * this.boxHeight;
+    const y = this.wallThickness / 2 + 0.01 * this.boxHeight + this.barHeight / 2;
     const w = this.barWidth;
     const h = this.barHeight;
     const peakHeight = h * 0.2;
@@ -264,11 +247,11 @@ export class GameEngine {
     });
   }
 
-  _createBall(): Body {
+  _createBall(bar: Body): Body {
     const imageSize = 64; // pixels
     const radius = 1.025 * imageSize / 2.0;
-    const x = this._initialX();
-    const y = radius + this.wallThickness / 2;
+    const x = bar.position.x;
+    const y = bar.position.y + this.barHeight / 2 + radius;
     const ball = Bodies.circle(x, y, radius, {
       label: "ball",
       render: {
@@ -278,14 +261,22 @@ export class GameEngine {
       },
       restitution: 1,
       density: 1,
-      inertia: this.ballInertia,
-      inverseInertia: 1 / this.ballInertia,
-      friction: this.friction,
       frictionAir: 0,
       frictionStatic: 0,
     });
-    Body.setVelocity(ball, { x: 0, y: 3 });
-    return ball;
+    const magnet = Constraint.create({
+      bodyA: bar,
+      bodyB: ball,
+      render: {
+        visible: false
+      }
+    })
+    return {
+      ball,
+      ballHeight: 2 * radius,
+      ballWidth: 2 * radius,
+      magnet
+    };
   }
 
   _createObstacles(): Body[] {
@@ -295,11 +286,10 @@ export class GameEngine {
       const radius = 10 + random() * 15;
       const border = this.wallThickness / 2 + radius;
       const x = border + (random() * (this.boxWidth - 2 * border));
-      const y = border + (0.75 * random() * (this.boxHeight - 2 * border));
+      const y = border + this.barHeight + this.ballHeight + (random() * (this.boxHeight - 2 * border - this.barHeight - this.ballHeight));
       const obstacle = Bodies.circle(x, y, radius, {
         label: `obstacle ${i}`,
         isStatic: random() > 0.5,
-        friction: this.friction,
         gravityScale: 0
       });
       obstacles.push(obstacle);

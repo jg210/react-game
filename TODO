@@ -1,15 +1,27 @@
 * Demolition game.
-  - move obstacles downwards.
-  - remove bar, making bar releasable.  
+  X make ball stick to electromagnet
+  X move obstacles downwards.
+  X turn bar into electromagnet at top of box
+  X make ball releasable
+  - rename obstacles to objects
+  - rename magnet to magnetConstraint
+  - rename bar to magnet
   - make obstacles stick to initial position
-  - tune friction and inertia.
+  - score points when objects dislodged.
+  - shape bar to "hold" the ball
+    - otherwise ball wobbles too much when move bar.
   - next level when everything stops moving
     - check positions every second, then on next update if nothing moved
-  - remove level drop-down box.
+  - tune friction and inertia?
+  - better control of ball position.
+  - remove level drop-down box.  
   - indicate when points are won with balloons?
-  - replace ball image with something better
-  - rename obstacles to something else
+  - replace ball with anvil
+    - change image
+    - use anvil-shaped matter.js Body
+    - rename js field
   - add images for obstacles.
+  - add cable for electromagnet
 
 * Should GameOver saga handle score change?
   - currently, GAME_OVER Action triggers reducer and saga.
@@ -30,8 +42,6 @@
 
 * add some jest snaphshot tests.
 
-* kinematic, not stepped, control of bar position.
-
 * Marked collisions leak memory.
   - remove them?
   - fade out with time?
@@ -51,14 +61,6 @@
   - inject URL via env. var.
 
 * Test server.
-
-* Non-rotating ball looks odd.
-  - use symmetrical image?
-  - very high inertia allows some rotation.
-    - would need to damp the rotation somehow too.
-  - could allow some friction too, for more realistic looking bounces
-    - but would need to give some way of adding energy to the system.
-      - flippers?
 
 * Mouse-based movement of bar.
   - MouseConstraint?
