@@ -35,7 +35,7 @@ export class GameEngine {
   ballWidth: number;
   barSpeed: number;
   bar: Body;
-  magnet: ?Constraint;
+  magnetConstraint: ?Constraint;
   walls: Body[];
   renderer: Render;
   _handleKeyPress: (KeyboardEvent) => void;
@@ -62,20 +62,20 @@ export class GameEngine {
     this.engine = Engine.create();
     this.engine.world.gravity.y = 0.2;
     this.bar = this._createBar();
-    const { ball, ballHeight, ballWidth, magnet } = this._createBall(this.bar);
+    const { ball, ballHeight, ballWidth, magnetConstraint } = this._createBall(this.bar);
     this.ball = ball;
     this.ballHeight = ballHeight;
     this.ballWidth = ballWidth;
-    this.magnet = magnet;
+    this.magnetConstraint = magnetConstraint;
     this.barSpeed = 0;
     const walls = this._createWalls();
-    const obstacles = this._createObstacles();
+    const objects = this._createObjects();
     World.add(this.engine.world, [
       ...walls,
       this.ball,
       this.bar,
-      this.magnet,
-      ...obstacles
+      this.magnetConstraint,
+      ...objects
     ]);
     console.log('Body ids:');
     Composite.allBodies(this.engine.world).forEach((body: Body) => {
@@ -164,9 +164,9 @@ export class GameEngine {
   // }
 
   _handleKeyPress = (event: KeyboardEvent) => {
-    if (event.type === "keydown" && event.key === " " && this.magnet) {      
-      World.remove(this.engine.world, this.magnet);
-      this.magnet = null;
+    if (event.type === "keydown" && event.key === " " && this.magnetConstraint) {      
+      World.remove(this.engine.world, this.magnetConstraint);
+      this.magnetConstraint = null;
     }
     if (event.repeat) {
       return;
@@ -264,7 +264,7 @@ export class GameEngine {
       frictionAir: 0,
       frictionStatic: 0,
     });
-    const magnet = Constraint.create({
+    const magnetConstraint = Constraint.create({
       bodyA: bar,
       bodyB: ball,
       render: {
@@ -275,26 +275,26 @@ export class GameEngine {
       ball,
       ballHeight: 2 * radius,
       ballWidth: 2 * radius,
-      magnet
+      magnetConstraint
     };
   }
 
-  _createObstacles(): Body[] {
+  _createObjects(): Body[] {
     const random = seedrandom(this.level + 484726723);
-    const obstacles = []
+    const objects = []
     _.range(0, this.level * 3).forEach((i: number) => {
       const radius = 10 + random() * 15;
       const border = this.wallThickness / 2 + radius;
       const x = border + (random() * (this.boxWidth - 2 * border));
       const y = border + this.barHeight + this.ballHeight + (random() * (this.boxHeight - 2 * border - this.barHeight - this.ballHeight));
-      const obstacle = Bodies.circle(x, y, radius, {
-        label: `obstacle ${i}`,
+      const object = Bodies.circle(x, y, radius, {
+        label: `object ${i}`,
         isStatic: random() > 0.5,
         gravityScale: 0
       });
-      obstacles.push(obstacle);
+      objects.push(object);
     });
-    return obstacles;
+    return objects;
   }
 
   _nonNull<T>(value: ?T): T {
