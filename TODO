@@ -1,3 +1,15 @@
+* Demolition game.
+  - move obstacles downwards.
+  - remove bar, making bar releasable.  
+  - make obstacles stick to initial position
+  - next level when everything stops moving
+    - check positions every second, then on next update if nothing moved
+  - remove level drop-down box.
+  - indicate when points are won with balloons?
+  - replace ball image with something better
+  - rename obstacles to something else
+  - add images for obstacles.
+
 * Should GameOver saga handle score change?
   - currently, GAME_OVER Action triggers reducer and saga.
 
