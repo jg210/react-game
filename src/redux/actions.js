@@ -12,7 +12,7 @@ export const gameOver = () => ({
   type: GAME_OVER
 });
 
-export const levelChange = (level: number) => ({
+export const levelChange = (level: ?number = null) => ({
   type: LEVEL_CHANGE,
   payload: {
     level: level

@@ -12,7 +12,7 @@ export default function* nextLevel(): Generator<*,*,*> {
     function*(action: Action) {
       yield put(screenChange("nextLevel"));
       yield call(delay, 2500);
-      yield put(levelChange(-1));
+      yield put(levelChange());
       // TODO Game Over if have run out of levels.
       yield put(screenChange("game"));
     });
