@@ -147,11 +147,11 @@ export class GameEngine {
   }
 
   _handleKeyPress = (event: KeyboardEvent) => {
-    if (event.type === "keydown" && event.key === " " && this.magnetConstraint) {      
-      this._attachBallToMagnet(false);
-    }
     if (event.repeat) {
       return;
+    }
+    if (event.type === "keydown" && event.key === " ") {
+      this._attachBallToMagnet(!this.magnetConstraintAttached);
     }
     const magnetSpeed = 20;
     if (event.type === "keydown") {

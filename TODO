@@ -1,5 +1,9 @@
-* Level progression and multiple attempts.
-  - show Game Over if run out of levels.
+* Reattaching ball to magnet stops next-level detection working.
+
+* "Highest Score" no longer makes sense.
+
+* Show Game Over if run out of levels.
+  - currently, get infinite number of levels, but level selector breaks at 14.
 
 * Review and refactor sagas and reducers.
   - LEVEL_CHANGE and NEXT_LEVEL actions are too similar.
@@ -28,6 +32,8 @@
 * review redux and react-redux documentation etc. and refine implementation
 
 * no typescript extensions => no js formatter in VSC?
+
+* Instructions.
 
 * logging library.
 
