@@ -1,26 +1,28 @@
-* Demolition game.
-  - score points when objects dislodged.
-  - shape bar to "hold" the ball
-    - otherwise ball wobbles too much when move bar.
-  - next level when everything stops moving
-    - check positions every second, then on next update if nothing moved
-  - tune friction and inertia?
-  - better control of ball position.
-  - remove level drop-down box.  
-  - indicate when points are won with balloons?
-  - replace ball with anvil
-    - change image
-    - use anvil-shaped matter.js Body
-    - rename js field
-  - add images for obstacles.
-  - add cable for electromagnet
+* Level progression and multiple attempts.
+  - replace Game Over with Next level
+  - don't reset score on Next Level
+  - add Try Again screen
+  - show number of objects remaining on Try Again screen
+  - extra points if clear whole screen in one go
+
+* Indicate when points are won.
+  - numbered bubbles that fade out over time.
+
+* Replace ball with anvil
+  - change image
+  - use anvil-shaped matter.js Body
+  - rename js field
+  
+* Add images for objects.
+
+* Electromagnet image.
+
+* Add cable for electromagnet.
+
+* Better control of magnet position?
 
 * Should GameOver saga handle score change?
   - currently, GAME_OVER Action triggers reducer and saga.
-
-* Stop GameEngine for a second before showing Game Over screen?
-  - preventing further scoring
-  - fade animation?
 
 * unit tests
 
@@ -32,21 +34,8 @@
 
 * https://www.npmjs.com/package/eslint-plugin-react-redux?
 
-* add some jest snaphshot tests.
-
-* Marked collisions leak memory.
-  - remove them?
-  - fade out with time?
-  - show number of points gained?
+* Add some jest snaphshot tests.
  
-* Accelerating bar movement.
-  - add impulse on key press (and damping), don't just move bar?
-    - no, since bar needs to be "static" for elastic collisions
-  - use hidden, dynamic bar to model physics, updating position of a
-    static bar on every update?
-
-* Better UI layout.
-
 * Change favicon.ico.
 
 * Add back publish script.

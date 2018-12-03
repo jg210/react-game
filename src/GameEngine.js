@@ -33,7 +33,8 @@ export class GameEngine {
   ballWidth: number;
   magnetSpeed: number;
   magnet: Body;
-  magnetConstraint: ?Constraint;
+  magnetConstraint: Constraint;
+  magnetConstraintAttached: boolean;
   walls: Body[];
   remainingObjectIds: Set<number>;
   renderer: Render;
@@ -65,6 +66,7 @@ export class GameEngine {
     this.ballHeight = ballHeight;
     this.ballWidth = ballWidth;
     this.magnetConstraint = magnetConstraint;
+    this.magnetConstraintAttached = false;
     this.magnetSpeed = 0;
     const walls = this._createWalls();
     const objects = this._createObjects();
@@ -76,9 +78,9 @@ export class GameEngine {
       ...walls,
       this.ball,
       this.magnet,
-      this.magnetConstraint,
       ...objects
     ]);
+    this._attachBallToMagnet(true);
     console.log('Body ids:');
     Composite.allBodies(this.engine.world).forEach((body: Body) => {
       console.log(`${body.id} - ${body.label}`);
@@ -146,8 +148,7 @@ export class GameEngine {
 
   _handleKeyPress = (event: KeyboardEvent) => {
     if (event.type === "keydown" && event.key === " " && this.magnetConstraint) {      
-      World.remove(this.engine.world, this.magnetConstraint);
-      this.magnetConstraint = null;
+      this._attachBallToMagnet(false);
     }
     if (event.repeat) {
       return;
@@ -180,7 +181,11 @@ export class GameEngine {
     const y = this.magnet.position.y;
     Body.setPosition(this.magnet, { x, y });
     if (this._isEverythingSleeping()) {
-      this.gameOver();
+      if (this.remainingObjectIds.size === 0) {
+        this.gameOver();
+      } else {
+        this._attachBallToMagnet(true);
+      }
     }
   }
 
@@ -188,6 +193,19 @@ export class GameEngine {
     return _.every(this.engine.world.bodies, (body: Body) => {
       return body.isSleeping;
     });
+  }
+
+  _attachBallToMagnet(attach: boolean) {
+    if (attach) {
+      if (!this.magnetConstraintAttached) {
+        World.add(this.engine.world, this.magnetConstraint);
+      }
+    } else {
+      if (this.magnetConstraintAttached) {
+        World.remove(this.engine.world, this.magnetConstraint);
+      }
+    }
+    this.magnetConstraintAttached = attach;
   }
 
   _clamp(x: number, min: number, max: number): number {
