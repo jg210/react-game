@@ -1,5 +1,4 @@
 * Demolition game.
-  - rename magnet to magnetConstraint
   - rename bar to magnet
   - make obstacles stick to initial position
   - score points when objects dislodged.
