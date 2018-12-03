@@ -1,9 +1,5 @@
 * Level progression and multiple attempts.
-  - replace Game Over with Next level
-  - don't reset score on Next Level
-  - add Try Again screen
-  - show number of objects remaining on Try Again screen
-  - extra points if clear whole screen in one go
+  - show Game Over if run out of levels.
 
 * Indicate when points are won.
   - numbered bubbles that fade out over time.
@@ -60,3 +56,5 @@
 
 * Importing Foo wrapped with react-redux connect as Foo using default export is unclear.
   - it's not immediately obvious that component Foo is wrapped.
+
+* Localization.

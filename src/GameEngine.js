@@ -18,7 +18,7 @@ export class GameEngine {
 
   started: boolean;
   stopped: boolean;
-  gameOver: () => void;
+  nextLevel: () => void;
   scoreUpdate: (points: number) => void;
   boxHeight: number;
   boxWidth: number;
@@ -43,12 +43,12 @@ export class GameEngine {
   constructor(
     containerId: string,
     level: number,
-    gameOver: () => void,
+    nextLevel: () => void,
     scoreUpdate: (points: number) => void) {
     
     this.started = false;
     this.stopped = false;
-    this.gameOver = gameOver;
+    this.nextLevel = nextLevel;
     this.scoreUpdate = scoreUpdate;
     this.boxHeight = 600;
     this.boxWidth = 800;
@@ -182,7 +182,7 @@ export class GameEngine {
     Body.setPosition(this.magnet, { x, y });
     if (this._isEverythingSleeping()) {
       if (this.remainingObjectIds.size === 0) {
-        this.gameOver();
+        this.nextLevel();
       } else {
         this._attachBallToMagnet(true);
       }
@@ -233,7 +233,7 @@ export class GameEngine {
 
   // Initial x coordinate of magnet and ball.
   _initialX(): number {
-    return this.boxWidth / 8 + this.wallThickness / 2
+    return 0.68 * (this.boxWidth - this.wallThickness / 2) + this.wallThickness / 2
   }
 
   _createMagnet(): Body {

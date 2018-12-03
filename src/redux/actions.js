@@ -2,6 +2,7 @@
 import {
   GAME_OVER,
   LEVEL_CHANGE,
+  NEXT_LEVEL,
   SCORE_UPDATE,
   SCREEN_CHANGE
 } from './actionTypes'
@@ -16,6 +17,10 @@ export const levelChange = (level: number) => ({
   payload: {
     level: level
   }
+});
+
+export const nextLevel = () => ({
+  type: NEXT_LEVEL
 });
 
 export const scoreUpdate = (points: number) => ({
