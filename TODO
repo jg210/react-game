@@ -1,5 +1,4 @@
 * Demolition game.
-  - rename bar to magnet
   - make obstacles stick to initial position
   - score points when objects dislodged.
   - shape bar to "hold" the ball
