@@ -16,11 +16,6 @@ import seedrandom from 'seedrandom';
 
 export class GameEngine {
 
-  // Object anchors do not collide with anything, they just exist to keep objects in place until they collide with something.
-  //
-  // http://brm.io/matter-js/docs/classes/Body.html#property_collisionFilter
-  //COLLISION_CATEGORY_OBJECT_ANCHOR = 0x02;
-
   started: boolean;
   stopped: boolean;
   gameOver: () => void;
@@ -263,23 +258,11 @@ export class GameEngine {
       const border = this.wallThickness / 2 + radius;
       const x = border + (random() * (this.boxWidth - 2 * border));
       const y = border + this.magnetHeight + this.ballHeight + (random() * (this.boxHeight - 2 * border - this.magnetHeight - this.ballHeight));
-      // const objectAnchor = Bodies.circle(x, y, radius, {
-      //   label: `object anchor ${i}`,
-      //   isStatic: true,
-      //   render: {
-      //     fillStyle: "red"
-      //   },
-      //   collisionFilter: {
-      //     category: this.COLLISION_CATEGORY_OBJECT_ANCHOR,
-      //     mask: this.COLLISION_CATEGORY_OBJECT_ANCHOR
-      //   }
-      // });
       const object = Bodies.circle(x, y, radius, {
         label: `object ${i}`,
         isStatic: false,
         isSleeping: true
       });
-      //objects.push(objectAnchor);
       objects.push(object);
     });
     return objects;
