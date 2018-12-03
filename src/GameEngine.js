@@ -35,6 +35,7 @@ export class GameEngine {
   magnet: Body;
   magnetConstraint: ?Constraint;
   walls: Body[];
+  remainingObjectIds: Set<number>;
   renderer: Render;
   _handleKeyPress: (KeyboardEvent) => void;
 
@@ -67,6 +68,10 @@ export class GameEngine {
     this.magnetSpeed = 0;
     const walls = this._createWalls();
     const objects = this._createObjects();
+    const remainingObjectIds = _.map(objects, (object: Body) => {
+      return object.id;
+    });
+    this.remainingObjectIds = new Set(remainingObjectIds);
     World.add(this.engine.world, [
       ...walls,
       this.ball,
@@ -130,6 +135,11 @@ export class GameEngine {
     pairs.forEach((pair: Pair) => {
       [pair.bodyA, pair.bodyB].forEach((body: Body) => {
         Sleeping.set(body, false);
+        const dislodged = that.remainingObjectIds.delete(body.id);
+        if (dislodged) {
+          const points = (this.remainingObjectIds.size === 0) ? 10 : 1
+          that.scoreUpdate(points);
+        }
       });
     });
   }
@@ -169,6 +179,15 @@ export class GameEngine {
       minX, maxX);
     const y = this.magnet.position.y;
     Body.setPosition(this.magnet, { x, y });
+    if (this._isEverythingSleeping()) {
+      this.gameOver();
+    }
+  }
+
+  _isEverythingSleeping() {
+    return _.every(this.engine.world.bodies, (body: Body) => {
+      return body.isSleeping;
+    });
   }
 
   _clamp(x: number, min: number, max: number): number {
@@ -230,8 +249,8 @@ export class GameEngine {
           texture: 'ball.png'
         }
       },
-      restitution: 1,
-      density: 1,
+      restitution: 0.5,
+      // density: 1,
       frictionAir: 0,
       frictionStatic: 0,
     });
@@ -253,7 +272,7 @@ export class GameEngine {
   _createObjects(): Body[] {
     const random = seedrandom(this.level + 484726723);
     const objects = []
-    _.range(0, this.level * 3).forEach((i: number) => {
+    _.range(0, this.level).forEach((i: number) => {
       const radius = 10 + random() * 15;
       const border = this.wallThickness / 2 + radius;
       const x = border + (random() * (this.boxWidth - 2 * border));
