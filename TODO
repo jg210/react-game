@@ -1,9 +1,4 @@
 * Demolition game.
-  X make ball stick to electromagnet
-  X move obstacles downwards.
-  X turn bar into electromagnet at top of box
-  X make ball releasable
-  - rename obstacles to objects
   - rename magnet to magnetConstraint
   - rename bar to magnet
   - make obstacles stick to initial position
