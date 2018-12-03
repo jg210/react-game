@@ -14,7 +14,7 @@ export const level = (state: LevelState = initialState, action: Action): LevelSt
   switch (action.type) {
     case LEVEL_CHANGE: {
       let level: number = action.payload.level;
-      if (level === -1) { // TODO Don't use magic number.
+      if (level === null) {
         level = state.current + 1;
       }
       return {...state, current: level};

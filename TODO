@@ -1,6 +1,9 @@
 * Level progression and multiple attempts.
   - show Game Over if run out of levels.
 
+* Review and refactor sagas and reducers.
+  - LEVEL_CHANGE and NEXT_LEVEL actions are too similar.
+
 * Indicate when points are won.
   - numbered bubbles that fade out over time.
 
