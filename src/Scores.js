@@ -13,8 +13,7 @@ type Props = {
 const Scores = (props: Props) => {
   return (
     <div className="Scores">
-      <div>score: {props.score.current}</div>
-      <div>highest score: {props.score.high}</div>
+      <div>{props.score.current}</div>
     </div>
   );
 }
