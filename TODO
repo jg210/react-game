@@ -1,7 +1,5 @@
 * Reattaching ball to magnet stops next-level detection working.
 
-* "Highest Score" no longer makes sense.
-
 * Show Game Over if run out of levels.
   - currently, get infinite number of levels, but level selector breaks at 14.
 
