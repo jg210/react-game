@@ -1,5 +1,9 @@
 * Reattaching ball to magnet stops next-level detection working.
 
+* js crash (in reducer) only shown in debug console.
+  - a backtrace on screen in debug build would make testing better.
+  - what about release build?
+
 * Show Game Over if run out of levels.
   - currently, get infinite number of levels, but level selector breaks at 14.
 
