@@ -4,11 +4,13 @@ import { takeEvery } from 'redux-saga/effects';
 
 import type Action from 'redux';
 
+import { Log } from '../../Log';
+
 export default function* actionLogger(): Generator<*,*,*> {
   yield takeEvery("*",
     // eslint-disable-next-line require-yield
     function*(action: Action) {
-      console.log(`Action: ${action.type}`);
+      Log.info(`Action: ${action.type}`);
     });
 }
 

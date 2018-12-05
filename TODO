@@ -38,6 +38,19 @@
 * Instructions.
 
 * logging library.
+  - console.log()
+    - chrome records log location in code if just use console.log()    
+    - no timestamps or levels
+  - winston
+    - not working with react: https://github.com/winstonjs/winston/issues/1495
+  - write my own
+    - needs some unit testing
+  - log4js
+    - which one?!
+  - pino
+    - doesn't do formatting
+  - bunyan
+    - json logs
 
 * https://www.npmjs.com/package/eslint-plugin-react-redux?
 
