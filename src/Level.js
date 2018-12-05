@@ -21,7 +21,7 @@ class Level extends Component<Props> {
 
   render() {
     return <select value={this.props.level} onChange={this.handleClick}> 
-      {_.range(1, this.props.numberOfLevels).map((i: number) =>
+      {_.range(1, this.props.numberOfLevels + 1).map((i: number) =>
         <option key={i} value={i}>{i}</option>
       )}
     </select>;
@@ -39,7 +39,8 @@ class Level extends Component<Props> {
 
 const mapStateToProps = (state: {level: LevelState}) => {
   const level = state.level.current;
-  return { level };
+  const numberOfLevels = state.level.last
+  return { level, numberOfLevels };
 };
 const actionCreators = {
   levelChange

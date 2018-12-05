@@ -13,7 +13,7 @@ export default (props: Props) => {
     <div>
       <Scores />
       <Game />
-      <Level numberOfLevels={15} />
+      <Level />
     </div>
   );
 };
