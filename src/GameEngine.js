@@ -14,6 +14,8 @@ import {
 import _ from 'lodash';
 import seedrandom from 'seedrandom';
 
+import { Log } from './Log';
+
 export class GameEngine {
 
   started: boolean;
@@ -81,9 +83,9 @@ export class GameEngine {
       ...objects
     ]);
     this._attachBallToMagnet(true);
-    console.log('Body ids:');
+    Log.info('Body ids:');
     Composite.allBodies(this.engine.world).forEach((body: Body) => {
-      console.log(`${body.id} - ${body.label}`);
+      Log.info(`${body.id} - ${body.label}`);
     });
     this.renderer = Render.create({
       element: this.container,
@@ -165,7 +167,7 @@ export class GameEngine {
     } else {
       throw new Error(event);
     }
-    console.log(`magnet speed: ${this.magnetSpeed}`);
+    Log.info(`magnet speed: ${this.magnetSpeed}`);
   }
 
   _handleBeforeUpdate = (event: {timestamp: number}) => {
