@@ -37,6 +37,7 @@ export class GameEngine {
   +walls: Body[];
   +wallThickness: number;
 
+  lastUpdateTimestamp: ?number = null;
   magnetConstraintAttached: boolean;
   magnetSpeed: number;
   started: boolean;
@@ -155,7 +156,7 @@ export class GameEngine {
     if (event.type === "keydown" && event.key === " ") {
       this._attachBallToMagnet(!this.magnetConstraintAttached);
     }
-    const magnetSpeed = 20;
+    const magnetSpeed = 1.3;
     if (event.type === "keydown") {
       if (event.key === 'ArrowLeft') {
         this.magnetSpeed = -magnetSpeed;
@@ -170,18 +171,28 @@ export class GameEngine {
     Log.info(`magnet speed: ${this.magnetSpeed}`);
   }
 
-  _handleBeforeUpdate = (event: {timestamp: number}) => {
+  _updateMagnetPosition(dt: number) {
     const xLimit = this.wallThickness / 2 +
       Math.max(this.magnetWidth / 2, this.ballWidth / 2) +
       0.01 * this.boxWidth;
     const minX = xLimit;
     const maxX = this.boxWidth - xLimit;
-    const dx = this.magnetSpeed; // TODO base on event timestamp.
+    const dx = this.magnetSpeed * dt;
     const x = this._clamp(
       this.magnet.position.x + dx,
       minX, maxX);
     const y = this.magnet.position.y;
     Body.setPosition(this.magnet, { x, y });
+  }
+
+  _handleBeforeUpdate = (event: {timestamp: number}) => {
+    if (this.lastUpdateTimestamp === undefined) {
+      throw new Error(); // flow type refinement
+    }
+    if (!(this.lastUpdateTimestamp === null)) {
+      const dt: number = event.timestamp - this.lastUpdateTimestamp;
+      this._updateMagnetPosition(dt);
+    }
     if (this._isEverythingSleeping()) {
       if (this.remainingObjectIds.size === 0) {
         this.nextLevel();
@@ -189,6 +200,7 @@ export class GameEngine {
         this._attachBallToMagnet(true);
       }
     }
+    this.lastUpdateTimestamp = event.timestamp;
   }
 
   _isEverythingSleeping() {

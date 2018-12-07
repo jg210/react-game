@@ -1,3 +1,7 @@
+* Set GameEngine initial field values when define fields, not in constructor.
+
+* Allow per-Screen props.
+
 * Reattaching ball to magnet stops next-level detection working.
 
 * js crash (in reducer) only shown in debug console.
