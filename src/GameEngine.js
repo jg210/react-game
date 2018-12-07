@@ -15,6 +15,7 @@ import _ from 'lodash';
 import seedrandom from 'seedrandom';
 
 import { Log } from './Log';
+import { Util } from './Util';
 
 export class GameEngine {
 
@@ -52,7 +53,7 @@ export class GameEngine {
     this.nextLevel = nextLevel;
     this.scoreUpdate = scoreUpdate;
     this.level = level;
-    this.container = this._nonNull(document.getElementById(containerId));
+    this.container = Util.nonNull(document.getElementById(containerId));
     this.engine = Engine.create();
     this.engine.world.gravity.y = 0.2;
     this.engine.enableSleeping = true;
@@ -169,7 +170,7 @@ export class GameEngine {
     const minX = xLimit;
     const maxX = this.boxWidth - xLimit;
     const dx = this.magnetSpeed * dt;
-    const x = this._clamp(
+    const x = Util.clamp(
       this.magnet.position.x + dx,
       minX, maxX);
     const y = this.magnet.position.y;
@@ -211,16 +212,6 @@ export class GameEngine {
       }
     }
     this.magnetConstraintAttached = attach;
-  }
-
-  _clamp(x: number, min: number, max: number): number {
-    if (x < min) {
-      x = min;
-    }
-    if (x > max) {
-      x = max;
-    }
-    return x;
   }
 
   _createWalls(): Body[] {
@@ -308,16 +299,6 @@ export class GameEngine {
       objects.push(object);
     });
     return objects;
-  }
-
-  _nonNull<T>(value: ?T): T {
-    if (value === null) {
-      throw new Error("null value.");
-    }
-    if (value === undefined) {
-      throw new Error("undefined value.");
-    }
-    return value;
   }
 
 }
