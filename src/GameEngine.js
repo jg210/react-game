@@ -18,28 +18,29 @@ import { Log } from './Log';
 
 export class GameEngine {
 
-  started: boolean;
-  stopped: boolean;
-  +nextLevel: () => void;
-  +scoreUpdate: (points: number) => void;
-  +boxHeight: number;
-  +boxWidth: number;
-  +wallThickness: number;
-  +magnetWidth: number;
-  +magnetHeight: number;
-  +level: number;
-  +container: HTMLElement;
-  +engine: Engine;
   +ball: Body;
   +ballHeight: number;
   +ballWidth: number;
-  magnetSpeed: number;
+  +boxHeight: number;
+  +boxWidth: number;
+  +container: HTMLElement;
+  +engine: Engine;
+  +level: number;
   +magnet: Body;
   +magnetConstraint: Constraint;
-  magnetConstraintAttached: boolean;
-  +walls: Body[];
+  +magnetHeight: number;
+  +magnetWidth: number;
+  +nextLevel: () => void;
   +remainingObjectIds: Set<number>;
   +renderer: Render;
+  +scoreUpdate: (points: number) => void;
+  +walls: Body[];
+  +wallThickness: number;
+
+  magnetConstraintAttached: boolean;
+  magnetSpeed: number;
+  started: boolean;
+  stopped: boolean;
 
   constructor(
     containerId: string,
