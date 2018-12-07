@@ -20,27 +20,26 @@ export class GameEngine {
 
   started: boolean;
   stopped: boolean;
-  nextLevel: () => void;
-  scoreUpdate: (points: number) => void;
-  boxHeight: number;
-  boxWidth: number;
-  wallThickness: number;
-  magnetWidth: number;
-  magnetHeight: number;
-  level: number;
-  container: HTMLElement;
-  engine: Engine;
-  ball: Body;
-  ballHeight: number;
-  ballWidth: number;
+  +nextLevel: () => void;
+  +scoreUpdate: (points: number) => void;
+  +boxHeight: number;
+  +boxWidth: number;
+  +wallThickness: number;
+  +magnetWidth: number;
+  +magnetHeight: number;
+  +level: number;
+  +container: HTMLElement;
+  +engine: Engine;
+  +ball: Body;
+  +ballHeight: number;
+  +ballWidth: number;
   magnetSpeed: number;
-  magnet: Body;
-  magnetConstraint: Constraint;
+  +magnet: Body;
+  +magnetConstraint: Constraint;
   magnetConstraintAttached: boolean;
-  walls: Body[];
-  remainingObjectIds: Set<number>;
-  renderer: Render;
-  _handleKeyPress: (KeyboardEvent) => void;
+  +walls: Body[];
+  +remainingObjectIds: Set<number>;
+  +renderer: Render;
 
   constructor(
     containerId: string,
