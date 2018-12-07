@@ -7,7 +7,6 @@
   - what about release build?
 
 * Show Game Over if run out of levels.
-  - currently, get infinite number of levels, but level selector breaks at 14.
 
 * Review and refactor sagas and reducers.
   - LEVEL_CHANGE and NEXT_LEVEL actions are too similar.
