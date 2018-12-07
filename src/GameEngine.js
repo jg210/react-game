@@ -21,27 +21,27 @@ export class GameEngine {
   +ball: Body;
   +ballHeight: number;
   +ballWidth: number;
-  +boxHeight: number;
-  +boxWidth: number;
+  +boxHeight: number = 600;
+  +boxWidth: number = 800;
   +container: HTMLElement;
   +engine: Engine;
   +level: number;
   +magnet: Body;
   +magnetConstraint: Constraint;
-  +magnetHeight: number;
-  +magnetWidth: number;
+  +magnetHeight: number = 15;
+  +magnetWidth: number = 50;
   +nextLevel: () => void;
   +remainingObjectIds: Set<number>;
   +renderer: Render;
   +scoreUpdate: (points: number) => void;
   +walls: Body[];
-  +wallThickness: number;
+  +wallThickness: number = 50;
 
   lastUpdateTimestamp: ?number = null;
-  magnetConstraintAttached: boolean;
-  magnetSpeed: number;
-  started: boolean;
-  stopped: boolean;
+  magnetConstraintAttached: boolean = false;
+  magnetSpeed: number = 0;
+  started: boolean = false;
+  stopped: boolean = false;
 
   constructor(
     containerId: string,
@@ -49,15 +49,8 @@ export class GameEngine {
     nextLevel: () => void,
     scoreUpdate: (points: number) => void) {
     
-    this.started = false;
-    this.stopped = false;
     this.nextLevel = nextLevel;
     this.scoreUpdate = scoreUpdate;
-    this.boxHeight = 600;
-    this.boxWidth = 800;
-    this.wallThickness = 50;
-    this.magnetWidth = 50;
-    this.magnetHeight = 15;
     this.level = level;
     this.container = this._nonNull(document.getElementById(containerId));
     this.engine = Engine.create();
@@ -69,8 +62,6 @@ export class GameEngine {
     this.ballHeight = ballHeight;
     this.ballWidth = ballWidth;
     this.magnetConstraint = magnetConstraint;
-    this.magnetConstraintAttached = false;
-    this.magnetSpeed = 0;
     const walls = this._createWalls();
     const objects = this._createObjects();
     const remainingObjectIds = _.map(objects, (object: Body) => {
