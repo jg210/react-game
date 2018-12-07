@@ -30,15 +30,13 @@
 * Should GameOver saga handle score change?
   - currently, GAME_OVER Action triggers reducer and saga.
 
-* unit tests
+* Unit tests
 
-* review redux and react-redux documentation etc. and refine implementation
-
-* no typescript extensions => no js formatter in VSC?
+* No typescript extensions => no js formatter in VSC?
 
 * Instructions.
 
-* logging library.
+* Logging library.
   - console.log()
     - chrome records log location in code if just use console.log()    
     - no timestamps or levels
