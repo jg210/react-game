@@ -27,9 +27,6 @@
 
 * Better control of magnet position?
 
-* Should GameOver saga handle score change?
-  - currently, GAME_OVER Action triggers reducer and saga.
-
 * Unit tests
 
 * No typescript extensions => no js formatter in VSC?
