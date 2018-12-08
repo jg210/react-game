@@ -23,9 +23,9 @@ export type LevelChangeAction = {
   payload: { level: number }
 };
 
-export const NEXT_LEVEL = 'NEXT_LEVEL';
-export type NextLevelAction = {
-  type: typeof(NEXT_LEVEL)
+export const START_LEVEL = 'START_LEVEL';
+export type StartLevelAction = {
+  type: typeof(START_LEVEL)
 };
 
 export const SCORE_UPDATE = 'SCORE_UPDATE';

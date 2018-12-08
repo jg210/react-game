@@ -3,7 +3,7 @@ import {
   GAME_COMPLETE,
   LEVEL_COMPLETE,
   LEVEL_CHANGE,
-  NEXT_LEVEL,
+  START_LEVEL,
   SCORE_UPDATE,
   SCREEN_CHANGE,
   START_GAME
@@ -29,8 +29,8 @@ export const levelChange = (level: ?number = null) => ({
   }
 });
 
-export const nextLevel = () => ({
-  type: NEXT_LEVEL
+export const startLevel = () => ({
+  type: START_LEVEL
 });
 
 export const scoreUpdate = (points: number) => ({
