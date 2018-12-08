@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Ref, Component } from 'react';
+import React, { Component } from 'react';
 import { connect } from "react-redux";
 
 import { startGame } from '../redux/actions';

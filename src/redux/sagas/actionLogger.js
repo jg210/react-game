@@ -6,7 +6,7 @@ import type Action from 'redux';
 
 import { Log } from '../../Log';
 
-export default function* actionLogger(): Generator<*,*,*> {
+export default function*(): Generator<*,*,*> {
   yield takeEvery("*",
     // eslint-disable-next-line require-yield
     function*(action: Action) {

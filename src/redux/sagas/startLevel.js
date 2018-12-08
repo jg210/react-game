@@ -7,7 +7,7 @@ import { delay } from 'redux-saga'
 import { START_LEVEL } from '../actionTypes';
 import { screenChange } from '../actions';
 
-export default function* startLevel(): Generator<*,*,*> {
+export default function*(): Generator<*,*,*> {
   yield takeEvery(START_LEVEL,
     function*(action: Action) {
       yield put(screenChange("startLevel"));
