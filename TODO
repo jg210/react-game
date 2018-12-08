@@ -1,4 +1,5 @@
-* Refactor code shared by levelComplete and startGame sagas into newLevel saga.
+* Rename nextLevel to startLevel.
+  - since doesn't change the level number.
 
 * Set keyboard focus when start game.
 

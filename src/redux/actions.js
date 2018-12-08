@@ -1,6 +1,7 @@
 // @flow
 import {
   GAME_COMPLETE,
+  LEVEL_COMPLETE,
   LEVEL_CHANGE,
   NEXT_LEVEL,
   SCORE_UPDATE,
@@ -15,6 +16,10 @@ export const startGame = () => ({
 
 export const gameComplete = () => ({
   type: GAME_COMPLETE
+});
+
+export const levelComplete = () => ({
+  type: LEVEL_COMPLETE
 });
 
 export const levelChange = (level: ?number = null) => ({

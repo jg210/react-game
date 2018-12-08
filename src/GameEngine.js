@@ -31,7 +31,7 @@ export class GameEngine {
   +magnetConstraint: Constraint;
   +magnetHeight: number = 15;
   +magnetWidth: number = 50;
-  +nextLevel: () => void;
+  +levelComplete: () => void;
   +remainingObjectIds: Set<number>;
   +renderer: Render;
   +scoreUpdate: (points: number) => void;
@@ -47,10 +47,10 @@ export class GameEngine {
   constructor(
     containerId: string,
     level: number,
-    nextLevel: () => void,
+    levelComplete: () => void,
     scoreUpdate: (points: number) => void) {
     
-    this.nextLevel = nextLevel;
+    this.levelComplete = levelComplete;
     this.scoreUpdate = scoreUpdate;
     this.level = level;
     this.container = Util.nonNull(document.getElementById(containerId));
@@ -187,7 +187,7 @@ export class GameEngine {
     }
     if (this._isEverythingSleeping()) {
       if (this.remainingObjectIds.size === 0) {
-        this.nextLevel();
+        this.levelComplete();
       } else {
         this._attachBallToMagnet(true);
       }

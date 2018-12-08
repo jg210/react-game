@@ -7,6 +7,11 @@ export type StartGameAction = {
   type: typeof(START_GAME)
 };
 
+export const LEVEL_COMPLETE = 'LEVEL_COMPLETE';
+export type LevelCompleteAction = {
+  type: typeof(LEVEL_COMPLETE)
+};
+
 export const GAME_COMPLETE = 'GAME_COMPLETE';
 export type GameCompleteAction = {
   type: typeof(GAME_COMPLETE)
