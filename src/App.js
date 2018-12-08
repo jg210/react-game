@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 
 import { store } from './redux/store';
 import './App.css';
-import Screens from './screen';
+import Screen from './screen';
 
 type Props = {
 };
@@ -28,7 +28,7 @@ class App extends Component<Props,State> {
       <Provider store={this.store}>
         <div className="App">
           <header className="App-header">
-            <Screens/>
+            <Screen/>
           </header>
         </div>
       </Provider>

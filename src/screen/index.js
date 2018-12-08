@@ -20,7 +20,7 @@ type Props = {
   +screen: ScreenType
 }
 
-const Screens = (props: Props) => {
+const Screen = (props: Props) => {
   const component = screens[props.screen];
   return React.createElement(component, {}, null);
 }
@@ -30,4 +30,4 @@ const mapStateToProps = (state: {screen: ScreenState}) => {
   return { screen };
 };
 const actionCreators = {};
-export default connect(mapStateToProps, actionCreators)(Screens);
+export default connect(mapStateToProps, actionCreators)(Screen);
