@@ -16,8 +16,7 @@ const NextLevelScreen = (props: Props) => {
 
 const mapStateToProps = (state: {level: LevelState}) => {
   const level = state.level.current;
-  const numberOfLevels = state.level.last
-  return { level, numberOfLevels };
+  return { level };
 };
 const actionCreators = {};
 
