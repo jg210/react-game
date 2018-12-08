@@ -6,6 +6,6 @@ type Props = {};
 
 export default (props: Props) => {
   return (
-    <div>Game Over</div>
+    <div>Game Complete</div>
   );
 };

@@ -1,6 +1,6 @@
 // @flow
 import { Action } from 'redux';
-import { GAME_OVER, SCORE_UPDATE } from '../actionTypes';
+import { SCORE_UPDATE } from '../actionTypes';
 
 export type ScoreState = {
   +current: number
@@ -16,10 +16,6 @@ export const score = (state: ScoreState = initialState, action: Action): ScoreSt
     case SCORE_UPDATE: {
       const points: number = action.payload.points;
       current += points;
-      return {...state, current};
-    }
-    case GAME_OVER: {
-      current = 0;
       return {...state, current};
     }
     default: {

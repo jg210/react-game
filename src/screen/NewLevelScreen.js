@@ -8,9 +8,9 @@ type Props = {
   level: number
 };
 
-const NextLevelScreen = (props: Props) => {
+const NewLevelScreen = (props: Props) => {
   return (
-    <div>Level {props.level} complete</div>
+    <div>Level {props.level}</div>
   );
 };
 
@@ -20,4 +20,4 @@ const mapStateToProps = (state: {level: LevelState}) => {
 };
 const actionCreators = {};
 
-export default connect(mapStateToProps, actionCreators)(NextLevelScreen);
+export default connect(mapStateToProps, actionCreators)(NewLevelScreen);

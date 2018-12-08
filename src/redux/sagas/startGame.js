@@ -4,16 +4,14 @@ import type Action from 'redux';
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { delay } from 'redux-saga'
 
-import { NEXT_LEVEL } from '../actionTypes';
-import { screenChange, levelChange } from '../actions';
+import { START_GAME } from '../actionTypes';
+import { screenChange } from '../actions';
 
 export default function* nextLevel(): Generator<*,*,*> {
-  yield takeEvery(NEXT_LEVEL,
+  yield takeEvery(START_GAME,
     function*(action: Action) {
-      yield put(screenChange("nextLevel"));
+      yield put(screenChange("newLevel"));
       yield call(delay, 2500);
-      yield put(levelChange());
-      // TODO Game Over if have run out of levels.
       yield put(screenChange("game"));
     });
 }

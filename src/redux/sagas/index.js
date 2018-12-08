@@ -1,9 +1,11 @@
 import actionLogger from './actionLogger';
-import gameOver from './gameOver';
-import nextLevel from './nextLevel';
+import gameComplete from './gameComplete';
+import levelComplete from './levelComplete';
+import startGame from './startGame';
 
 export default [
   actionLogger,
-  gameOver,
-  nextLevel
+  gameComplete,
+  levelComplete,
+  startGame
 ];

@@ -8,7 +8,7 @@ export type ScreenState = {
 }
 
 const initialState: ScreenState = {
-  current: "game",
+  current: "start",
 }
 
 export const screen = (state: ScreenState = initialState, action: Action): ScreenState => {
