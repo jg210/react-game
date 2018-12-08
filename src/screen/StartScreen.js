@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react';
+import React, { Ref, Component } from 'react';
 import { connect } from "react-redux";
 
 import { startGame } from '../redux/actions';
@@ -9,20 +9,31 @@ type Props = {
   startGame: () => void
 };
 
-const StartScreen = (props: Props) => {
-  return (
-    <div
-      tabIndex="0"
-      onClick={props.startGame}
-      onKeyPress={props.startGame}
-      className="StartScreen">
-      <p>Press any key to start game.</p>
-      <p>Use left and right arrows to position the magnet.</p>
-      <p>Press space to turn the magnet on or off.</p>
-    </div>
-  );
-};
+class StartScreen extends Component<Props> {
 
+  // eslint-disable-next-line flowtype/no-weak-types
+  ref: { current: any } = React.createRef();
+
+  render() {
+    return (
+      <div
+        ref={this.ref}
+        tabIndex="0"
+        onClick={this.props.startGame}
+        onKeyPress={this.props.startGame}
+        className="StartScreen">
+        <p>Press any key to start game.</p>
+        <p>Use left and right arrows to position the magnet.</p>
+        <p>Press space to turn the magnet on or off.</p>
+      </div>
+    );
+  }
+
+  componentDidMount() {
+    this.ref.current.focus();
+  }
+
+}
 
 const mapStateToProps = null;
 const actionCreators = { startGame };

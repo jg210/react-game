@@ -1,5 +1,3 @@
-* Set keyboard focus when start game.
-
 * Reattaching ball to magnet stops next-level detection working.
 
 * js crash (in reducer) only shown in debug console.
