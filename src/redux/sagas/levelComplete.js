@@ -1,6 +1,5 @@
 // @flow
 
-import type Action from 'redux';
 import { put, select, takeEvery } from 'redux-saga/effects';
 
 import { LEVEL_COMPLETE } from '../actionTypes';
@@ -9,7 +8,7 @@ import { isLastLevel } from '../selectors';
 
 export default function*(): Generator<*,*,*> {
   yield takeEvery(LEVEL_COMPLETE,
-    function*(action: Action) {
+    function*() {
       if (yield select(isLastLevel)) {
         yield put(gameComplete());
       } else {
