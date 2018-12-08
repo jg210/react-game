@@ -1,13 +1,13 @@
 import actionLogger from './actionLogger';
 import gameComplete from './gameComplete';
 import levelComplete from './levelComplete';
-import nextLevel from './nextLevel';
+import startLevel from './startLevel';
 import startGame from './startGame';
 
 export default [
   actionLogger,
   gameComplete,
   levelComplete,
-  nextLevel,
+  startLevel,
   startGame
 ];

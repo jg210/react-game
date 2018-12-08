@@ -1,6 +1,3 @@
-* Rename nextLevel to startLevel.
-  - since doesn't change the level number.
-
 * Set keyboard focus when start game.
 
 * Reattaching ball to magnet stops next-level detection working.
