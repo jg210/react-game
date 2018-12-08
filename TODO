@@ -1,10 +1,12 @@
+* Refactor code shared by levelComplete and startGame sagas into newLevel saga.
+
+* Set keyboard focus when start game.
+
 * Reattaching ball to magnet stops next-level detection working.
 
 * js crash (in reducer) only shown in debug console.
   - a backtrace on screen in debug build would make testing better.
   - what about release build?
-
-* Show Game Over if run out of levels.
 
 * Review and refactor sagas and reducers.
   - LEVEL_CHANGE and NEXT_LEVEL actions are too similar.
@@ -29,8 +31,6 @@
 * Unit tests
 
 * No typescript extensions => no js formatter in VSC?
-
-* Instructions.
 
 * Logging library.
   - console.log()

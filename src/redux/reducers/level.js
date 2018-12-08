@@ -9,7 +9,7 @@ export type LevelState = {
 
 const initialState: LevelState = {
   current: 1,
-  last: 15
+  last: 5
 }
 
 export const level = (state: LevelState = initialState, action: Action): LevelState => {

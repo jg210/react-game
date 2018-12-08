@@ -2,9 +2,14 @@
 
 import type { ScreenType } from '../screen';
 
-export const GAME_OVER = 'GAME_OVER';
-export type GameOverAction = {
-  type: typeof(GAME_OVER)
+export const START_GAME = 'START_GAME';
+export type StartGameAction = {
+  type: typeof(START_GAME)
+};
+
+export const GAME_COMPLETE = 'GAME_COMPLETE';
+export type GameCompleteAction = {
+  type: typeof(GAME_COMPLETE)
 };
 
 export const LEVEL_CHANGE = 'LEVEL_CHANGE';

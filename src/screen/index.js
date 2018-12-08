@@ -5,13 +5,15 @@ import { connect } from 'react-redux';
 
 import type { ScreenState } from '../redux/reducers/screen';
 import GameScreen from './GameScreen';
-import GameOverScreen from './GameOverScreen';
-import NextLevelScreen from './NextLevelScreen';
+import GameCompleteScreen from './GameCompleteScreen';
+import NewLevelScreen from './NewLevelScreen';
+import StartScreen from './StartScreen';
 
 const screens = {
   "game": GameScreen,
-  "gameOver": GameOverScreen,
-  "nextLevel": NextLevelScreen,
+  "gameComplete": GameCompleteScreen,
+  "newLevel": NewLevelScreen,
+  "start": StartScreen
 }
 
 export type ScreenType = $Keys<typeof screens>;

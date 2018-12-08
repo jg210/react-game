@@ -1,15 +1,20 @@
 // @flow
 import {
-  GAME_OVER,
+  GAME_COMPLETE,
   LEVEL_CHANGE,
   NEXT_LEVEL,
   SCORE_UPDATE,
-  SCREEN_CHANGE
+  SCREEN_CHANGE,
+  START_GAME
 } from './actionTypes'
 import type { ScreenType } from '../screen';
 
-export const gameOver = () => ({
-  type: GAME_OVER
+export const startGame = () => ({
+  type: START_GAME
+});
+
+export const gameComplete = () => ({
+  type: GAME_COMPLETE
 });
 
 export const levelChange = (level: ?number = null) => ({

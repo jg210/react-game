@@ -12,6 +12,7 @@
     "react-scripts": "2.1.1",
     "redux": "4.0.1",
     "redux-saga": "0.16.2",
+    "reselect": "4.0.0",
     "seedrandom": "2.4.4"
   },
   "devDependencies": {
