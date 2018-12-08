@@ -1,23 +1,20 @@
 // @flow
 
 import type Action from 'redux';
-import { call, put, select, takeEvery } from 'redux-saga/effects';
-import { delay } from 'redux-saga'
+import { put, select, takeEvery } from 'redux-saga/effects';
 
-import { NEXT_LEVEL } from '../actionTypes';
-import { screenChange, levelChange, gameComplete } from '../actions';
+import { LEVEL_COMPLETE } from '../actionTypes';
+import { levelChange, gameComplete } from '../actions';
 import { isLastLevel } from '../selectors';
 
 export default function* nextLevel(): Generator<*,*,*> {
-  yield takeEvery(NEXT_LEVEL,
+  yield takeEvery(LEVEL_COMPLETE,
     function*(action: Action) {
       if (yield select(isLastLevel)) {
         yield put(gameComplete());
       } else {
         yield put(levelChange());
-        yield put(screenChange("newLevel"));
-        yield call(delay, 2500);
-        yield put(screenChange("game"));
+        yield put(nextLevel());
       }
     });
 }
