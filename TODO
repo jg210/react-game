@@ -1,3 +1,6 @@
+* Encapsulate magnet-related code in own class.
+  - refine encapsulation.
+
 * Reattaching ball to magnet stops next-level detection working.
 
 * js crash (in reducer) only shown in debug console.
