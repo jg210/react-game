@@ -13,6 +13,10 @@
   color: white;
 }
 
+.StartScreen {
+  outline: none
+}
+
 .Game {
   outline: none
 }
