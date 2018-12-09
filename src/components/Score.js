@@ -4,23 +4,19 @@ import { connect } from "react-redux";
 import type { ScoreState } from '../redux/reducers/score';
 
 type Props = {
-  score: {
-    current: number,
-    high: number
-  }
+  score: number
 }
 
-const Scores = (props: Props) => {
+export const Score = (props: Props) => {
   return (
     <div className="Scores">
-      <div>{props.score.current}</div>
+      <div>{props.score}</div>
     </div>
   );
 }
 
 const mapStateToProps = (state: {score: ScoreState}) => {
-  const { score } = state;
-  return { score };
+  return { score: state.score.current };
 }
 
-export default connect(mapStateToProps)(Scores);
+export default connect(mapStateToProps)(Score);
