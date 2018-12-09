@@ -2,7 +2,7 @@
 
 import { takeEvery } from 'redux-saga/effects';
 
-import type Action from 'redux';
+import type { Action } from 'redux';
 
 import { Log } from '../../util/Log';
 
