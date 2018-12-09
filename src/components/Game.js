@@ -36,7 +36,7 @@ export class Game extends Component<Props,State> {
     );
   }
 
-  startEngine() {
+  _startEngine() {
     this.gameEngine = new GameEngine(
       this.CONTAINER_ID,
       this.props.level,
@@ -45,7 +45,7 @@ export class Game extends Component<Props,State> {
     this.gameEngine.start();
   }
 
-  stopEngine() {
+  _stopEngine() {
     if (this.gameEngine) {
       this.gameEngine.stop();
       this.gameEngine = null;
@@ -54,12 +54,12 @@ export class Game extends Component<Props,State> {
 
   // React lifecycle.
   componentDidMount() {
-    this.startEngine();
+    this._startEngine();
   }
 
   // React lifecycle.
   componentWillUnmount() {
-    this.stopEngine();
+    this._stopEngine();
   }
 
   // React lifecycle.
@@ -67,8 +67,8 @@ export class Game extends Component<Props,State> {
     if (this.props.level === prevProps.level) {
       return;
     }
-    this.stopEngine();
-    this.startEngine();
+    this._stopEngine();
+    this._startEngine();
   }
 
 }
