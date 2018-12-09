@@ -8,7 +8,7 @@ type Level = 'INFO' | 'DEBUG';
 
 const levels: Level[] = ['INFO', 'DEBUG'];
 
-const widestLevel: number = _.max(levels, (level: Level) => level.length);
+const widestLevel: number = _.max(levels.map((level: Level) => level.length));
 
 export class Log {
 
