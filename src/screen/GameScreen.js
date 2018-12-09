@@ -4,14 +4,14 @@ import React from 'react';
 
 import Game from '../components/Game';
 import Level from '../components/Level';
-import Scores from '../components/Scores';
+import Score from '../components/Score';
 
 type Props = {};
 
 export default (props: Props) => {
   return (
     <div>
-      <Scores />
+      <Score />
       <Game />
       <Level />
     </div>
