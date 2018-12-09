@@ -171,7 +171,7 @@ export class GameEngine {
       if (this.remainingObjectIds.size === 0) {
         this.levelComplete();
       } else {
-        this.magnet.attach(true);
+        this.magnet.setEnabled(true);
       }
     }
     this.lastUpdateTimestamp = event.timestamp;
