@@ -2,6 +2,11 @@
   - ball often gets enormous angular momentum too, preventing level completion.
 
 * Unit tests
+  - util
+  - sagas
+  - snapshot tests for screens
+
+* npm WARN eslint-config-react-app@3.0.5 requires a peer of eslint-plugin-flowtype@2.x but none is installed. You must install peer dependencies yourself.
 
 * Higher score if release ball fewer times.
   - bonus points when complete level?
@@ -44,8 +49,6 @@
     - json logs
 
 * https://www.npmjs.com/package/eslint-plugin-react-redux?
-
-* Add some jest snaphshot tests.
  
 * Change favicon.ico.
 
