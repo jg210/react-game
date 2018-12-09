@@ -60,8 +60,7 @@ export class GameEngine {
     this.ballHeight = this.ballRadius;
     this.ballWidth = this.ballRadius;
     this.magnet = this._createMagnet();
-    const ball = this._createBall(this.magnet);
-    this.ball = ball;
+    this.ball = this._createBall(this.magnet);
     this.magnet.attachToMagnet(this.ball);
     const walls = this._createWalls();
     const objects = this._createObjects();
