@@ -59,17 +59,7 @@ export class GameEngine {
     this.ballRadius = 1.025 * this.ballImageSize / 2.0
     this.ballHeight = this.ballRadius;
     this.ballWidth = this.ballRadius;
-    const xLimit = this.wallThickness / 2 +
-      Math.max(this.magnetWidth / 2, this.ballWidth / 2) +
-      0.01 * this.boxWidth;
-    this.magnet = new Magnet({
-      x: this._initialX(),
-      y: this.wallThickness / 2 + 0.01 * this.boxHeight + this.magnetHeight / 2,
-      minX: xLimit,
-      maxX: this.boxWidth - xLimit,
-      width: this.magnetWidth,
-      height: this.magnetHeight,
-      world: this.engine.world});
+    this.magnet = this._createMagnet();
     const ball = this._createBall(this.magnet);
     this.ball = ball;
     this.magnet.attachToMagnet(this.ball);
@@ -214,9 +204,23 @@ export class GameEngine {
     return 0.68 * (this.boxWidth - this.wallThickness / 2) + this.wallThickness / 2
   }
 
-  _createBall(magnet: Body): Body {
-    const x = this.magnet.attachmentPosition().x;
-    const y = this.magnet.attachmentPosition().y + this.ballRadius;
+  _createMagnet(): Magnet {
+    const xLimit = this.wallThickness / 2 +
+      Math.max(this.magnetWidth / 2, this.ballWidth / 2) +
+      0.01 * this.boxWidth;
+    return new Magnet({
+      x: this._initialX(),
+      y: this.wallThickness / 2 + 0.01 * this.boxHeight + this.magnetHeight / 2,
+      minX: xLimit,
+      maxX: this.boxWidth - xLimit,
+      width: this.magnetWidth,
+      height: this.magnetHeight,
+      world: this.engine.world});
+  }
+
+  _createBall(magnet: Magnet): Body {
+    const x = magnet.attachmentPosition().x;
+    const y = magnet.attachmentPosition().y + this.ballRadius;
     const ball = Bodies.circle(x, y, this.ballRadius, {
       label: "ball",
       render: {
