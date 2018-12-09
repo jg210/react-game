@@ -2,9 +2,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { GameEngine } from './engine/GameEngine';
-import { levelComplete, scoreUpdate } from './redux/actions';
-import type { LevelState } from './redux/reducers/level'
+import { GameEngine } from '../engine/GameEngine';
+import { levelComplete, scoreUpdate } from '../redux/actions';
+import type { LevelState } from '../redux/reducers/level'
 
 type Props = {
   level: number,

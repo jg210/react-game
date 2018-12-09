@@ -2,9 +2,9 @@
 
 import React from 'react';
 
-import Game from '../Game';
-import Level from '../Level';
-import Scores from '../Scores';
+import Game from '../components/Game';
+import Level from '../components/Level';
+import Scores from '../components/Scores';
 
 type Props = {};
 

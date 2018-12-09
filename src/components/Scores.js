@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import { connect } from "react-redux";
-import type { ScoreState } from './redux/reducers/score';
+import type { ScoreState } from '../redux/reducers/score';
 
 type Props = {
   score: {
