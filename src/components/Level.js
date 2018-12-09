@@ -14,11 +14,6 @@ type Props = {
 
 class Level extends Component<Props> {
 
-  // eslint-disable-next-line no-useless-constructor
-  constructor(props: Props) {
-    super(props);
-  }
-
   render() {
     return <select value={this.props.level} onChange={this.handleClick}> 
       {_.range(1, this.props.numberOfLevels + 1).map((i: number) =>
