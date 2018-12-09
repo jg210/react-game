@@ -15,11 +15,13 @@ export class Magnet {
   +constraints: Constraint[] = [];
   +height: number;
   +width: number;
-  +maxSpeed = 1.3;
+  +maxAcceleration: number = 0.005;
+  +maxSpeed: number = 1.3;
   +minX: number;
   +maxX: number;
   +world: World;
 
+  acceleration: number = 0;
   enabled: boolean = true;
   speed: number = 0;
 
@@ -73,16 +75,23 @@ export class Magnet {
 
   // Start movement to left.
   left() {
-    this.speed = -this.maxSpeed;
+    if (this.speed > 0) {
+      this.speed = 0;
+    }
+    this.acceleration = -this.maxAcceleration;
   }
 
   // Start movement to right.
   right() {
-    this.speed = this.maxSpeed;
+    if (this.speed < 0) {
+      this.speed = 0;
+    }
+    this.acceleration = this.maxAcceleration;
   }
 
   // Stop movement.
   stop() {
+    this.acceleration = 0;
     this.speed = 0;
   }
 
@@ -90,6 +99,9 @@ export class Magnet {
   //
   // dt - time since last update
   update(dt: number) {
+    this.speed = Util.clamp(
+      this.speed + this.acceleration * dt,
+      -this.maxSpeed, this.maxSpeed);
     const dx = this.speed * dt;
     const x = Util.clamp(
       this.body.position.x + dx,

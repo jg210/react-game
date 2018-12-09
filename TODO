@@ -1,6 +1,3 @@
-* Encapsulate magnet-related code in own class.
-  - refine encapsulation.
-
 * Reattaching ball to magnet stops next-level detection working.
 
 * js crash (in reducer) only shown in debug console.
@@ -24,8 +21,6 @@
 * Electromagnet image.
 
 * Add cable for electromagnet.
-
-* Better control of magnet position?
 
 * Unit tests
 
