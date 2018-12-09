@@ -61,21 +61,19 @@ export class GameEngine {
     this.ballWidth = this.ballRadius;
     this.magnet = this._createMagnet();
     this.ball = this._createBall(this.magnet);
-    this.magnet.attachToMagnet(this.ball);
     const walls = this._createWalls();
     const objects = this._createObjects();
     const remainingObjectIds = _.map(objects, (object: Body) => {
       return object.id;
     });
     this.remainingObjectIds = new Set(remainingObjectIds);
+    this.magnet.attachToMagnet(this.ball);
     World.add(this.engine.world, [
       ...walls,
       this.ball,
-      this.magnet,
       ...objects
     ]);
     this.magnet.addToWorld();
-    this.magnet.attach(true);
     Log.info('Body ids:');
     Composite.allBodies(this.engine.world).forEach((body: Body) => {
       Log.info(`${body.id} - ${body.label}`);

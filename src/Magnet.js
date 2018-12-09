@@ -51,8 +51,13 @@ export class Magnet {
     return { x: this.body.position.x, y: this.body.position.y + this.height / 2 };
   }
 
+  // Register the Magnet's matter.js Body with the matter.js World.
+  addToWorld() {
+    World.add(this.world, this.body);
+  }
+
+  // Connect another Body to the Magnet.
   attachToMagnet(other: Body) {
-    // TODO throw Error if called after addToWorld().
     const constraint: Constraint = Constraint.create({
       bodyA: this.body,
       bodyB: other,
@@ -61,28 +66,29 @@ export class Magnet {
       }
     })
     this.constraints.push(constraint);
+    if (this.constraintsAttached) {
+      World.add(this.world, constraint);
+    }
   }
 
-  addToWorld() {
-    World.add(this.world, [this.body, ...this.constraints]);
-  }
-
-  toggle() {
-    this.attach(!this.constraintsAttached);
-  }
-
+  // Start movement to left.
   left() {
     this.speed = -this.maxSpeed;
   }
 
+  // Start movement to right.
   right() {
     this.speed = this.maxSpeed;
   }
 
+  // Stop movement.
   stop() {
     this.speed = 0;
   }
 
+  // Handle matter.js update callback.
+  //
+  // dt - time since last update
   update(dt: number) {
     const dx = this.speed * dt;
     const x = Util.clamp(
@@ -92,18 +98,20 @@ export class Magnet {
     Body.setPosition(this.body, { x, y });
   }
 
+  // Turn the magnet on or off.
+  toggle() {
+    this.attach(!this.constraintsAttached);
+  }
+
+  // Turn the magnet on or off.
   attach(attach: boolean) {
     if (attach) {
       if (!this.constraintsAttached) {
-        this.constraints.forEach((constraint: Constraint) => {
-          World.add(this.world, constraint);
-        }, this);
+        World.add(this.world, this.constraints);
       }
     } else {
       if (this.constraintsAttached) {
-        this.constraints.forEach((constraint: Constraint) => {
-          World.remove(this.world, constraint);
-        }, this);
+        World.remove(this.world, this.constraints);
       }
     }
     this.constraintsAttached = attach;
