@@ -3,6 +3,10 @@
 
 * Unit tests
 
+* Higher score if release ball fewer times.
+  - bonus points when complete level?
+  - many more objects?
+
 * js crash (in reducer) only shown in debug console.
   - a backtrace on screen in debug build would make testing better.
   - what about release build?
