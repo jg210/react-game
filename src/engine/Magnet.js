@@ -10,13 +10,13 @@ import {
 import { Util } from '../util/Util';
 
 type Args = {
-  x: number,
-  y: number,
-  minX: number,
-  maxX: number,
-  width: number,
-  height: number,
-  world: World
+  +x: number,
+  +y: number,
+  +minX: number,
+  +maxX: number,
+  +width: number,
+  +height: number,
+  +world: World
 }
 
 export class Magnet {
