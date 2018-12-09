@@ -13,8 +13,8 @@ import {
 import _ from 'lodash';
 import seedrandom from 'seedrandom';
 
-import { Log } from './Log';
-import { Util } from './Util';
+import { Log } from '../util/Log';
+import { Util } from '../util/Util';
 import { Magnet } from './Magnet';
 
 export class GameEngine {

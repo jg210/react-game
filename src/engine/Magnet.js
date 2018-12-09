@@ -7,7 +7,7 @@ import {
   World
 } from 'matter-js'
 
-import { Util } from './Util';
+import { Util } from '../util/Util';
 
 export class Magnet {
 
