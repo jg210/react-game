@@ -20,7 +20,7 @@ export class Magnet {
   +maxX: number;
   +world: World;
 
-  constraintsAttached: boolean = true;
+  enabled: boolean = true;
   speed: number = 0;
 
   // eslint-disable-next-line flowtype/no-weak-types
@@ -66,7 +66,7 @@ export class Magnet {
       }
     })
     this.constraints.push(constraint);
-    if (this.constraintsAttached) {
+    if (this.enabled) {
       World.add(this.world, constraint);
     }
   }
@@ -100,21 +100,21 @@ export class Magnet {
 
   // Turn the magnet on or off.
   toggle() {
-    this.attach(!this.constraintsAttached);
+    this.setEnabled(!this.enabled);
   }
 
   // Turn the magnet on or off.
-  attach(attach: boolean) {
-    if (attach) {
-      if (!this.constraintsAttached) {
+  setEnabled(enabled: boolean) {
+    if (enabled) {
+      if (!this.enabled) {
         World.add(this.world, this.constraints);
       }
     } else {
-      if (this.constraintsAttached) {
+      if (this.enabled) {
         World.remove(this.world, this.constraints);
       }
     }
-    this.constraintsAttached = attach;
+    this.enabled = enabled;
   }
 
 }
