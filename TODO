@@ -1,11 +1,11 @@
 * Reattaching ball to magnet stops next-level detection working.
+  - ball often gets enormous angular momentum too, preventing level completion.
+
+* Unit tests
 
 * js crash (in reducer) only shown in debug console.
   - a backtrace on screen in debug build would make testing better.
   - what about release build?
-
-* Review and refactor sagas and reducers.
-  - LEVEL_CHANGE and NEXT_LEVEL actions are too similar.
 
 * Indicate when points are won.
   - numbered bubbles that fade out over time.
@@ -21,8 +21,6 @@
 * Electromagnet image.
 
 * Add cable for electromagnet.
-
-* Unit tests
 
 * No typescript extensions => no js formatter in VSC?
 
@@ -61,13 +59,10 @@
       - bar can't be static, but bar has to be static...
       - tunnelling is likely to be a problem
 
-* fix min and max velocity on collision?
-  - as function of bar height, conserving energy
-
-* Toggle for marked collisions?
-  - connecting react to non-react JavaScript...
 
 * Importing Foo wrapped with react-redux connect as Foo using default export is unclear.
   - it's not immediately obvious that component Foo is wrapped.
 
 * Localization.
+
+* High Scrore table.
