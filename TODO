@@ -3,8 +3,6 @@
 * Reattaching ball to magnet stops next-level detection working.
   - ball often gets enormous angular momentum too, preventing level completion.
 
-* npm WARN eslint-config-react-app@3.0.5 requires a peer of eslint-plugin-flowtype@2.x but none is installed. You must install peer dependencies yourself.
-
 * Higher score if release ball fewer times.
   - bonus points when complete level?
   - many more objects?
