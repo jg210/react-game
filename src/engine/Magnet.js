@@ -9,6 +9,16 @@ import {
 
 import { Util } from '../util/Util';
 
+type Args = {
+  x: number,
+  y: number,
+  minX: number,
+  maxX: number,
+  width: number,
+  height: number,
+  world: World
+}
+
 export class Magnet {
 
   +body: Body;
@@ -25,8 +35,7 @@ export class Magnet {
   enabled: boolean = true;
   speed: number = 0;
 
-  // eslint-disable-next-line flowtype/no-weak-types
-  constructor(args: Object={}) {
+  constructor(args: Args) {
     const x = args.x;
     const y = args.y;
     this.minX = args.minX;
