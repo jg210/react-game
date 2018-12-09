@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import _ from 'lodash';
 
-import { levelChange } from './redux/actions';
-import type { LevelState } from './redux/reducers/level';
+import { levelChange } from '../redux/actions';
+import type { LevelState } from '../redux/reducers/level';
 
 type Props = {
   level: number,
