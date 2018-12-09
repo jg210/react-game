@@ -1,3 +1,4 @@
+// @noflow
 import { Util } from '../Util'
 
 describe("clamp", () => {
@@ -39,6 +40,16 @@ describe("clamp", () => {
 
   it("handles -Infinity value with -Infinity min", () => {
     expect(Util.clamp(-Infinity, -Infinity, 3)).toBe(-Infinity);
+  });
+
+  it("handles value == min == max", () => {
+    [-Infinity, -1, 0, 1, Infinity].forEach((value: number) => {
+      expect(Util.clamp(value, value, value)).toBe(value);
+    });
+  });
+
+  it("has max < min", () => {
+    expect(() => Util.clamp(1, 3, 2)).toThrow("max of 2 is less than min 3 (with value of 1)");
   });
 
 });

@@ -4,6 +4,9 @@ export class Util {
 
   // Clamp value to be within the range [min, max].
   static clamp(value: number, min: number, max: number): number {
+    if (max < min) {
+      throw new Error(`max of ${max} is less than min ${min} (with value of ${value})`);
+    }
     if (value < min) {
       value = min;
     }
