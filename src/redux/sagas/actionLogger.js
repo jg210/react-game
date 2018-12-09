@@ -4,7 +4,7 @@ import { takeEvery } from 'redux-saga/effects';
 
 import type Action from 'redux';
 
-import { Log } from '../../Log';
+import { Log } from '../../util/Log';
 
 export default function*(): Generator<*,*,*> {
   yield takeEvery("*",
