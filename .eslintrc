@@ -4,7 +4,8 @@
     "plugin:flowtype/recommended"
   ],
   "plugins": [
-    "flowtype"
+    "flowtype",
+    "jest"
   ],
   "rules":{
     "indent": ["error", 2, {"SwitchCase": 1}],
