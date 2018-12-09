@@ -25,13 +25,13 @@ export class Magnet {
 
   // eslint-disable-next-line flowtype/no-weak-types
   constructor(args: Object={}) {
-    this.minX = args.minX;
-    this.maxX = args.maxX;
-    this.world = args.world;
     const x = args.x;
     const y = args.y;
+    this.minX = args.minX;
+    this.maxX = args.maxX;
     this.width = args.width;
     this.height = args.height;
+    this.world = args.world;
     const peakHeight = this.height * 0.2;
     const vertices = [
       { x: -this.width / 2, y: - this.height / 2 },
