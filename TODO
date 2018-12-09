@@ -5,8 +5,9 @@
 
 * jest snapshot tests for screens.
 
-* VSC gives error about describe and it etc. in jest tests unless add
-  @noflow, but eslint still complains if don't add flow types.
+* flow gives error about describe and it etc. in jest tests
+  - adding flow-typed might help
+  - flow-typed for react-redux is too complicated
 
 * npm WARN eslint-config-react-app@3.0.5 requires a peer of eslint-plugin-flowtype@2.x but none is installed. You must install peer dependencies yourself.
 
