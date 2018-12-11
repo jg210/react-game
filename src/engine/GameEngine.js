@@ -132,7 +132,7 @@ export class GameEngine {
         Sleeping.set(body, false);
         const dislodged = that.remainingObjectIds.delete(body.id);
         if (dislodged) {
-          const points = (this.remainingObjectIds.size === 0) ? 10 : 1
+          const points = 1;
           that.scoreUpdate(points);
         }
       });
