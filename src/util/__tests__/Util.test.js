@@ -57,8 +57,15 @@ describe("clamp()", () => {
 describe("nonNull()", () => {
 
   it("accepts all non-null values", () => {
+    const values = [
+      0, 1, Infinity, -Infinity, Number.NaN,
+      true, false,
+      "", "foo",
+      [], [[]], ["foo"],
+      {}, { foo: "foo"}
+    ];
     // eslint-disable-next-line flowtype/no-weak-types
-    [0, 1, "", "foo", [], {}, Infinity, -Infinity, Number.NaN].forEach((value: any) => {
+    values.forEach((value: any) => {
       expect(Util.nonNull(value)).toBe(value);
     });
   });
