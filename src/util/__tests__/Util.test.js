@@ -1,5 +1,5 @@
 // @flow
-import { Util } from '../Util'
+import { Util } from '../Util';
 
 describe("clamp()", () => {
 
