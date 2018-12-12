@@ -1,13 +1,13 @@
-import actionLogger from './actionLogger';
+import { actionLoggerListener } from './actionLogger';
 import { gameCompleteListener } from './gameComplete';
-import levelComplete from './levelComplete';
-import startLevel from './startLevel';
-import startGame from './startGame';
+import { levelCompleteListener } from './levelComplete';
+import { startLevelListener } from './startLevel';
+import { startGameListener } from './startGame';
 
 export default [
-  actionLogger,
+  actionLoggerListener,
   gameCompleteListener,
-  levelComplete,
-  startLevel,
-  startGame
+  levelCompleteListener,
+  startLevelListener,
+  startGameListener
 ];
