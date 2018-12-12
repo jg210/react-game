@@ -4,15 +4,22 @@
   - ball often gets enormous angular momentum too, preventing level completion.
 
 * Higher score if release ball fewer times.
-  - bonus points when complete level?
-  - many more objects?
-
+  - limited number of balls for each levels
+    - one per object
+  - indicate number of balls available
+  - game over if run out of balls
+  - extra points if complete level with balls remaining
+  - bonus if complete game
+  
 * js crash (in reducer) only shown in debug console.
   - a backtrace on screen in debug build would make testing better.
   - what about release build?
 
 * Indicate when points are won.
   - numbered bubbles that fade out over time.
+    - when hit balls
+    - extra points at end of level
+    - extra points at end of game.
 
 * Replace ball with anvil
   - change image
