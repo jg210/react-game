@@ -1,7 +1,5 @@
 * jest snapshot tests for screens.
 
-* jest tests for sagas.
-
 * Reattaching ball to magnet stops next-level detection working.
   - ball often gets enormous angular momentum too, preventing level completion.
 

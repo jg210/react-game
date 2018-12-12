@@ -5,11 +5,12 @@ import { put, takeEvery } from 'redux-saga/effects';
 import { START_GAME } from '../actionTypes';
 import { startLevel } from '../actions';
 
-export default function*(): Generator<*,*,*> {
-  yield takeEvery(START_GAME,
-    function*() {
-      yield put(startLevel());
-    });
+export function* startGame(): Generator<*,*,*> {
+  yield put(startLevel());
+}
+
+export function* startGameListener(): Generator<*,*,*> {
+  yield takeEvery(START_GAME, startGame);
 }
 
 
