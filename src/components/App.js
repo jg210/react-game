@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 
-import { store } from '../redux/store';
+import { storeFactory } from '../redux/store';
 import './App.css';
 import Screen from '../screen';
 
@@ -20,7 +20,7 @@ class App extends Component<Props,State> {
 
   constructor(props: Props) {
     super(props);
-    this.store = store;
+    this.store = storeFactory();
   }
 
   render() {
