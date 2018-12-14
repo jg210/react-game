@@ -1,5 +1,7 @@
 // @flow
 
+import _ from 'lodash';
+
 import { startGame as startGameSaga, startGameListener } from '../startGame';
 
 import { put, takeEvery } from 'redux-saga/effects';
@@ -26,7 +28,7 @@ it(`handles startGame action, testing by dispatching to a redux store instance`,
   const stateBefore = store.getState();
   store.dispatch(startGameAction());
   const stateAfter = store.getState();
-  const stateAfterExpected = { ...stateBefore };
+  const stateAfterExpected = _.cloneDeep(stateBefore);
   stateAfterExpected.screen.current = "startLevel";
   expect(stateAfter).toEqual(stateAfterExpected);
 });
