@@ -2,6 +2,8 @@
 
 * unit tests for reducers.
 
+* unit tests for engine classes.
+
 * Reattaching ball to magnet stops next-level detection working.
   - ball often gets enormous angular momentum too, preventing level completion.
 
