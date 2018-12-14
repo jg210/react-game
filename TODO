@@ -1,5 +1,7 @@
 * jest snapshot tests for screens.
 
+* unit tests for reducers.
+
 * Reattaching ball to magnet stops next-level detection working.
   - ball often gets enormous angular momentum too, preventing level completion.
 
@@ -56,6 +58,11 @@
   - inject URL via env. var.
 
 * Test server.
+  - eslint
+  - flow
+  - npm run test -- --coverage
+  - flow coverage
+  - release build
 
 * Mouse-based movement of bar.
   - MouseConstraint?
