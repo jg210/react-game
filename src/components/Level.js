@@ -12,7 +12,7 @@ type Props = {
   levelChange: (number) => void
 }
 
-class Level extends Component<Props> {
+export class Level extends Component<Props> {
 
   render() {
     return <select value={this.props.level} onChange={this.handleClick}> 
