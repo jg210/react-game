@@ -9,7 +9,7 @@ type Props = {
   startGame: () => void
 };
 
-class StartScreen extends Component<Props> {
+export class StartScreen extends Component<Props> {
 
   // eslint-disable-next-line flowtype/no-weak-types
   ref: { current: any } = React.createRef();

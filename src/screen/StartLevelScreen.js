@@ -8,7 +8,7 @@ type Props = {
   level: number
 };
 
-const StartLevelScreen = (props: Props) => {
+export const StartLevelScreen = (props: Props) => {
   return (
     <div>Level {props.level}</div>
   );
