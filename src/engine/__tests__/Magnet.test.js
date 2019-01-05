@@ -27,7 +27,9 @@ it("moves left", () => {
     width: 5, height: 5,
     world: {}
   });
+  magnet.update(1);
   magnet.left();
+  magnet.update(1);
 });
 
 it("moves right", () => {
@@ -37,7 +39,9 @@ it("moves right", () => {
     width: 5, height: 5,
     world: {}
   });
+  magnet.update(1);
   magnet.right();
+  magnet.update(1);
 });
 
 it("moves left then right", () => {
@@ -47,8 +51,11 @@ it("moves left then right", () => {
     width: 5, height: 5,
     world: {}
   });
+  magnet.update(1);
   magnet.left();
+  magnet.update(1);
   magnet.right();
+  magnet.update(1);
 });
 
 it("moves right then left", () => {
@@ -58,8 +65,11 @@ it("moves right then left", () => {
     width: 5, height: 5,
     world: {}
   });
+  magnet.update(1);
   magnet.left();
+  magnet.update(1);
   magnet.right();
+  magnet.update(1);
 });
 
 it("stops when already stopped", () => {
@@ -69,7 +79,9 @@ it("stops when already stopped", () => {
     width: 5, height: 5,
     world: {}
   });
+  magnet.update(1);
   magnet.stop();
+  magnet.update(1);
 });
 
 it("moves left then stops", () => {
@@ -79,8 +91,11 @@ it("moves left then stops", () => {
     width: 5, height: 5,
     world: {}
   });
+  magnet.update(1);
   magnet.left();
+  magnet.update(1);
   magnet.stop();
+  magnet.update(1);
 });
 
 it("moves right then stops", () => {
@@ -90,8 +105,11 @@ it("moves right then stops", () => {
     width: 5, height: 5,
     world: {}
   });
+  magnet.update(1);
   magnet.right();
+  magnet.update(1);
   magnet.stop();
+  magnet.update(1);
 });
 
 it("accelerates", () => {
@@ -132,4 +150,40 @@ it("accelerates", () => {
   magnet.update(1);
   expect(magnet.attachmentPosition().x).toBeCloseTo(20);
   expect(magnet.getSpeed()).toBeCloseTo(3);
+  magnet.left();
+  expect(magnet.attachmentPosition().x).toBeCloseTo(20);
+  expect(magnet.getSpeed()).toBeCloseTo(0);
+  magnet.update(1);
+  expect(magnet.attachmentPosition().x).toBeCloseTo(18);
+  expect(magnet.getSpeed()).toBeCloseTo(-2);
+  magnet.update(1);
+  expect(magnet.attachmentPosition().x).toBeCloseTo(15);
+  expect(magnet.getSpeed()).toBeCloseTo(-3);
+  magnet.update(1);
+  expect(magnet.attachmentPosition().x).toBeCloseTo(12);
+  expect(magnet.getSpeed()).toBeCloseTo(-3);
+  magnet.update(1);
+  expect(magnet.attachmentPosition().x).toBeCloseTo(9);
+  expect(magnet.getSpeed()).toBeCloseTo(-3);
+  magnet.update(1);
+  expect(magnet.attachmentPosition().x).toBeCloseTo(6);
+  expect(magnet.getSpeed()).toBeCloseTo(-3);
+  magnet.update(1);
+  expect(magnet.attachmentPosition().x).toBeCloseTo(5);
+  expect(magnet.getSpeed()).toBeCloseTo(-3);
+  magnet.update(1);
+  expect(magnet.attachmentPosition().x).toBeCloseTo(5);
+  expect(magnet.getSpeed()).toBeCloseTo(-3);
+  magnet.update(1);
+  expect(magnet.attachmentPosition().x).toBeCloseTo(5);
+  expect(magnet.getSpeed()).toBeCloseTo(-3);
+  magnet.update(1);
+  expect(magnet.attachmentPosition().x).toBeCloseTo(5);
+  expect(magnet.getSpeed()).toBeCloseTo(-3);
+  magnet.update(1);
+  expect(magnet.attachmentPosition().x).toBeCloseTo(5);
+  expect(magnet.getSpeed()).toBeCloseTo(-3);
+  magnet.stop();
+  expect(magnet.attachmentPosition().x).toBeCloseTo(5);
+  expect(magnet.getSpeed()).toBeCloseTo(0);
 });
