@@ -1,4 +1,6 @@
 // @flow
+//
+// (c) 2018-2019 Jeremy Green
 
 import { put, takeEvery } from 'redux-saga/effects';
 
@@ -12,5 +14,3 @@ export function* gameComplete(): Generator<*,*,*> {
 export function* gameCompleteListener(): Generator<*,*,*> {
   yield takeEvery(GAME_COMPLETE, gameComplete);
 }
-
-

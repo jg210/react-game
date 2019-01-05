@@ -1,3 +1,5 @@
+// (c) 2019 Jeremy Green
+
 import { GameEngine } from '../GameEngine';
 
 it("can be instantiated", () => {

@@ -1,0 +1,4 @@
+#!/bin/bash
+for f in "$@" ; do
+  printf "(c) %s Jeremy Green           %s\n" "$(git log --diff-filter=A --follow --format=%aI -- "${f}" | tail -n1 | egrep --only-matching '^[0-9]+' )" "${f}"
+done

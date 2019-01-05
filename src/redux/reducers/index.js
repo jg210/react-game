@@ -1,4 +1,7 @@
 // @flow
+//
+// (c) 2018-2019 Jeremy Green
+
 import { combineReducers } from "redux";
 
 import { level } from "./level";

@@ -1,4 +1,7 @@
 // @flow
+//
+// (c) 2018-2019 Jeremy Green
+
 import { Action } from 'redux';
 import { SCORE_UPDATE } from '../actionTypes';
 

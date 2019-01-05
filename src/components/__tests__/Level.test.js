@@ -1,4 +1,6 @@
 // @flow
+//
+// (c) 2019 Jeremy Green
 
 import React from 'react';
 import { Level } from '../Level';

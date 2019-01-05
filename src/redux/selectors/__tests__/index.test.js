@@ -1,3 +1,5 @@
+// (c) 2018-2019 Jeremy Green
+
 import { isLastLevel } from '..';
 
 it("is last level of one", () => {

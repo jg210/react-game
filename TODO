@@ -1,3 +1,5 @@
+* sagas index.js lacks flow comment.
+
 * eslint should fail if unit test lacks flow annotation.
 
 * Reattaching ball to magnet stops next-level detection working.

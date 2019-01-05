@@ -1,4 +1,6 @@
 // @flow
+//
+// (c) 2019 Jeremy Green
 
 import { level } from '../level'
 import { levelChange } from '../../actions';

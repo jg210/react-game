@@ -1,4 +1,6 @@
 // @flow
+//
+// (c) 2018-2019 Jeremy Green
 
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
