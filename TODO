@@ -5,7 +5,7 @@
   X release build
   X publish the build somewhere
     X https://docs.travis-ci.com/user/job-lifecycle/#deploying-your-code
-  - link to the published build from README.md.
+  X link to the published build from README.md.
   - flow coverage
   - is better reporting possible?
 
