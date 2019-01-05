@@ -1,3 +1,8 @@
+import {
+  Composite,
+  Engine
+} from 'matter-js'
+
 import { Magnet } from '../Magnet';
 
 it("attachment position", () => {
@@ -18,6 +23,20 @@ it("attachment position", () => {
   expect(position.x).toBeCloseTo(x);
   expect(position.y).toBeCloseTo(y + height / 2.0);
   expect(Object.keys(position)).toEqual(["x", "y"]);
+});
+
+it("can be added to World", () => {
+  const engine = Engine.create();
+  const world = engine.world;
+  expect(Composite.allBodies(world).length).toEqual(0);
+  const magnet = new Magnet({
+    x: 10, y: 10,
+    minX: 5, maxX: 20,
+    width: 5, height: 5,
+    world: world
+  });
+  magnet.addToWorld();
+  expect(Composite.allBodies(world).length).toEqual(1);
 });
 
 it("moves left", () => {
