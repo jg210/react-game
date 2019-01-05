@@ -6,6 +6,7 @@
   X publish the build somewhere
     X https://docs.travis-ci.com/user/job-lifecycle/#deploying-your-code
   X link to the published build from README.md.
+  - npm audit
   - flow coverage
   - is better reporting possible?
 
@@ -62,6 +63,8 @@
 
 * Importing Foo wrapped with react-redux connect as Foo using default export is unclear.
   - it's not immediately obvious that component Foo is wrapped.
+
+* mobile-device support.
 
 * Localization.
 
