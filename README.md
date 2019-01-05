@@ -4,7 +4,7 @@ Learning [React](https://reactjs.org/) by writing a very simple game.
 
 ## The Game
 
-Drop the ball to dislodge the objects.
+Drop the ball and dislodge the objects.
 
 The game is hosted [here](https://jg210.github.io/react-game/).
 
