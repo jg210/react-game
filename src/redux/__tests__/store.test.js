@@ -1,3 +1,5 @@
+// @flow
+
 import  { storeFactory } from '../store';
 
 it("has expected initial state", () => {

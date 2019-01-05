@@ -11,3 +11,5 @@ it("is last level of two", () => {
 it("is not last level", () => {
   expect(isLastLevel({ level : { current: 7, last: 23}})).toBe(false);
 });
+
+// TODO tests that check recomputations field etc.
