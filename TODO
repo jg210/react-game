@@ -2,9 +2,10 @@
   X eslint
   X flow
   X npm run test -- --coverage
-  - release build
-  - publish the build somewhere
-    - https://docs.travis-ci.com/user/job-lifecycle/#deploying-your-code
+  X release build
+  X publish the build somewhere
+    X https://docs.travis-ci.com/user/job-lifecycle/#deploying-your-code
+  - link to the published build from README.md.
   - flow coverage
   - is better reporting possible?
 
