@@ -13,6 +13,8 @@
   - flow coverage
   - is better reporting possible?
 
+* Hide level-switching drop down in release builds.
+
 * Ignore serviceWorker.js in coverage report.
 
 * connected components have poor/no jest coverage.
