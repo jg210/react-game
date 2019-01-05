@@ -2,6 +2,8 @@ Learning [React](https://reactjs.org/) by writing a very simple game.
 
 [![Build Status](https://travis-ci.org/jg210/react-game.svg?branch=master)](https://travis-ci.org/jg210/react-game)
 
+https://jg210.github.io/react-game/
+
 ## The Game
 
 Drop the ball to dislodge the objects.
