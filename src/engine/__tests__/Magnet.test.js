@@ -75,6 +75,41 @@ it("can have things attached to it", () => {
   expect(Composite.allConstraints(world).length).toEqual(1);
 });
 
+it("can have things attached to it when disabled", () => {
+  const engine = Engine.create();
+  const world = engine.world;
+  expect(Composite.allBodies(world).length).toEqual(0);
+  expect(Composite.allConstraints(world).length).toEqual(0);
+  const magnet = new Magnet({
+    x: 10, y: 10,
+    minX: 5, maxX: 20,
+    width: 5, height: 5,
+    world: world
+  });
+  magnet.addToWorld();
+  expect(Composite.allBodies(world).length).toEqual(1);
+  expect(Composite.allConstraints(world).length).toEqual(0);
+  magnet.setEnabled(false);
+  const otherBody = Bodies.circle(12, 12, 2, 2);
+  World.add(world, otherBody);
+  expect(Composite.allBodies(world).length).toEqual(2);
+  expect(Composite.allConstraints(world).length).toEqual(0);
+  magnet.attachToMagnet(otherBody);
+  expect(Composite.allConstraints(world).length).toEqual(0);
+  magnet.setEnabled(false);
+  expect(Composite.allConstraints(world).length).toEqual(0);
+  magnet.setEnabled(false);
+  expect(Composite.allConstraints(world).length).toEqual(0);
+  magnet.setEnabled(true);
+  expect(Composite.allConstraints(world).length).toEqual(1);
+  magnet.setEnabled(true);
+  expect(Composite.allConstraints(world).length).toEqual(1);
+  magnet.toggle();
+  expect(Composite.allConstraints(world).length).toEqual(0);
+  magnet.toggle();
+  expect(Composite.allConstraints(world).length).toEqual(1);
+});
+
 it("moves left", () => {
   const magnet = new Magnet({
     x: 10, y: 10,
