@@ -6,7 +6,7 @@
   X publish the build somewhere
     X https://docs.travis-ci.com/user/job-lifecycle/#deploying-your-code
   X link to the published build from README.md.
-  - npm audit
+  X npm audit
   - flow coverage
   - is better reporting possible?
 
