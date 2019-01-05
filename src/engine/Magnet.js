@@ -16,7 +16,9 @@ type Args = {
   +maxX: number,
   +width: number,
   +height: number,
-  +world: World
+  +world: World,
+  +maxAcceleration?: number,
+  +maxSpeed?: number
 }
 
 export class Magnet {
@@ -25,8 +27,8 @@ export class Magnet {
   +constraints: Constraint[] = [];
   +height: number;
   +width: number;
-  +maxAcceleration: number = 0.005;
-  +maxSpeed: number = 1.3;
+  +maxAcceleration: number;
+  +maxSpeed: number;
   +minX: number;
   +maxX: number;
   +world: World;
@@ -43,6 +45,8 @@ export class Magnet {
     this.width = args.width;
     this.height = args.height;
     this.world = args.world;
+    this.maxAcceleration = (args.maxAcceleration === undefined) ? 0.005 : args.maxAcceleration;
+    this.maxSpeed = (args.maxSpeed === undefined) ? 1.3 : args.maxSpeed;
     const peakHeight = this.height * 0.2;
     const vertices = [
       { x: -this.width / 2, y: - this.height / 2 },
@@ -136,6 +140,11 @@ export class Magnet {
       }
     }
     this.enabled = enabled;
+  }
+
+  // For testing.
+  getSpeed(): number {
+    return this.speed;
   }
 
 }
