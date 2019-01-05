@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "dbaeumer.vscode-eslint",
+        "msjsdiag.debugger-for-chrome",
+        "orta.vscode-jest",
+        "flowtype.flow-for-vscode"
+    ]
+}
