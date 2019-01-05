@@ -63,6 +63,10 @@ it("can have things attached to it", () => {
   expect(Composite.allConstraints(world).length).toEqual(1);
   magnet.setEnabled(false);
   expect(Composite.allConstraints(world).length).toEqual(0);
+  magnet.setEnabled(false);
+  expect(Composite.allConstraints(world).length).toEqual(0);
+  magnet.setEnabled(true);
+  expect(Composite.allConstraints(world).length).toEqual(1);
   magnet.setEnabled(true);
   expect(Composite.allConstraints(world).length).toEqual(1);
   magnet.toggle();
