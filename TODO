@@ -4,6 +4,7 @@
   X npm run test -- --coverage
   - release build
   - publish the build somewhere
+    - https://docs.travis-ci.com/user/job-lifecycle/#deploying-your-code
   - flow coverage
   - is better reporting possible?
 
