@@ -13,7 +13,7 @@
       2,
       "boolean"
     ],
-    "flowtype/define-flow-type": 1,
+    "flowtype/define-flow-type": 2,
     "flowtype/delimiter-dangle": [
       2,
       "never"
@@ -58,8 +58,8 @@
       2,
       "always"
     ],
-    "flowtype/use-flow-type": 1,
-    "flowtype/valid-syntax": 1
+    "flowtype/use-flow-type": 2,
+    "flowtype/valid-syntax": 2
   },
   "settings": {
     "flowtype": {
