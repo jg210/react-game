@@ -7,6 +7,9 @@
     X https://docs.travis-ci.com/user/job-lifecycle/#deploying-your-code
   X link to the published build from README.md.
   X npm audit
+  - deploy coverage report to github pages.
+  - link from game to source code.
+  - link from game to coverage report.
   - flow coverage
   - is better reporting possible?
 
