@@ -93,3 +93,43 @@ it("moves right then stops", () => {
   magnet.right();
   magnet.stop();
 });
+
+it("accelerates", () => {
+  const magnet = new Magnet({
+    x: 10, y: 10,
+    minX: 5, maxX: 20,
+    width: 5, height: 5,
+    maxSpeed: 3,
+    maxAcceleration: 2,
+    world: {}
+  });
+  expect(magnet.attachmentPosition().x).toBeCloseTo(10);
+  expect(magnet.getSpeed()).toBeCloseTo(0);
+  magnet.right();
+  expect(magnet.attachmentPosition().x).toBeCloseTo(10);
+  expect(magnet.getSpeed()).toBeCloseTo(0);
+  magnet.update(1);
+  expect(magnet.attachmentPosition().x).toBeCloseTo(12);
+  expect(magnet.getSpeed()).toBeCloseTo(2);
+  magnet.update(1);
+  expect(magnet.attachmentPosition().x).toBeCloseTo(15);
+  expect(magnet.getSpeed()).toBeCloseTo(3);
+  magnet.update(1);
+  expect(magnet.attachmentPosition().x).toBeCloseTo(18);
+  expect(magnet.getSpeed()).toBeCloseTo(3);
+  magnet.update(1);
+  expect(magnet.attachmentPosition().x).toBeCloseTo(20);
+  expect(magnet.getSpeed()).toBeCloseTo(3);
+  magnet.update(1);
+  expect(magnet.attachmentPosition().x).toBeCloseTo(20);
+  expect(magnet.getSpeed()).toBeCloseTo(3);
+  magnet.update(1);
+  expect(magnet.attachmentPosition().x).toBeCloseTo(20);
+  expect(magnet.getSpeed()).toBeCloseTo(3);
+  magnet.update(1);
+  expect(magnet.attachmentPosition().x).toBeCloseTo(20);
+  expect(magnet.getSpeed()).toBeCloseTo(3);
+  magnet.update(1);
+  expect(magnet.attachmentPosition().x).toBeCloseTo(20);
+  expect(magnet.getSpeed()).toBeCloseTo(3);
+});
