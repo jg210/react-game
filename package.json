@@ -28,7 +28,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "npm run eslint && CI=true npm run jest -- --coverage && npm run flow",
+    "jest": "react-scripts test",
     "eslint": "eslint src",
     "flow": "flow status",
     "eject": "react-scripts eject"
