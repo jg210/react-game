@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { GameEngine } from '../engine/GameEngine';
 import { levelComplete, scoreUpdate } from '../redux/actions';
 import type { LevelState } from '../redux/reducers/level'
+import { Util } from '../util/Util';
 
 type Props = {
   level: number,
@@ -37,8 +38,9 @@ export class Game extends Component<Props,State> {
   }
 
   _startEngine() {
+    const container = Util.nonNull(document.getElementById(this.CONTAINER_ID));
     this.gameEngine = new GameEngine(
-      this.CONTAINER_ID,
+      container,
       this.props.level,
       this.props.levelComplete,
       this.props.scoreUpdate);

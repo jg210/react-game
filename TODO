@@ -1,5 +1,8 @@
 * unit tests for engine classes.
 
+* unit tests default to not using flow
+  - is that good or bad?
+
 * Reattaching ball to magnet stops next-level detection working.
   - ball often gets enormous angular momentum too, preventing level completion.
 

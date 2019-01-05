@@ -44,7 +44,7 @@ export class GameEngine {
   stopped: boolean = false;
 
   constructor(
-    containerId: string,
+    container: HTMLElement,
     level: number,
     levelComplete: () => void,
     scoreUpdate: (points: number) => void) {
@@ -52,7 +52,7 @@ export class GameEngine {
     this.levelComplete = levelComplete;
     this.scoreUpdate = scoreUpdate;
     this.level = level;
-    this.container = Util.nonNull(document.getElementById(containerId));
+    this.container = container;
     this.engine = Engine.create();
     this.engine.world.gravity.y = 0.2;
     this.engine.enableSleeping = true;
