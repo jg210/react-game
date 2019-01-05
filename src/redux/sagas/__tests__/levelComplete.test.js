@@ -1,4 +1,6 @@
 // @flow
+//
+// (c) 2018-2019 Jeremy Green
 
 import {
   levelComplete as levelCompleteSaga,
