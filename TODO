@@ -1,3 +1,7 @@
+* Ignore serviceWorker.js in coverage report.
+
+* connected components have poor/no jest coverage.
+
 * Reattaching ball to magnet stops next-level detection working.
   - have to release it before can progress
   - ball often gets enormous angular momentum too, preventing level completion.
