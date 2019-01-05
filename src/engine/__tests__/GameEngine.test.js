@@ -5,9 +5,10 @@ it("can be instantiated", () => {
   const level = 23;
   const levelComplete = jest.fn();
   const scoreUpdate = jest.fn();
-  new GameEngine(
+  const gameEngine = new GameEngine(
     container,
     level,
     levelComplete,
-    scoreUpdate); 
+    scoreUpdate);
+  expect(gameEngine._isEverythingSleeping()).toBe(false);
 });
