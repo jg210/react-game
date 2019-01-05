@@ -7,8 +7,6 @@ import { StartScreen } from '../StartScreen';
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-
-
 it('renders correctly', () => {
   let focusCalled = 0;
   let startGameCalled = 0;
