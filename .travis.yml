@@ -4,6 +4,7 @@ script:
   - npm run build
 deploy:
   provider: pages
+  local-dir: build
   skip-cleanup: true
   github-token: $GITHUB_TOKEN  # from travis-ci settings page
   keep-history: true
