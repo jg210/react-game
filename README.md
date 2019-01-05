@@ -1,4 +1,4 @@
-Learning (React)[https://reactjs.org/] by writing a lame game.
+Learning [React](https://reactjs.org/) by writing a very simple game.
 
 ## The Game
 
