@@ -11,4 +11,6 @@ it("can be instantiated", () => {
     levelComplete,
     scoreUpdate);
   expect(gameEngine._isEverythingSleeping()).toBe(false);
+  expect(levelComplete).toBeCalledTimes(0);
+  expect(scoreUpdate).toBeCalledTimes(0);
 });
