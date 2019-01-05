@@ -26,7 +26,7 @@ View the application using:
 
 http://localhost:3000/
 
-# Release Build Instructions
+## Release Build Instructions
 
 As above, but instead of running "npm start", run:
 
