@@ -1,3 +1,12 @@
+* configure travis-ci test server.
+  X eslint
+  X flow
+  X npm run test -- --coverage
+  - better reporting
+  - flow coverage
+  - release build
+  - publishing a build somewhere
+
 * Ignore serviceWorker.js in coverage report.
 
 * connected components have poor/no jest coverage.
@@ -57,13 +66,6 @@
 
 * Add back publish script.
   - inject URL via env. var.
-
-* Test server.
-  - eslint
-  - flow
-  - npm run test -- --coverage
-  - flow coverage
-  - release build
 
 * Mouse-based movement of bar.
   - MouseConstraint?
