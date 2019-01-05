@@ -2,10 +2,10 @@
   X eslint
   X flow
   X npm run test -- --coverage
-  - better reporting
-  - flow coverage
   - release build
-  - publishing a build somewhere
+  - publish the build somewhere
+  - flow coverage
+  - is better reporting possible?
 
 * Ignore serviceWorker.js in coverage report.
 
@@ -49,9 +49,6 @@
 
 * Change favicon.ico.
 
-* Add back publish script.
-  - inject URL via env. var.
-
 * Mouse-based movement of bar.
   - MouseConstraint?
     - https://www.youtube.com/watch?v=W-ou_sVlTWk&list=PLRqwX-V7Uu6akvoNKE4GAxf6ZeBYoJ4uh&index=24
@@ -60,7 +57,6 @@
       - add MouseConstraint to world.
       - bar can't be static, but bar has to be static...
       - tunnelling is likely to be a problem
-
 
 * Importing Foo wrapped with react-redux connect as Foo using default export is unclear.
   - it's not immediately obvious that component Foo is wrapped.
