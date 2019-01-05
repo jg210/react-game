@@ -37,7 +37,10 @@
         "annotateUndefined": "never"
       }
     ],
-    "flowtype/require-valid-file-annotation": 2,
+    "flowtype/require-valid-file-annotation": [
+      2,
+      "always"
+    ],
     "flowtype/semi": [
       0,
       "always"

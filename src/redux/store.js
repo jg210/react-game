@@ -13,6 +13,7 @@ export const storeFactory = () => {
     rootReducer,
     applyMiddleware(sagaMiddleware)
   );
+  // $FlowFixMe - problem with Generator type parameters.
   sagas.forEach((saga: Generator<*,*,*>) => {
     sagaMiddleware.run(saga);
   });

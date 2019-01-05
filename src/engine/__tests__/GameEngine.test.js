@@ -1,3 +1,5 @@
+// @flow
+//
 // (c) 2019 Jeremy Green
 
 import { GameEngine } from '../GameEngine';
@@ -8,6 +10,7 @@ it("can be instantiated", () => {
   const levelComplete = jest.fn();
   const scoreUpdate = jest.fn();
   const gameEngine = new GameEngine(
+    //$FlowFixMe - container should be HTMLElement
     container,
     level,
     levelComplete,
