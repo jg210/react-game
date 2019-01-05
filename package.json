@@ -34,6 +34,7 @@
     "flow": "flow status",
     "eject": "react-scripts eject"
   },
+  "homepage": "https://jg210.github.io/react-game/",
   "eslintConfig": {
     "extends": "react-app"
   },
