@@ -14,7 +14,6 @@ import _ from 'lodash';
 import seedrandom from 'seedrandom';
 
 import { Log } from '../util/Log';
-import { Util } from '../util/Util';
 import { Magnet } from './Magnet';
 
 export class GameEngine {
@@ -249,6 +248,14 @@ export class GameEngine {
       objects.push(object);
     });
     return objects;
+  }
+
+  getBodyCount() {
+    return Composite.allBodies(this.engine.world).length;
+  }
+
+  getConstraintCount() {
+    return Composite.allConstraints(this.engine.world).length;
   }
 
 }
