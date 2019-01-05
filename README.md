@@ -1,3 +1,9 @@
+Learning (React)[https://reactjs.org/] by writing a lame game.
+
+## The Game
+
+Drop the ball to dislodge the objects.
+
 ## Development Build Instructions
 
 Install nodenv and node-build (or use any other way to put correct
