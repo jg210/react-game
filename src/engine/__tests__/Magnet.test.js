@@ -19,3 +19,77 @@ it("attachment position", () => {
   expect(position.y).toBeCloseTo(y + height / 2.0);
   expect(Object.keys(position)).toEqual(["x", "y"]);
 });
+
+it("moves left", () => {
+  const magnet = new Magnet({
+    x: 10, y: 10,
+    minX: 5, maxX: 20,
+    width: 5, height: 5,
+    world: {}
+  });
+  magnet.left();
+});
+
+it("moves right", () => {
+  const magnet = new Magnet({
+    x: 10, y: 10,
+    minX: 5, maxX: 20,
+    width: 5, height: 5,
+    world: {}
+  });
+  magnet.right();
+});
+
+it("moves left then right", () => {
+  const magnet = new Magnet({
+    x: 10, y: 10,
+    minX: 5, maxX: 20,
+    width: 5, height: 5,
+    world: {}
+  });
+  magnet.left();
+  magnet.right();
+});
+
+it("moves right then left", () => {
+  const magnet = new Magnet({
+    x: 10, y: 10,
+    minX: 5, maxX: 20,
+    width: 5, height: 5,
+    world: {}
+  });
+  magnet.left();
+  magnet.right();
+});
+
+it("stops when already stopped", () => {
+  const magnet = new Magnet({
+    x: 10, y: 10,
+    minX: 5, maxX: 20,
+    width: 5, height: 5,
+    world: {}
+  });
+  magnet.stop();
+});
+
+it("moves left then stops", () => {
+  const magnet = new Magnet({
+    x: 10, y: 10,
+    minX: 5, maxX: 20,
+    width: 5, height: 5,
+    world: {}
+  });
+  magnet.left();
+  magnet.stop();
+});
+
+it("moves right then stops", () => {
+  const magnet = new Magnet({
+    x: 10, y: 10,
+    minX: 5, maxX: 20,
+    width: 5, height: 5,
+    world: {}
+  });
+  magnet.right();
+  magnet.stop();
+});
