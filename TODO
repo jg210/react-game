@@ -1,3 +1,5 @@
+* eslint should fail if unit test lacks flow annotation.
+
 * Reattaching ball to magnet stops next-level detection working.
   - have to release it before can progress
   - ball often gets enormous angular momentum too, preventing level completion.
