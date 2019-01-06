@@ -9,11 +9,10 @@ import renderer from 'react-test-renderer';
 import { mount } from 'enzyme';
 
 it('renders correctly', () => {
-  const tree = renderer
-    .create(<WireframeCheckbox
-      enabled={true}
-      setWireframeMode={(enabled: boolean) => {}}
-    />).toJSON();
+  const tree = renderer.create(<WireframeCheckbox
+    enabled={true}
+    setWireframeMode={(enabled: boolean) => {}}/>
+  ).toJSON();
   expect(tree).toMatchSnapshot();
 });
 

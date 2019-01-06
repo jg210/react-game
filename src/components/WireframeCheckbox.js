@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 
 import { setWireframeMode } from '../redux/actions';
 import type { DebugState } from '../redux/reducers/debug';
+import { Game } from './Game';
 
 type Props = {
   enabled: boolean,
@@ -27,6 +28,7 @@ export class WireframeCheckbox extends Component<Props> {
   }
 
   handleClick = (event: SyntheticEvent<HTMLInputElement>) => {
+    Game.focus();
     const target: HTMLInputElement = event.currentTarget;
     this.props.setWireframeMode(target.checked);
   }
