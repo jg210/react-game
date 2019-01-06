@@ -88,13 +88,11 @@ export class GameEngine {
       engine: this.engine,
       options: {
         background: "transparent",
-        wireframes: this.wireframe,
-        showSleeping: this.wireframe,
-        showAngleIndicator: this.wireframe,
         width: this.boxWidth,
         height: this.boxHeight
       }
     });
+    this.setWireframe(this.wireframe);
   }
 
   start() {
@@ -256,6 +254,13 @@ export class GameEngine {
       objects.push(object);
     });
     return objects;
+  }
+
+  setWireframe(enabled: boolean) {
+    this.wireframe = enabled;
+    this.renderer.options.wireframes = enabled;
+    this.renderer.options.showSleeping = enabled;
+    this.renderer.options.showAngleIndicator = enabled;
   }
 
   getBodyCount() {

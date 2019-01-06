@@ -33,6 +33,9 @@ export class Game extends Component<Props,State> {
   }
 
   render() {
+    if (this.gameEngine) {
+      this.gameEngine.setWireframe(this.props.wireframe);
+    }
     return (
       // Need tabIndex, otherwise can't get focus and capture key events.
       <div
