@@ -1,29 +1,11 @@
-* Debugging mode
-  X add debug reducer
-  X add wireframe toggle component
-  X pass into GameEngine constructor
-  X allow changes while GameEngine started
-  X keyboard focusing
-  - sufficient unit tests
-
-* travis ci isn't building and deploying when merge PR to master branch.
-
 * configure travis-ci test server.
-  X eslint
-  X flow
-  X npm run test -- --coverage
-  X release build
-  X publish the build somewhere
-    X https://docs.travis-ci.com/user/job-lifecycle/#deploying-your-code
-  X link to the published build from README.md.
-  X npm audit
   - deploy coverage report to github pages.
   - link from game to source code.
   - link from game to coverage report.
   - flow coverage
   - is better reporting possible?
 
-* Hide level-switching drop down in release builds.
+* Hide level-switching drop down in release builds?
 
 * connected components have poor/no jest coverage.
 
