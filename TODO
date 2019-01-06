@@ -3,8 +3,10 @@
   X add wireframe toggle component
   X pass into GameEngine constructor
   X allow changes while GameEngine started
-  - keyboard focusing
+  X keyboard focusing
   - sufficient unit tests
+
+* travis ci isn't building and deploying when merge PR to master branch.
 
 * configure travis-ci test server.
   X eslint
@@ -22,8 +24,6 @@
   - is better reporting possible?
 
 * Hide level-switching drop down in release builds.
-
-* Ignore serviceWorker.js in coverage report.
 
 * connected components have poor/no jest coverage.
 
