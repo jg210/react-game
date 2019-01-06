@@ -29,7 +29,7 @@ const Screen = (props: Props) => {
   return React.createElement(component, {}, null);
 }
 
-const mapStateToProps = (state: {screen: ScreenState}) => {
+export const mapStateToProps = (state: {screen: ScreenState}) => {
   const screen = state.screen.current;
   return { screen };
 };
