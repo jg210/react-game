@@ -7,11 +7,13 @@ import { connect } from 'react-redux';
 
 import { GameEngine } from '../engine/GameEngine';
 import { levelComplete, scoreUpdate } from '../redux/actions';
-import type { LevelState } from '../redux/reducers/level'
+import { type DebugState } from '../redux/reducers/debug'
+import { type LevelState } from '../redux/reducers/level'
 import { Util } from '../util/Util';
 
 type Props = {
   level: number,
+  wireframe: boolean,
   levelComplete: () => void,
   scoreUpdate: (points: number) => void
 }
@@ -45,6 +47,7 @@ export class Game extends Component<Props,State> {
     this.gameEngine = new GameEngine(
       container,
       this.props.level,
+      this.props.wireframe,
       this.props.levelComplete,
       this.props.scoreUpdate);
     this.gameEngine.start();
@@ -78,9 +81,11 @@ export class Game extends Component<Props,State> {
 
 }
 
-const mapStateToProps = (state: {level: LevelState}) => {
+// TODO Should LevelState/DebugState etc. include key too?
+const mapStateToProps = (state: {level: LevelState, debug: DebugState}) => {
   const level = state.level.current;
-  return { level };
+  const wireframe = state.debug.wireframe;
+  return { level, wireframe };
 };
 const actionCreators = {
   levelComplete,
