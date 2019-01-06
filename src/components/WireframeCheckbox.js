@@ -19,7 +19,7 @@ export class WireframeCheckbox extends Component<Props> {
     return (
       <div>
         <span>          
-          <input type="checkbox" value={this.props.enabled} onChange={this.handleClick}/>
+          <input type="checkbox" checked={this.props.enabled} onChange={this.handleClick}/>
           debug
         </span>
       </div>
