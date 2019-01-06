@@ -25,8 +25,8 @@ export class Game extends Component<Props,State> {
 
   static CONTAINER_ID = "matter_js_container";
 
-  static getContainer(): HTMLElement {
-    return Util.nonNull(document.getElementById(Game.CONTAINER_ID));
+  static getContainer(): ?HTMLElement {
+    return document.getElementById(Game.CONTAINER_ID);
   }
 
   // Set keyboard focus on the Game component.
@@ -61,7 +61,7 @@ export class Game extends Component<Props,State> {
   }
 
   _startEngine() {
-    const container = Game.getContainer();
+    const container = Util.nonNull(Game.getContainer());
     this.gameEngine = new GameEngine(
       container,
       this.props.level,
