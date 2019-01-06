@@ -7,17 +7,20 @@ import { GameEngine } from '../GameEngine';
 it("can be instantiated", () => {
   const container = {};
   const level = 23;
-  const levelComplete = jest.fn();
-  const scoreUpdate = jest.fn();
-  const gameEngine = new GameEngine(
-    //$FlowFixMe - container should be HTMLElement
-    container,
-    level,
-    levelComplete,
-    scoreUpdate);
-  expect(gameEngine._isEverythingSleeping()).toBe(false);
-  expect(levelComplete).toBeCalledTimes(0);
-  expect(scoreUpdate).toBeCalledTimes(0);
-  expect(gameEngine.getBodyCount()).toEqual(29);
-  expect(gameEngine.getConstraintCount()).toEqual(1);
+  [true, false].forEach((wireframe: boolean) => {
+    const levelComplete = jest.fn();
+    const scoreUpdate = jest.fn();
+    const gameEngine = new GameEngine(
+      //$FlowFixMe - container should be HTMLElement
+      container,
+      level,
+      wireframe,
+      levelComplete,
+      scoreUpdate);
+    expect(gameEngine._isEverythingSleeping()).toBe(false);
+    expect(levelComplete).toBeCalledTimes(0);
+    expect(scoreUpdate).toBeCalledTimes(0);
+    expect(gameEngine.getBodyCount()).toEqual(29);
+    expect(gameEngine.getConstraintCount()).toEqual(1);
+  });
 });

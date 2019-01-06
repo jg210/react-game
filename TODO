@@ -1,3 +1,11 @@
+* Debugging mode
+  X add debug reducer
+  X add wireframe toggle component
+  X pass into GameEngine constructor
+  X allow changes while GameEngine started
+  - keyboard focusing
+  - sufficient unit tests
+
 * configure travis-ci test server.
   X eslint
   X flow
@@ -67,7 +75,9 @@
 * Importing Foo wrapped with react-redux connect as Foo using default export is unclear.
   - it's not immediately obvious that component Foo is wrapped.
 
-* mobile-device support.
+* mobile browser support.
+  - variable box size
+  - control without using keyboard.
 
 * Localization.
 
