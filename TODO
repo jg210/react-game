@@ -2,10 +2,9 @@
   X add debug reducer
   X add wireframe toggle component
   X pass into GameEngine constructor
-  - allow changes while GameEngine started
-  - prevent react re-render when wireframe mode changed.
-  - sufficient unit tests
+  X allow changes while GameEngine started
   - keyboard focusing
+  - sufficient unit tests
 
 * configure travis-ci test server.
   X eslint
