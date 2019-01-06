@@ -23,7 +23,22 @@ type State = {
 
 export class Game extends Component<Props,State> {
 
-  CONTAINER_ID = "matter_js_container";
+  static CONTAINER_ID = "matter_js_container";
+
+  static getContainer(): HTMLElement {
+    return Util.nonNull(document.getElementById(Game.CONTAINER_ID));
+  }
+
+  // Set keyboard focus on the Game component.
+  //
+  // TODO a more elegant way of setting keyboard focus.
+  // ...CONTAINER_ID should have different value for each Game instance.
+  static focus() {
+    const container = Game.getContainer();
+    if (container) {
+      container.focus();
+    }
+  }
 
   gameEngine: ?GameEngine;
 
@@ -40,13 +55,13 @@ export class Game extends Component<Props,State> {
       // Need tabIndex, otherwise can't get focus and capture key events.
       <div
         className="Game"
-        id={this.CONTAINER_ID}
+        id={Game.CONTAINER_ID}
         tabIndex="0" />
     );
   }
 
   _startEngine() {
-    const container = Util.nonNull(document.getElementById(this.CONTAINER_ID));
+    const container = Game.getContainer();
     this.gameEngine = new GameEngine(
       container,
       this.props.level,
