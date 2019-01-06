@@ -44,16 +44,19 @@ export class GameEngine {
   lastUpdateTimestamp: ?number = null;
   started: boolean = false;
   stopped: boolean = false;
+  wireframe: boolean;
 
   constructor(
     container: HTMLElement,
     level: number,
+    wireframe: boolean,
     levelComplete: () => void,
     scoreUpdate: (points: number) => void) {
     
     this.levelComplete = levelComplete;
     this.scoreUpdate = scoreUpdate;
     this.level = level;
+    this.wireframe = wireframe;
     this.container = container;
     this.engine = Engine.create();
     this.engine.world.gravity.y = 0.2;
@@ -85,11 +88,11 @@ export class GameEngine {
       engine: this.engine,
       options: {
         background: "transparent",
-        wireframes: false,
         width: this.boxWidth,
         height: this.boxHeight
       }
     });
+    this.setWireframe(this.wireframe);
   }
 
   start() {
@@ -251,6 +254,13 @@ export class GameEngine {
       objects.push(object);
     });
     return objects;
+  }
+
+  setWireframe(enabled: boolean) {
+    this.wireframe = enabled;
+    this.renderer.options.wireframes = enabled;
+    this.renderer.options.showSleeping = enabled;
+    this.renderer.options.showAngleIndicator = enabled;
   }
 
   getBodyCount() {

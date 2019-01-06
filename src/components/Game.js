@@ -7,11 +7,13 @@ import { connect } from 'react-redux';
 
 import { GameEngine } from '../engine/GameEngine';
 import { levelComplete, scoreUpdate } from '../redux/actions';
-import type { LevelState } from '../redux/reducers/level'
+import { type DebugState } from '../redux/reducers/debug'
+import { type LevelState } from '../redux/reducers/level'
 import { Util } from '../util/Util';
 
 type Props = {
   level: number,
+  wireframe: boolean,
   levelComplete: () => void,
   scoreUpdate: (points: number) => void
 }
@@ -21,7 +23,22 @@ type State = {
 
 export class Game extends Component<Props,State> {
 
-  CONTAINER_ID = "matter_js_container";
+  static CONTAINER_ID = "matter_js_container";
+
+  static getContainer(): ?HTMLElement {
+    return document.getElementById(Game.CONTAINER_ID);
+  }
+
+  // Set keyboard focus on the Game component.
+  //
+  // TODO a more elegant way of setting keyboard focus.
+  // ...CONTAINER_ID should have different value for each Game instance.
+  static focus() {
+    const container = Game.getContainer();
+    if (container) {
+      container.focus();
+    }
+  }
 
   gameEngine: ?GameEngine;
 
@@ -31,20 +48,24 @@ export class Game extends Component<Props,State> {
   }
 
   render() {
+    if (this.gameEngine) {
+      this.gameEngine.setWireframe(this.props.wireframe);
+    }
     return (
       // Need tabIndex, otherwise can't get focus and capture key events.
       <div
         className="Game"
-        id={this.CONTAINER_ID}
+        id={Game.CONTAINER_ID}
         tabIndex="0" />
     );
   }
 
   _startEngine() {
-    const container = Util.nonNull(document.getElementById(this.CONTAINER_ID));
+    const container = Util.nonNull(Game.getContainer());
     this.gameEngine = new GameEngine(
       container,
       this.props.level,
+      this.props.wireframe,
       this.props.levelComplete,
       this.props.scoreUpdate);
     this.gameEngine.start();
@@ -78,9 +99,11 @@ export class Game extends Component<Props,State> {
 
 }
 
-const mapStateToProps = (state: {level: LevelState}) => {
+// TODO Should LevelState/DebugState etc. include key too?
+const mapStateToProps = (state: {level: LevelState, debug: DebugState}) => {
   const level = state.level.current;
-  return { level };
+  const wireframe = state.debug.wireframe;
+  return { level, wireframe };
 };
 const actionCreators = {
   levelComplete,
