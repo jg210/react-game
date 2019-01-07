@@ -9,7 +9,7 @@ it("has expected initial state", () => {
   const state = store.getState();
   expect(state).toEqual({
     debug: {
-      wireframe: true
+      wireframe: false
     },
     level: {
       current: 1,

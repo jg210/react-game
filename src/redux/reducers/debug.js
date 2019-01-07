@@ -11,7 +11,7 @@ export type DebugState = {
 }
 
 const initialState: DebugState = {
-  wireframe: process.env.NODE_ENV !== 'production'
+  wireframe: false
 }
 
 export const debug = (state: DebugState = initialState, action: Action): DebugState => {
