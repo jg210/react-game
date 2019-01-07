@@ -18,7 +18,7 @@ it('renders correctly', () => {
   expect(tree).toMatchSnapshot();
 });
 
-it('clicking', () => {
+it('sends event when clicked on', () => {
   const numberOfLevels = 3;
   for (let level = 1 ; level <= numberOfLevels; level++) {
     for (let initialLevel = 1 ; initialLevel <= numberOfLevels; initialLevel++) {

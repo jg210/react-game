@@ -11,7 +11,7 @@ import {
 
 import { Magnet } from '../Magnet';
 
-it("attachment position", () => {
+it("has correct attachment position", () => {
   const world = {};
   const x = 10;
   const y = 10;

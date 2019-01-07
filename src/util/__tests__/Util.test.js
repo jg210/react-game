@@ -51,7 +51,7 @@ describe("clamp()", () => {
     });
   });
 
-  it("has max < min", () => {
+  it("rejects max < min", () => {
     expect(() => Util.clamp(1, 3, 2)).toThrow("max of 2 is less than min 3 (with value of 1)");
   });
 
