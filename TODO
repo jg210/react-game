@@ -1,3 +1,8 @@
+* jest isn't running inside visual studio code anymore.
+  - it's seeing untranspiled code.
+  - problem disappears when click on it in list, but tests not running.
+  - jest runs from command-line OK still.
+
 * configure travis-ci test server.
   - deploy coverage report to github pages.
   - link from game to source code.
