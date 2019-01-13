@@ -21,6 +21,6 @@ it("can be instantiated", () => {
     expect(levelComplete).toBeCalledTimes(0);
     expect(scoreUpdate).toBeCalledTimes(0);
     expect(gameEngine.getBodyCount()).toEqual(29);
-    expect(gameEngine.getConstraintCount()).toEqual(2);
+    expect(gameEngine.getConstraintCount()).toEqual(1);
   });
 });

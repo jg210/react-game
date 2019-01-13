@@ -8,7 +8,6 @@ import {
   Composite,
   Engine,
   Events,
-  Mouse,
   Pair,
   Render,
   Sleeping,
@@ -35,7 +34,6 @@ export class GameEngine {
   +magnet: Magnet;
   +magnetHeight: number = 15;
   +magnetWidth: number = 50;
-  +mouse: Mouse;
   +levelComplete: () => void;
   +remainingObjectIds: Set<number>;
   +renderer: Render;
@@ -63,17 +61,6 @@ export class GameEngine {
     this.engine = Engine.create();
     this.engine.world.gravity.y = 0.2;
     this.engine.enableSleeping = true;
-    this.renderer = Render.create({
-      element: this.container,
-      engine: this.engine,
-      options: {
-        background: "transparent",
-        width: this.boxWidth,
-        height: this.boxHeight
-      }
-    });
-    this.mouse = Mouse.create(this.renderer.canvas);
-    this.renderer.mouse = this.mouse;
     this.ballRadius = 1.025 * this.ballImageSize / 2.0
     this.ballHeight = this.ballRadius;
     this.ballWidth = this.ballRadius;
@@ -96,6 +83,15 @@ export class GameEngine {
     Composite.allBodies(this.engine.world).forEach((body: Body) => {
       Log.info(`${body.id} - ${body.label}`);
     });
+    this.renderer = Render.create({
+      element: this.container,
+      engine: this.engine,
+      options: {
+        background: "transparent",
+        width: this.boxWidth,
+        height: this.boxHeight
+      }
+    });
     this.setWireframe(this.wireframe);
   }
 
@@ -108,7 +104,6 @@ export class GameEngine {
     }
     Events.on(this.engine, 'collisionStart', this._handleCollision);
     Events.on(this.engine, 'beforeUpdate', this._handleBeforeUpdate);
-    Events.on(this.engine, "mousemove", this._handleMouseMove);
     Engine.run(this.engine);
     Render.run(this.renderer);
     document.addEventListener('keydown', this._handleKeyPress);
@@ -129,7 +124,6 @@ export class GameEngine {
     Render.stop(this.renderer);
     Events.off(this.engine, 'collisionStart');
     Events.off(this.engine, 'beforeUpdate');
-    Events.off(this.engine, 'mousemove');
     this.renderer.canvas.remove();
     this.started = false;
     this.stopped = true;
@@ -188,10 +182,6 @@ export class GameEngine {
     this.lastUpdateTimestamp = event.timestamp;
   }
 
-  _handleMouseMove = (event) => {
-    this.magnet.handleMouseMove(event);
-  }
-
   _isEverythingSleeping() {
     return _.every(this.engine.world.bodies, (body: Body) => {
       return body.isSleeping;
@@ -227,8 +217,6 @@ export class GameEngine {
       maxX: this.boxWidth - xLimit,
       width: this.magnetWidth,
       height: this.magnetHeight,
-      engine: this.engine,
-      mouse: this.mouse,
       world: this.engine.world});
   }
 
