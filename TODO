@@ -44,13 +44,15 @@
 * No typescript extensions => no js formatter in VSC?
 
 * Mouse-based movement of bar.
-  - MouseConstraint?
+  - notes
     - https://www.youtube.com/watch?v=W-ou_sVlTWk&list=PLRqwX-V7Uu6akvoNKE4GAxf6ZeBYoJ4uh&index=24
-      - MouseConstraint connected to Mouse connected to canvas.elt
-      - Mouse.pixelRatio = pixelDensity(); // retina displays, p5 canvas required?
-      - add MouseConstraint to world.
-      - bar can't be static, but bar has to be static...
-      - tunnelling is likely to be a problem
+    - tunnelling is likely to be a problem
+    - https://stackoverflow.com/questions/31407683/matter-js-create-a-rotating-platform/33124154
+  - add MouseConstraint?
+  - MouseConstraint only works if Magnet Body is non-static, but a non-static body falls.
+    - https://github.com/liabru/matter-js/issues/589
+  - MouseConstraint defaults to interacting with all Bodies, so need filters
+    - https://github.com/liabru/matter-js/issues/48
 
 * Importing Foo wrapped with react-redux connect as Foo using default export is unclear.
   - it's not immediately obvious that component Foo is wrapped.
@@ -62,7 +64,6 @@
 * Deploying to gh-pages creates a lot of blobs in git (e.g. node_modules)
   - deploy somewhere else?
   - uses fewer files somehow.
-
 
 * Localization.
 

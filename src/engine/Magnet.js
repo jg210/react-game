@@ -5,7 +5,11 @@
 import {
   Body,
   Bodies,
+  Bounds,
   Constraint,
+  Engine,
+  Mouse,
+  MouseConstraint,
   World
 } from 'matter-js'
 
@@ -18,9 +22,11 @@ type Args = {
   +maxX: number,
   +width: number,
   +height: number,
+  +engine?: Engine,
   +world: World,
   +maxAcceleration?: number,
-  +maxSpeed?: number
+  +maxSpeed?: number,
+  +mouse?: Mouse
 }
 
 export class Magnet {
@@ -33,6 +39,7 @@ export class Magnet {
   +maxSpeed: number;
   +minX: number;
   +maxX: number;
+  +mouseConstraint: ?MouseConstraint;
   +world: World;
 
   acceleration: number = 0;
@@ -61,6 +68,17 @@ export class Magnet {
       label: "magnet",
       isStatic: true,
     });
+    // if (args.mouse) {
+    //   this.mouseConstraint = MouseConstraint.create(args.engine, {
+    //     mouse: args.mouse,
+    //     constraint: {
+    //       stiffness: 0.9,
+    //       render: {
+    //         visible: true
+    //       }
+    //     }
+    //   });
+    // }
   }
 
   // Bottom centre coordinates of magnet.
@@ -68,9 +86,12 @@ export class Magnet {
     return { x: this.body.position.x, y: this.body.position.y + this.height / 2 };
   }
 
-  // Register the Magnet's matter.js Body with the matter.js World.
+  // Register the Magnet the matter.js World.
   addToWorld() {
     World.add(this.world, this.body);
+    if (this.mouseConstraint) {
+      World.add(this.world, this.mouseConstraint);
+    }
   }
 
   // Connect another Body to the Magnet.
@@ -142,6 +163,16 @@ export class Magnet {
       }
     }
     this.enabled = enabled;
+  }
+
+  handleMouseMove(event) {
+    if (this.containsPosition(event.mouse.position) && event.mouse.button == 0) {
+      Body.setPosition(this.body, event.mouse.position);
+    }
+  }
+
+  containsPosition(position): boolean {
+    return Bounds.contains(this.body.bounds, position);
   }
 
   // For testing.
