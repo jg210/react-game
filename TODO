@@ -1,7 +1,4 @@
 * configure travis-ci test server.
-  - it's building branches and PRs
-    - if just build PRs then master branch not built and published.
-    - if just build branches (I think) forks PRs wouldn't get built.
   - deploy coverage report to github pages.
   - link from game to source code.
   - link from game to coverage report.

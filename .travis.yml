@@ -2,6 +2,12 @@ language: node_js
 script:
   - npm ci
   - npm run build
+branches:
+  # Travis is configured to build branches and PRs. Need to
+  # restrict branch builds to just master branch, otherwise
+  # PRs from same repo are built twice.
+  only:
+    - master
 deploy:
   provider: pages
   local-dir: build
