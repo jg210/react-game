@@ -59,6 +59,11 @@
   - variable box size
   - control without using keyboard.
 
+* Deploying to gh-pages creates a lot of blobs in git (e.g. node_modules)
+  - deploy somewhere else?
+  - uses fewer files somehow.
+
+
 * Localization.
 
 * High Scrore table.
