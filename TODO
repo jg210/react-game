@@ -49,6 +49,7 @@
 * mobile browser support.
   - variable box size
   - control without using keyboard.
+    - touchmove events?
 
 * Deploying to gh-pages creates a lot of blobs in git (e.g. node_modules)
   - deploy somewhere else?
