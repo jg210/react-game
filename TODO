@@ -43,18 +43,6 @@
 
 * No typescript extensions => no js formatter in VSC?
 
-* Mouse-based movement of bar.
-  - notes
-    - https://www.youtube.com/watch?v=W-ou_sVlTWk&list=PLRqwX-V7Uu6akvoNKE4GAxf6ZeBYoJ4uh&index=24
-    - tunnelling is likely to be a problem
-    - https://stackoverflow.com/questions/31407683/matter-js-create-a-rotating-platform/33124154
-  - add MouseConstraint?
-  - MouseConstraint only works if Magnet Body is non-static, but a non-static body falls.
-    - https://github.com/liabru/matter-js/issues/589
-  - MouseConstraint defaults to interacting with all Bodies, so need filters
-    - https://github.com/liabru/matter-js/issues/48
-  - https://github.com/liabru/matter-js/issues/245
-
 * Importing Foo wrapped with react-redux connect as Foo using default export is unclear.
   - it's not immediately obvious that component Foo is wrapped.
 
