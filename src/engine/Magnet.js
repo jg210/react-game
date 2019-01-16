@@ -5,6 +5,7 @@
 import {
   Body,
   Bodies,
+  Bounds,
   Constraint,
   World
 } from 'matter-js'
@@ -38,6 +39,7 @@ export class Magnet {
   acceleration: number = 0;
   enabled: boolean = true;
   speed: number = 0;
+  dragging: boolean = false;
 
   constructor(args: Args) {
     const x = args.x;
@@ -88,6 +90,30 @@ export class Magnet {
     }
   }
 
+  handleMouseEvent(
+    canvasRect: { left: number, top: number},
+    event: MouseEvent) {
+    if (event.type === 'mouseup') {
+      if (this.dragging) {
+        this.toggle();
+      }
+      this.dragging = false;
+      return;
+    }
+    const position = {
+      x: event.clientX - canvasRect.left,
+      y: event.clientY - canvasRect.top
+    };
+    const onMagnet = Bounds.contains(this.body.bounds, position);
+    if (event.type === 'mousedown' && onMagnet) {
+      this.dragging = true;
+    }
+    if (this.dragging) {
+      this.stop();
+      Body.setPosition(this.body, { x: position.x, y: this.body.position.y});
+    }
+  }
+
   // Start movement to left.
   left() {
     if (this.speed > 0) {
@@ -128,6 +154,7 @@ export class Magnet {
   // Turn the magnet on or off.
   toggle() {
     this.setEnabled(!this.enabled);
+    this.dragging = false;
   }
 
   // Turn the magnet on or off.

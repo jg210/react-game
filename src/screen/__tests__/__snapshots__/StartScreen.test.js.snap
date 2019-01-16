@@ -11,7 +11,7 @@ exports[`renders correctly 1`] = `
     Press any key to start game.
   </p>
   <p>
-    Use left and right arrows to position the magnet.
+    Use left and right arrow keys or the mouse to position the magnet.
   </p>
   <p>
     Press space to turn the magnet on or off.
