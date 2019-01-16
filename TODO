@@ -1,3 +1,5 @@
+* Releasing mouse button with pointer outside of canvas means stay in dragging mode.
+
 * configure travis-ci test server.
   - deploy coverage report to github pages.
   - link from game to source code.
