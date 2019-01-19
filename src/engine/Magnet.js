@@ -62,6 +62,9 @@ export class Magnet {
     this.body = Bodies.fromVertices(x, y, vertices, {
       label: "magnet",
       isStatic: true,
+      render: {
+        fillStyle: 'Grey'
+      }
     });
   }
 

@@ -87,7 +87,7 @@ export class GameEngine {
       element: this.container,
       engine: this.engine,
       options: {
-        background: "transparent",
+        background: "#fafafa",
         width: this.boxWidth,
         height: this.boxHeight
       }
@@ -202,6 +202,9 @@ export class GameEngine {
   _createWalls(): Body[] {
     const wallOptions = {
       isStatic: true,
+      render: {
+        fillStyle: 'LightGrey'
+      }
     };
     // matter.js does positioning using centre of mass...
     const wallTop = Bodies.rectangle(this.boxWidth / 2, 0, this.boxWidth, this.wallThickness, { ...wallOptions, label: "wall - T" });
