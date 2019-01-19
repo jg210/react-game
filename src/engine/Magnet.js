@@ -90,13 +90,24 @@ export class Magnet {
     }
   }
 
+  leftButtonPressed(event: MouseEvent) {
+    if (event.buttons === undefined) {
+      // Safari.
+      return event.which === 1;
+    } else {
+      return event.buttons & 1;
+    }
+  }
+
   handleMouseEvent(
     canvasRect: { left: number, top: number},
     event: MouseEvent) {
-    if (event.type === 'mouseup') {
+    if (event.type === 'mouseup' && event.button === 0) {
       if (this.dragging) {
         this.toggle();
       }
+    }
+    if (!this.leftButtonPressed(event)) {
       this.dragging = false;
       return;
     }
@@ -105,7 +116,7 @@ export class Magnet {
       y: event.clientY - canvasRect.top
     };
     const onMagnet = Bounds.contains(this.body.bounds, position);
-    if (event.type === 'mousedown' && onMagnet) {
+    if (onMagnet) {
       this.dragging = true;
     }
     if (this.dragging) {
