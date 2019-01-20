@@ -106,8 +106,13 @@ export class Magnet {
     if (!event.isPrimary) {
       return;
     }
-    if (event.type === 'pointerup' && event.button === 0) {
-      this.toggle();
+    if (event.button === 0) {
+      if (event.type === 'pointerup') {
+        this.setEnabled(false);
+      }
+    if (event.type === 'pointerdown') {
+        this.setEnabled(true);
+    }
     }
     if (!this.leftButtonPressed(event)) {
       this.dragging = false;
@@ -167,7 +172,6 @@ export class Magnet {
   // Turn the magnet on or off.
   toggle() {
     this.setEnabled(!this.enabled);
-    this.dragging = false;
   }
 
   // Turn the magnet on or off.
