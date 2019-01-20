@@ -100,6 +100,9 @@ export class Magnet {
   handlePointerEvent(
     canvasRect: { left: number, top: number},
     event: PointerEvent) {
+    if (!event.isPrimary) {
+      return;
+    }
     if (event.type === 'pointerup' && event.button === 0) {
       if (this.dragging) {
         this.toggle();
