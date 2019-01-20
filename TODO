@@ -51,6 +51,8 @@
 
 * mobile browser support.
   - full-screen layout
+  - sufficiently-large UI elements
+    - >= 11 mm
   - control without using keyboard.
     - support touchmove events too?
     - support pointerevents instead?
@@ -60,6 +62,8 @@
           - abandoned, but might suffice
         - or to fall back to mouse event support
           - putting back the buttons -> which hack/polyfill too
+        - https://github.com/Rich-Harris/Points
+          - abandoned six years ago, but its implementation notes might be interesting still
 
 * Deploying to gh-pages creates a lot of blobs in git (e.g. node_modules)
   - deploy somewhere else?
