@@ -55,6 +55,8 @@
     - >= 11 mm
   - test on safari
   - handle multi-touch
+  - your finger obscures the ball
+    - add left/right/release buttons too?
 
 * Deploying to gh-pages creates a lot of blobs in git (e.g. node_modules)
   - deploy somewhere else?
