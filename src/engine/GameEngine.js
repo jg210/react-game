@@ -111,7 +111,9 @@ export class GameEngine {
     this.renderer.canvas.addEventListener('pointerdown', this._handlePointerEvent);
     this.renderer.canvas.addEventListener('pointermove', this._handlePointerEvent);
     this.renderer.canvas.addEventListener('pointerup', this._handlePointerEvent);
-    this.renderer.canvas["touch-action"] = "none"; // https://github.com/jquery/PEP#touch-action
+    // The canvas has the touch-action CSS attribute set, but the pepjs polyfill
+    // needs a DOM attribute instead: https://github.com/jquery/PEP#touch-action
+    this.renderer.canvas["touch-action"] = "none";
     this.container.focus();
     this.started = true;
   }
