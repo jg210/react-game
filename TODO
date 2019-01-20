@@ -7,6 +7,9 @@
 
 * connected components have poor/no jest coverage.
 
+* When dragging magnet, don't move centre of magnet to pointerdown coordinates.
+  - record offset when start dragging
+
 * Reattaching ball to magnet stops next-level detection working.
   - have to release it before can progress
   - ball often gets enormous angular momentum too, preventing level completion.
@@ -47,14 +50,13 @@
   - it's not immediately obvious that component Foo is wrapped.
 
 * mobile browser support.
-  - full-screen layout
-  - control without using keyboard.
-    - support touchmove events too?
-    - support pointerevents instead?
-      - https://developer.mozilla.org/en-US/docs/Web/Events/pointerdown
-      - safari would need a polyfill
-        - https://github.com/jquery/PEP
-          - abandoned, but might suffice
+  - full-screen not fixed-size layout
+  - sufficiently-large UI elements
+    - >= 11 mm
+  - test on safari
+  - handle multi-touch
+  - your finger obscures the ball
+    - add left/right/release buttons too?
 
 * Deploying to gh-pages creates a lot of blobs in git (e.g. node_modules)
   - deploy somewhere else?

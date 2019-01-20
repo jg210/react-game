@@ -15,9 +15,10 @@
 }
 
 .StartScreen {
-  outline: none
+  outline: none;
 }
 
 .Game {
-  outline: none
+  outline: none;
+  touch-action: none;
 }
