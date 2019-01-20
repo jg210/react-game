@@ -50,22 +50,11 @@
   - it's not immediately obvious that component Foo is wrapped.
 
 * mobile browser support.
-  - full-screen layout
+  - full-screen not fixed-size layout
   - sufficiently-large UI elements
     - >= 11 mm
-  - control without using keyboard.
-    - support touchmove events too?
-    - support pointerevents instead?
-      - https://developer.mozilla.org/en-US/docs/Web/Events/pointerdown
-      - safari and older browsers would need a polyfill
-        - https://github.com/jquery/PEP
-          - abandoned, but seems to be only option
-        - or to fall back to mouse event support
-          - putting back the buttons -> which hack/polyfill too
-      X touch-action: none on canvas
-      X set touch-action as DOM attribute too?
-      - handle multi-touch
-  - your finger covers up the ball.
+  - test on safari
+  - handle multi-touch
 
 * Deploying to gh-pages creates a lot of blobs in git (e.g. node_modules)
   - deploy somewhere else?
