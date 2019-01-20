@@ -100,13 +100,14 @@ export class Magnet {
   handlePointerEvent(
     canvasRect: { left: number, top: number},
     event: PointerEvent) {
+    // If multiple contact points are possible, ignore all but the primary
+    // (the first one for touch screens). Otherwise, magnet jumps between
+    // each contact point as events are received.
     if (!event.isPrimary) {
       return;
     }
     if (event.type === 'pointerup' && event.button === 0) {
-      if (this.dragging) {
-        this.toggle();
-      }
+      this.toggle();
     }
     if (!this.leftButtonPressed(event)) {
       this.dragging = false;
