@@ -111,6 +111,7 @@ export class GameEngine {
     this.renderer.canvas.addEventListener('pointerdown', this._handlePointerEvent);
     this.renderer.canvas.addEventListener('pointermove', this._handlePointerEvent);
     this.renderer.canvas.addEventListener('pointerup', this._handlePointerEvent);
+    this.renderer.canvas["touch-action"] = "none"; // https://github.com/jquery/PEP#touch-action
     this.container.focus();
     this.started = true;
   }

@@ -63,7 +63,7 @@
         - or to fall back to mouse event support
           - putting back the buttons -> which hack/polyfill too
       X touch-action: none on canvas
-      - set touch-action as DOM attribute too?
+      X set touch-action as DOM attribute too?
       - handle multi-touch
   - your finger covers up the ball.
 
