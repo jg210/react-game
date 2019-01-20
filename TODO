@@ -7,6 +7,9 @@
 
 * connected components have poor/no jest coverage.
 
+* When dragging magnet, don't move centre of magnet to pointerdown coordinates.
+  - record offset when start dragging
+
 * Reattaching ball to magnet stops next-level detection working.
   - have to release it before can progress
   - ball often gets enormous angular momentum too, preventing level completion.
@@ -52,9 +55,11 @@
     - support touchmove events too?
     - support pointerevents instead?
       - https://developer.mozilla.org/en-US/docs/Web/Events/pointerdown
-      - safari would need a polyfill
+      - safari and older browsers would need a polyfill
         - https://github.com/jquery/PEP
           - abandoned, but might suffice
+        - or to fall back to mouse event support
+          - putting back the buttons -> which hack/polyfill too
 
 * Deploying to gh-pages creates a lot of blobs in git (e.g. node_modules)
   - deploy somewhere else?

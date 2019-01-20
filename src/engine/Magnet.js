@@ -93,19 +93,14 @@ export class Magnet {
     }
   }
 
-  leftButtonPressed(event: MouseEvent) {
-    if (event.buttons === undefined) {
-      // Safari.
-      return event.which === 1;
-    } else {
-      return event.buttons & 1;
-    }
+  leftButtonPressed(event: PointerEvent) {
+    return event.buttons & 1;
   }
 
-  handleMouseEvent(
+  handlePointerEvent(
     canvasRect: { left: number, top: number},
-    event: MouseEvent) {
-    if (event.type === 'mouseup' && event.button === 0) {
+    event: PointerEvent) {
+    if (event.type === 'pointerup' && event.button === 0) {
       if (this.dragging) {
         this.toggle();
       }

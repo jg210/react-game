@@ -108,9 +108,9 @@ export class GameEngine {
     Render.run(this.renderer);
     document.addEventListener('keydown', this._handleKeyPress);
     document.addEventListener('keyup', this._handleKeyPress);
-    this.renderer.canvas.addEventListener('mousedown', this._handleMouseEvent);
-    this.renderer.canvas.addEventListener('mousemove', this._handleMouseEvent);
-    this.renderer.canvas.addEventListener('mouseup', this._handleMouseEvent);
+    this.renderer.canvas.addEventListener('pointerdown', this._handlePointerEvent);
+    this.renderer.canvas.addEventListener('pointermove', this._handlePointerEvent);
+    this.renderer.canvas.addEventListener('pointerup', this._handlePointerEvent);
     this.container.focus();
     this.started = true;
   }
@@ -122,9 +122,9 @@ export class GameEngine {
     if (this.stopped) {
       throw new Error("already stopped");
     }
-    this.renderer.canvas.removeEventListener('mouseup', this._handleMouseEvent);
-    this.renderer.canvas.removeEventListener('mousedown', this._handleMouseEvent);
-    this.renderer.canvas.removeEventListener('mousemove', this._handleMouseEvent);
+    this.renderer.canvas.removeEventListener('pointerup', this._handlePointerEvent);
+    this.renderer.canvas.removeEventListener('pointerdown', this._handlePointerEvent);
+    this.renderer.canvas.removeEventListener('pointermove', this._handlePointerEvent);
     document.removeEventListener('keydown', this._handleKeyPress);
     document.removeEventListener('keyup', this._handleKeyPress);
     Render.stop(this.renderer);
@@ -150,9 +150,9 @@ export class GameEngine {
     });
   }
 
-  _handleMouseEvent = (event: MouseEvent) => {
+  _handlePointerEvent = (event: PointerEvent) => {
     var rect = this.renderer.canvas.getBoundingClientRect();
-    this.magnet.handleMouseEvent(rect, event);
+    this.magnet.handlePointerEvent(rect, event);
   }
 
   _handleKeyPress = (event: KeyboardEvent) => {
