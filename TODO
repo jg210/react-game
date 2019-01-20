@@ -64,7 +64,9 @@
           - putting back the buttons -> which hack/polyfill too
         - https://github.com/Rich-Harris/Points
           - abandoned six years ago, but its implementation notes might be interesting still
-
+      - touch-action: none on canvas
+        - set with CSS and as attribute
+      - handle multi-touch
 * Deploying to gh-pages creates a lot of blobs in git (e.g. node_modules)
   - deploy somewhere else?
   - uses fewer files somehow.
