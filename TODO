@@ -1,5 +1,3 @@
-* Releasing mouse button with pointer outside of canvas means stay in dragging mode.
-
 * configure travis-ci test server.
   - deploy coverage report to github pages.
   - link from game to source code.
@@ -49,9 +47,14 @@
   - it's not immediately obvious that component Foo is wrapped.
 
 * mobile browser support.
-  - variable box size
+  - full-screen layout
   - control without using keyboard.
-    - touchmove events?
+    - support touchmove events too?
+    - support pointerevents instead?
+      - https://developer.mozilla.org/en-US/docs/Web/Events/pointerdown
+      - safari would need a polyfill
+        - https://github.com/jquery/PEP
+          - abandoned, but might suffice
 
 * Deploying to gh-pages creates a lot of blobs in git (e.g. node_modules)
   - deploy somewhere else?
