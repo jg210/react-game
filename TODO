@@ -55,11 +55,12 @@
       - changing matter.js geometry would be awkward
         - moveable walls possible, but ball could pass through wall
           - https://github.com/liabru/matter-js/issues/331#issuecomment-268400734
-      - set canvas size in onStart()?
+      - set box/canvas size in onStart()?
       - use fixed size on desktop, full screen on mobile?
         - mobile desktop mode would still be poor
       - scale matter.js coordinates as screen size changes
         - can't change aspect ratio without affecting geometry/physics.
+  - hide browser address bar
   - sufficiently-large UI elements
     - >= 11 mm
   - test on safari
