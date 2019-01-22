@@ -26,8 +26,8 @@ export class GameEngine {
   +ballRadius: number;
   +ballHeight: number;
   +ballWidth: number;
-  +boxHeight: number = 600;
-  +boxWidth: number = 800;
+  +boxHeight: number;
+  +boxWidth: number;
   +container: HTMLElement;
   +engine: Engine;
   +level: number;
@@ -58,6 +58,8 @@ export class GameEngine {
     this.level = level;
     this.wireframe = wireframe;
     this.container = container;
+    this.boxHeight = container.clientHeight;
+    this.boxWidth = container.clientWidth;
     this.engine = Engine.create();
     this.engine.world.gravity.y = 0.2;
     this.engine.enableSleeping = true;

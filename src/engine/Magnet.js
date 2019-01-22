@@ -110,9 +110,9 @@ export class Magnet {
       if (event.type === 'pointerup') {
         this.setEnabled(false);
       }
-    if (event.type === 'pointerdown') {
+      if (event.type === 'pointerdown') {
         this.setEnabled(true);
-    }
+      }
     }
     if (!this.leftButtonPressed(event)) {
       this.dragging = false;
