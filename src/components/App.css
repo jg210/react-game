@@ -18,7 +18,20 @@
   outline: none;
 }
 
+.GameScreen {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .Game {
   outline: none;
   touch-action: none;
+  width: 90%;
+  min-width: 200px;
+  min-height: 200px;
+  flex: 0.8;
 }
