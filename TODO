@@ -14,6 +14,8 @@
   - have to release it before can progress
   - ball often gets enormous angular momentum too, preventing level completion.
 
+* Objects can fall out of box if fling or spin ball fast enough and game never ends.
+
 * Higher score if release ball fewer times.
   - limited number of balls for each levels
     - one per object
