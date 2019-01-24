@@ -4,12 +4,15 @@
 
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
+import Fullscreenable from 'react-fullscreenable';
 
 import { storeFactory } from '../redux/store';
 import './App.css';
 import Screen from '../screen';
 
 type Props = {
+  isFullscreen: boolean,
+  toggleFullscreen: () => void
 };
 
 type State = {
@@ -30,7 +33,7 @@ class App extends Component<Props,State> {
       <Provider store={this.store}>
         <div className="App">
           <header className="App-header">
-            <Screen/>
+            <Screen toggleFullscreen={this.props.toggleFullscreen}/>
           </header>
         </div>
       </Provider>
@@ -39,4 +42,4 @@ class App extends Component<Props,State> {
 
 }
 
-export default App;
+export default Fullscreenable()(App);

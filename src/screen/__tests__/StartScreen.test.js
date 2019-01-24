@@ -19,7 +19,11 @@ it('renders correctly', () => {
   }
   const options = { createNodeMock} ;
   const tree = renderer
-    .create(<StartScreen startGame={() => {startGameCalled++}}/>,
+    .create(
+      <StartScreen
+        startGame={() => {startGameCalled++}}
+        toggleFullscreen={() => {}}
+      />,
       options)
     .toJSON();
   expect(tree).toMatchSnapshot();

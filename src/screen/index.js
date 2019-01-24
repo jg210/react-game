@@ -21,12 +21,17 @@ const screens = {
 export type ScreenType = $Keys<typeof screens>;
 
 type Props = {
-  +screen: ScreenType
+  +screen: ScreenType,
+  +toggleFullscreen: () => void
 }
 
 const Screen = (props: Props) => {
   const component = screens[props.screen];
-  return React.createElement(component, {}, null);
+  return React.createElement(
+    component,
+    { toggleFullscreen: props.toggleFullscreen },
+    null
+  );
 }
 
 export const mapStateToProps = (state: {screen: ScreenState}) => {
