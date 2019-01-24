@@ -55,11 +55,6 @@
 
 * mobile browser support.
   - full-screen not fixed-size layout
-  - hide browser address bar
-    - can only be done properly from click handler etc.
-    - https://github.com/ggingell/react-fullscreenable#readme
-      - HOC
-    - https://www.npmjs.com/package/react-fullscreen-crossbrowser
   - sufficiently-large UI elements
     - >= 11 mm
   - test on safari
