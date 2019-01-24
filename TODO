@@ -16,6 +16,7 @@
 
 * Objects can fall out of box if fling or spin ball fast enough and game never ends.
   - limit max. speed.
+  - thicker walls?
 
 * Higher score if release ball fewer times.
   - limited number of balls for each levels
