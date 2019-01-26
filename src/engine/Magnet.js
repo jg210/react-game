@@ -10,6 +10,7 @@ import {
   World
 } from 'matter-js'
 
+import { Log } from '../util/Log';
 import { Util } from '../util/Util';
 
 type Args = {
@@ -41,6 +42,7 @@ export class Magnet {
   +maxSpeed: number;
   +minX: number;
   +maxX: number;
+  +objects: Body[] = [];
   +world: World;
 
   acceleration: number = 0;
@@ -76,7 +78,7 @@ export class Magnet {
   }
 
   // Bottom centre coordinates of magnet.
-  attachmentPosition() {
+  attachmentPosition(): {x: number, y: number} {
     return { x: this.body.position.x, y: this.body.position.y + this.height / 2 };
   }
 
@@ -95,8 +97,10 @@ export class Magnet {
       }
     })
     this.constraints.push(constraint);
+    this.objects.push(other);
     if (this.enabled) {
       World.add(this.world, constraint);
+      this.reposition(other);
     }
   }
 
@@ -192,6 +196,9 @@ export class Magnet {
     if (enabled) {
       if (!this.enabled) {
         World.add(this.world, this.constraints);
+        this.objects.forEach((body: Body) => {
+          this.reposition(body);
+        });
       }
     } else {
       if (this.enabled) {
@@ -199,6 +206,19 @@ export class Magnet {
       }
     }
     this.enabled = enabled;
+  }
+
+  // If add Constraint back to World and object is far
+  // away from Magnet, it will generally accelerate
+  // through and past the Magnet. Instead, place it close
+  // where it should be in equilibrium (if it's a
+  // circle/square at least).
+  reposition(body: Body) {
+    const position = this.attachmentPosition();
+    const height: number = body.bounds.max.y - body.bounds.min.y;
+    position.y = position.y + height / 2;
+    Log.debug(`repositioning body with id: ${body.id} to: ${JSON.stringify(position)}`);
+    Body.setPosition(body, position);
   }
 
   // For testing.

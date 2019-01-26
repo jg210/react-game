@@ -1,8 +1,3 @@
-* Reattaching ball to magnet with space bar usually makes it shake around on top of magnet.
-
-* When dragging magnet, don't move centre of magnet to pointerdown coordinates.
-  - record offset when start dragging
-
 * mobile and other browser support.
   - test on safari
 
@@ -40,6 +35,9 @@
   - rename js field
   
 * Add images for objects.
+
+* When dragging magnet, don't move centre of magnet to pointerdown coordinates.
+  - record offset when start dragging
 
 * Electromagnet image.
 
