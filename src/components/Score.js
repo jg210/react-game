@@ -15,7 +15,7 @@ type Props = {
 
 export const Score = (props: Props) => {
   return (
-    <div className="Scores" onDoubleClick={props.toggleWireframeMode}>{props.score}</div>
+    <div className="Score" onDoubleClick={props.toggleWireframeMode}>{props.score}</div>
   );
 }
 
