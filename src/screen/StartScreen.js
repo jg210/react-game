@@ -48,7 +48,11 @@ export class StartScreen extends Component<Props> {
       window.screen.orientation.lock &&
       window.screen.orientation.type) {
       // https://w3c.github.io/screen-orientation/
-      await window.screen.orientation.lock(window.screen.orientation.type);
+      try {
+        await window.screen.orientation.lock(window.screen.orientation.type);
+      } catch (e) {
+        // NotSupportedError.
+      }
     }
   }
 
