@@ -38,7 +38,10 @@ export class GameEngine {
   +maxSpeedSquared: number = Math.pow(7, 2);
   +maxAngularVelocity: number = 0.5;
   +levelComplete: () => void;
-  +remainingObjectIds: Set<number>;
+  // The ids of all the "objects".
+  +objectIds: Set<number>;
+  // The ids of the "objects" that have not yet been dislodged.
+  +objectIdsRemaining: Set<number>;
   +renderer: Render;
   +scoreUpdate: (points: number) => void;
   +walls: Body[];
@@ -56,6 +59,8 @@ export class GameEngine {
     levelComplete: () => void,
     scoreUpdate: (points: number) => void) {
     
+    this._dislodgeCheck = this._dislodgeCheck.bind(this);
+
     this.levelComplete = levelComplete;
     this.scoreUpdate = scoreUpdate;
     this.level = level;
@@ -73,10 +78,11 @@ export class GameEngine {
     this.ball = this._createBall(this.magnet);
     const walls = this._createWalls();
     const objects = this._createObjects();
-    const remainingObjectIds = _.map(objects, (object: Body) => {
+    const objectIds = _.map(objects, (object: Body) => {
       return object.id;
     });
-    this.remainingObjectIds = new Set(remainingObjectIds);
+    this.objectIds = new Set(objectIds);
+    this.objectIdsRemaining = new Set(objectIds);
     this.magnet.attachToMagnet(this.ball);
     World.add(this.engine.world, [
       ...walls,
@@ -149,13 +155,19 @@ export class GameEngine {
     pairs.forEach((pair: Pair) => {
       [pair.bodyA, pair.bodyB].forEach((body: Body) => {
         Sleeping.set(body, false);
-        const dislodged = that.remainingObjectIds.delete(body.id);
-        if (dislodged) {
-          const points = 1;
-          that.scoreUpdate(points);
-        }
+        that._dislodgeCheck(body);
       });
     });
+  }
+
+  _dislodgeCheck: (Body => void);
+  _dislodgeCheck(body: Body) {
+    const dislodged = this.objectIdsRemaining.delete(body.id);
+    if (dislodged) {
+      Log.debug(`dislodged: ${body.id}`);
+      const points = 1;
+      this.scoreUpdate(points);
+    }
   }
 
   _handlePointerEvent = (event: PointerEvent) => {
@@ -184,6 +196,7 @@ export class GameEngine {
   }
 
   _handleBeforeUpdate = (event: {timestamp: number}) => {
+    const that = this;
     if (this.lastUpdateTimestamp === undefined) {
       throw new Error(); // flow type refinement
     }
@@ -206,9 +219,16 @@ export class GameEngine {
           y: velocity.y * ratio
         });
       }
+      // In case an object is fast enough to pass through wall, remove
+      // it. Otherwise, it likely falls forever and the level never completes.
+      if (!that._insideBox(body) && that.objectIds.has(body.id)) {
+        Log.debug(`escaped: ${body.id}`);
+        World.remove(that.engine.world, body);
+        that._dislodgeCheck(body); // Hopefully never required.
+      }
     });
-    if (this._isEverythingSleeping()) {
-      if (this.remainingObjectIds.size === 0) {
+    if (this._isEverythingSleepingOrEscaped()) {
+      if (this.objectIdsRemaining.size === 0) {
         this.levelComplete();
       } else {
         this.magnet.setEnabled(true);
@@ -217,9 +237,15 @@ export class GameEngine {
     this.lastUpdateTimestamp = event.timestamp;
   }
 
-  _isEverythingSleeping() {
+  _insideBox(body: Body): boolean {
+    const x: number = body.position.x;
+    const y: number = body.position.y;
+    return !(x < 0 || x > this.boxWidth || y < 0 || y > this.boxHeight);
+  }
+
+  _isEverythingSleepingOrEscaped() {
     return _.every(this.engine.world.bodies, (body: Body) => {
-      return body.isSleeping;
+      return body.isSleeping || !this._insideBox(body);
     });
   }
 
@@ -235,7 +261,7 @@ export class GameEngine {
     const wallBottom = Bodies.rectangle(this.boxWidth / 2, this.boxHeight, this.boxWidth, this.wallThickness, { ...wallOptions, label: "wall - B" });
     const wallRight = Bodies.rectangle(this.boxWidth, this.boxHeight / 2, this.wallThickness, this.boxHeight, { ...wallOptions, label: "wall - R" });
     const wallLeft = Bodies.rectangle(0, this.boxHeight / 2, this.wallThickness, this.boxHeight, { ...wallOptions, label: "wall - L" });
-    const walls = [wallTop, wallBottom, wallRight, wallLeft];
+    const walls = [wallTop, wallBottom,  wallRight, wallLeft];
     return walls;
   }
 
