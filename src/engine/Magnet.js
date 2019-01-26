@@ -24,6 +24,13 @@ type Args = {
   +maxSpeed?: number
 }
 
+type Rect = {
+  left: number,
+  top: number,
+  right: number,
+  bottom: number
+};
+
 export class Magnet {
 
   +body: Body;
@@ -97,22 +104,25 @@ export class Magnet {
     return event.buttons & 1;
   }
 
+  insideRect(event: PointerEvent, rect: Rect) {
+    const x = event.clientX;
+    const y = event.clientY;
+    return !(x < rect.left || x > rect.right || y < rect.top || y > rect.bottom);
+  }
+
   handlePointerEvent(
-    canvasRect: { left: number, top: number},
+    canvasRect: Rect,
     event: PointerEvent) {
-    // If multiple contact points are possible, ignore all but the primary
-    // (the first one for touch screens). Otherwise, magnet jumps between
-    // each contact point as events are received.
     if (!event.isPrimary) {
+      // If multiple contact points are possible, ignore all but the primary
+      // (the first one for touch screens). Otherwise, magnet jumps between
+      // each contact point as events are received.
       return;
     }
-    if (event.button === 0) {
-      if (event.type === 'pointerup') {
-        this.setEnabled(false);
-      }
-      if (event.type === 'pointerdown') {
-        this.setEnabled(true);
-      }
+    if (this.dragging && event.button === 0 && event.type === 'pointerup' && this.insideRect(event, canvasRect)) {
+      // Ignoring pointerup event if it's outside the box means there's a way to
+      // change your mind about releasing the ball after start moving it.
+      this.setEnabled(false);
     }
     if (!this.leftButtonPressed(event)) {
       this.dragging = false;
@@ -125,6 +135,9 @@ export class Magnet {
     const onMagnet = Bounds.contains(this.body.bounds, position);
     if (onMagnet) {
       this.dragging = true;
+      if (event.button === 0 && event.type === 'pointerdown') {
+        this.setEnabled(true);
+      }
     }
     if (this.dragging) {
       this.stop();
