@@ -5,7 +5,6 @@
 import React from 'react';
 
 import Game from '../components/Game';
-import Level from '../components/Level';
 import Score from '../components/Score';
 import WireframeCheckbox from '../components/WireframeCheckbox';
 
@@ -16,7 +15,6 @@ export default (props: Props) => {
     <div className="GameScreen">
       <Score />
       <Game />
-      <Level />
       <WireframeCheckbox />
     </div>
   );

@@ -6,10 +6,21 @@ import { StartScreen } from '../StartScreen';
 
 import React from 'react';
 import renderer from 'react-test-renderer';
+import { Provider } from 'react-redux';
 
 it('renders correctly', () => {
   let focusCalled = 0;
   let startGameCalled = 0;
+  const store = {
+    dispatch: jest.fn(),
+    getState: () => ({
+      level: {
+        current: 1,
+        last: 3
+      }
+    }),
+    subscribe: jest.fn()
+  }
   function createNodeMock() {
     return {
       focus() {
@@ -18,14 +29,15 @@ it('renders correctly', () => {
     };
   }
   const options = { createNodeMock} ;
-  const tree = renderer
-    .create(
+  const tree = renderer.create(
+    <Provider store={store}>
       <StartScreen
         startGame={() => {startGameCalled++}}
         toggleFullscreen={() => {}}
-      />,
-      options)
-    .toJSON();
+      />
+    </Provider>,
+    options
+  ).toJSON();
   expect(tree).toMatchSnapshot();
   expect(focusCalled).toEqual(1);
   expect(startGameCalled).toEqual(0);
