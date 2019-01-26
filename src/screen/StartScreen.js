@@ -37,8 +37,9 @@ export class StartScreen extends Component<Props> {
         className="StartScreen">
         <p>Touch screen, click or press any key to start game.</p>
         <p>Use your finger, mouse or arrow keys to position the magnet.</p>
-        <p>Release or press space to turn the magnet on or off.</p>
+        <p>Release finger/button or press space to turn the magnet on or off.</p>
         <p>You move to the next level when all the objects (including the ball) are at the bottom of the box.</p>
+        <p>Double clicking/tapping on score toggles debug mode.</p>
         {level}
       </div>
     );
