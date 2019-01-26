@@ -17,12 +17,15 @@
 * pointerevent test coverage.
 
 * Higher score if release ball fewer times.
-  - limited number of balls for each levels
+  - subtract one each time release?
+    => negative score likely.
+  - limited number of balls for each levels>?
     - one per object
   - indicate number of balls available
   - game over if run out of balls
   - extra points if complete level with balls remaining
   - bonus if complete game
+  - 
   
 * js crash (in reducer) only shown in debug console, which you might not notice.
 
