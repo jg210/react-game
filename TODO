@@ -11,11 +11,6 @@
 * mobile and other browser support.
   - test on safari
 
-* better screen-rotation support.
-  - show please rotate device dialogue?
-  - lock orientation?
-    - https://w3c.github.io/screen-orientation/#examples
-
 * configure travis-ci test server.
   - deploy coverage report to github pages.
   - link from game to source code.
