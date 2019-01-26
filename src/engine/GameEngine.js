@@ -171,7 +171,7 @@ export class GameEngine {
   }
 
   _handlePointerEvent = (event: PointerEvent) => {
-    var rect = this.renderer.canvas.getBoundingClientRect();
+    const rect = this.renderer.canvas.getBoundingClientRect();
     this.magnet.handlePointerEvent(rect, event);
   }
 
