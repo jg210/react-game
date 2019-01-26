@@ -17,7 +17,7 @@ it("can be instantiated", () => {
       wireframe,
       levelComplete,
       scoreUpdate);
-    expect(gameEngine._isEverythingSleeping()).toBe(false);
+    expect(gameEngine._isEverythingSleepingOrEscaped()).toBe(false);
     expect(levelComplete).toBeCalledTimes(0);
     expect(scoreUpdate).toBeCalledTimes(0);
     expect(gameEngine.getBodyCount()).toEqual(29);

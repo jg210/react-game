@@ -1,5 +1,4 @@
-* Reattaching ball to magnet stops next-level detection working.
-  - have to release it before can progress
+* Reattaching ball to magnet with space bar usually makes it shake around on top of magnet.
 
 * When dragging magnet, don't move centre of magnet to pointerdown coordinates.
   - record offset when start dragging
@@ -58,3 +57,5 @@
 * Localization.
 
 * High Score table.
+
+* Chrome audits?

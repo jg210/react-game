@@ -59,6 +59,8 @@ export class GameEngine {
     levelComplete: () => void,
     scoreUpdate: (points: number) => void) {
     
+    this._dislodgeCheck = this._dislodgeCheck.bind(this);
+
     this.levelComplete = levelComplete;
     this.scoreUpdate = scoreUpdate;
     this.level = level;
@@ -153,13 +155,19 @@ export class GameEngine {
     pairs.forEach((pair: Pair) => {
       [pair.bodyA, pair.bodyB].forEach((body: Body) => {
         Sleeping.set(body, false);
-        const dislodged = that.objectIdsRemaining.delete(body.id);
-        if (dislodged) {
-          const points = 1;
-          that.scoreUpdate(points);
-        }
+        that._dislodgeCheck(body);
       });
     });
+  }
+
+  _dislodgeCheck: (Body => void);
+  _dislodgeCheck(body: Body) {
+    const dislodged = this.objectIdsRemaining.delete(body.id);
+    if (dislodged) {
+      Log.debug(`dislodged: ${body.id}`);
+      const points = 1;
+      this.scoreUpdate(points);
+    }
   }
 
   _handlePointerEvent = (event: PointerEvent) => {
@@ -188,6 +196,7 @@ export class GameEngine {
   }
 
   _handleBeforeUpdate = (event: {timestamp: number}) => {
+    const that = this;
     if (this.lastUpdateTimestamp === undefined) {
       throw new Error(); // flow type refinement
     }
@@ -212,11 +221,13 @@ export class GameEngine {
       }
       // In case an object is fast enough to pass through wall, remove
       // it. Otherwise, it likely falls forever and the level never completes.
-      if (!this._insideBox(body.x, body.y) && this.objectIds.has(body.id)) {
-        World.remove(this.engine.world, body);
+      if (!that._insideBox(body) && that.objectIds.has(body.id)) {
+        Log.debug(`escaped: ${body.id}`);
+        World.remove(that.engine.world, body);
+        that._dislodgeCheck(body); // Hopefully never required.
       }
     });
-    if (this._isEverythingSleeping()) {
+    if (this._isEverythingSleepingOrEscaped()) {
       if (this.objectIdsRemaining.size === 0) {
         this.levelComplete();
       } else {
@@ -226,13 +237,15 @@ export class GameEngine {
     this.lastUpdateTimestamp = event.timestamp;
   }
 
-  _insideBox(x: number, y: number): boolean {
+  _insideBox(body: Body): boolean {
+    const x: number = body.position.x;
+    const y: number = body.position.y;
     return !(x < 0 || x > this.boxWidth || y < 0 || y > this.boxHeight);
   }
 
-  _isEverythingSleeping() {
+  _isEverythingSleepingOrEscaped() {
     return _.every(this.engine.world.bodies, (body: Body) => {
-      return body.isSleeping;
+      return body.isSleeping || !this._insideBox(body);
     });
   }
 
@@ -248,7 +261,7 @@ export class GameEngine {
     const wallBottom = Bodies.rectangle(this.boxWidth / 2, this.boxHeight, this.boxWidth, this.wallThickness, { ...wallOptions, label: "wall - B" });
     const wallRight = Bodies.rectangle(this.boxWidth, this.boxHeight / 2, this.wallThickness, this.boxHeight, { ...wallOptions, label: "wall - R" });
     const wallLeft = Bodies.rectangle(0, this.boxHeight / 2, this.wallThickness, this.boxHeight, { ...wallOptions, label: "wall - L" });
-    const walls = [wallTop, wallBottom, wallRight, wallLeft];
+    const walls = [wallTop, wallBottom,  wallRight, wallLeft];
     return walls;
   }
 
