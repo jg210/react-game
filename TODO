@@ -1,3 +1,16 @@
+* Objects can fall out of box if fling or spin ball fast enough and game never ends.
+  - check for lost objects
+  - thicker walls?
+
+* Reattaching ball to magnet stops next-level detection working.
+  - have to release it before can progress
+
+* When dragging magnet, don't move centre of magnet to pointerdown coordinates.
+  - record offset when start dragging
+
+* mobile and other browser support.
+  - test on safari
+
 * configure travis-ci test server.
   - deploy coverage report to github pages.
   - link from game to source code.
@@ -7,16 +20,7 @@
 
 * connected components have poor/no jest coverage.
 
-* When dragging magnet, don't move centre of magnet to pointerdown coordinates.
-  - record offset when start dragging
-
-* Reattaching ball to magnet stops next-level detection working.
-  - have to release it before can progress
-  - ball often gets enormous angular momentum too, preventing level completion.
-
-* Objects can fall out of box if fling or spin ball fast enough and game never ends.
-  - limit max. speed.
-  - thicker walls?
+* pointerevent test coverage.
 
 * Higher score if release ball fewer times.
   - limited number of balls for each levels
@@ -26,9 +30,7 @@
   - extra points if complete level with balls remaining
   - bonus if complete game
   
-* js crash (in reducer) only shown in debug console.
-  - a backtrace on screen in debug build would make testing better.
-  - what about release build?
+* js crash (in reducer) only shown in debug console, which you might not notice.
 
 * Indicate when points are won.
   - numbered bubbles that fade out over time.
@@ -36,10 +38,10 @@
     - extra points at end of level
     - extra points at end of game.
 
-* Replace ball with anvil
+* Replace ball image.
   - change image
     - https://clipartimage.com/clipart/12640-anvil-clipart.html?
-  - use anvil-shaped matter.js Body
+  - use anvil-shaped matter.js Body?
   - rename js field
   
 * Add images for objects.
@@ -52,12 +54,6 @@
 
 * Importing Foo wrapped with react-redux connect as Foo using default export is unclear.
   - it's not immediately obvious that component Foo is wrapped.
-
-* mobile browser support.
-  - full-screen not fixed-size layout
-  - sufficiently-large UI elements
-    - >= 11 mm
-  - test on safari
 
 * Deploying to gh-pages creates a lot of blobs in git (e.g. node_modules)
   - deploy somewhere else?

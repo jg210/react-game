@@ -39,9 +39,21 @@ export class StartScreen extends Component<Props> {
   }
 
   handleClick: () => void; // Allows binding in constructor without flow error.
-  handleClick() {
+  async handleClick() {
     this.props.toggleFullscreen(); // Can only be called from UI event.
     this.props.startGame();
+    // Avoid resizing the screen while physics engine is running.
+    if (window.screen &&
+      window.screen.orientation &&
+      window.screen.orientation.lock &&
+      window.screen.orientation.type) {
+      // https://w3c.github.io/screen-orientation/
+      try {
+        await window.screen.orientation.lock(window.screen.orientation.type);
+      } catch (e) {
+        // NotSupportedError.
+      }
+    }
   }
 
   componentDidMount() {
