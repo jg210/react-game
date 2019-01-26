@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 
+import Level from '../components/Level';
 import { startGame } from '../redux/actions';
 
 type Props = {
@@ -23,6 +24,10 @@ export class StartScreen extends Component<Props> {
   }
 
   render() {
+    const showLevelSelector: boolean =
+      process.env.NODE_ENV === "development" ||
+      process.env.NODE_ENV === "test";
+    const level = showLevelSelector ? <Level /> : null;
     return (
       <div
         ref={this.ref}
@@ -34,6 +39,7 @@ export class StartScreen extends Component<Props> {
         <p>Use your finger, mouse or arrow keys to position the magnet.</p>
         <p>Release or press space to turn the magnet on or off.</p>
         <p>You move to the next level when all the objects (including the ball) are at the bottom of the box.</p>
+        {level}
       </div>
     );
   }

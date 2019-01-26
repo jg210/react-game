@@ -1,6 +1,8 @@
 * mobile and other browser support.
   - test on safari
 
+* GameEngine has a var, replace with a let.
+
 * configure travis-ci test server.
   - deploy coverage report to github pages.
   - link from game to source code.
