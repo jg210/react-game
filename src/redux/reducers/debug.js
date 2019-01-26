@@ -4,7 +4,7 @@
 
 
 import { Action } from 'redux';
-import { SET_WIREFRAME_MODE } from '../actionTypes';
+import { TOGGLE_WIREFRAME_MODE } from '../actionTypes';
 
 export type DebugState = {
   +wireframe: boolean
@@ -16,8 +16,8 @@ const initialState: DebugState = {
 
 export const debug = (state: DebugState = initialState, action: Action): DebugState => {
   switch (action.type) {
-    case SET_WIREFRAME_MODE: {
-      return {...state, wireframe: action.payload.enabled};
+    case TOGGLE_WIREFRAME_MODE: {
+      return {...state, wireframe: !state.wireframe};
     }
     default: {
       return state;

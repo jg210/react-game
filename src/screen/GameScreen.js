@@ -6,7 +6,6 @@ import React from 'react';
 
 import Game from '../components/Game';
 import Score from '../components/Score';
-import WireframeCheckbox from '../components/WireframeCheckbox';
 
 type Props = {};
 
@@ -15,7 +14,6 @@ export default (props: Props) => {
     <div className="GameScreen">
       <Score />
       <Game />
-      <WireframeCheckbox />
     </div>
   );
 };

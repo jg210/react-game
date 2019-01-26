@@ -9,7 +9,7 @@ import {
   START_LEVEL,
   SCORE_UPDATE,
   SCREEN_CHANGE,
-  SET_WIREFRAME_MODE,
+  TOGGLE_WIREFRAME_MODE,
   START_GAME
 } from './actionTypes'
 import type { ScreenType } from '../screen';
@@ -44,11 +44,8 @@ export const scoreUpdate = (points: number) => ({
   }
 });
 
-export const setWireframeMode = (enabled: boolean) => ({
-  type: SET_WIREFRAME_MODE,
-  payload: {
-    enabled
-  }
+export const toggleWireframeMode = () => ({
+  type: TOGGLE_WIREFRAME_MODE,
 });
 
 export const screenChange = (screen: ScreenType) => ({
