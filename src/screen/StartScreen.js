@@ -30,9 +30,9 @@ export class StartScreen extends Component<Props> {
         onClick={this.handleClick}
         onKeyPress={this.handleClick}
         className="StartScreen">
-        <p>Press any key to start game.</p>
-        <p>Use left and right arrow keys or the mouse to position the magnet.</p>
-        <p>Press space to turn the magnet on or off.</p>
+        <p>Touch screen, click or press any key to start game.</p>
+        <p>Use your finger, mouse or arrow keys to position the magnet.</p>
+        <p>Release or press space to turn the magnet on or off.</p>
         <p>You move to the next level when all objects have been dislodged.</p>
       </div>
     );

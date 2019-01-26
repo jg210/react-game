@@ -1,5 +1,8 @@
 * Reattaching ball to magnet with space bar usually makes it shake around on top of magnet.
 
+* Having ball attached to magnet prevents progression to next level.
+  - contact probably prevents magnet and ball from sleeping.
+
 * When dragging magnet, don't move centre of magnet to pointerdown coordinates.
   - record offset when start dragging
 
