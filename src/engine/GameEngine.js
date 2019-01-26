@@ -38,7 +38,10 @@ export class GameEngine {
   +maxSpeedSquared: number = Math.pow(7, 2);
   +maxAngularVelocity: number = 0.5;
   +levelComplete: () => void;
-  +remainingObjectIds: Set<number>;
+  // The ids of all the "objects".
+  +objectIds: Set<number>;
+  // The ids of the "objects" that have not yet been dislodged.
+  +objectIdsRemaining: Set<number>;
   +renderer: Render;
   +scoreUpdate: (points: number) => void;
   +walls: Body[];
@@ -73,10 +76,11 @@ export class GameEngine {
     this.ball = this._createBall(this.magnet);
     const walls = this._createWalls();
     const objects = this._createObjects();
-    const remainingObjectIds = _.map(objects, (object: Body) => {
+    const objectIds = _.map(objects, (object: Body) => {
       return object.id;
     });
-    this.remainingObjectIds = new Set(remainingObjectIds);
+    this.objectIds = new Set(objectIds);
+    this.objectIdsRemaining = new Set(objectIds);
     this.magnet.attachToMagnet(this.ball);
     World.add(this.engine.world, [
       ...walls,
@@ -149,7 +153,7 @@ export class GameEngine {
     pairs.forEach((pair: Pair) => {
       [pair.bodyA, pair.bodyB].forEach((body: Body) => {
         Sleeping.set(body, false);
-        const dislodged = that.remainingObjectIds.delete(body.id);
+        const dislodged = that.objectIdsRemaining.delete(body.id);
         if (dislodged) {
           const points = 1;
           that.scoreUpdate(points);
@@ -206,15 +210,24 @@ export class GameEngine {
           y: velocity.y * ratio
         });
       }
+      // In case an object is fast enough to pass through wall, remove
+      // it. Otherwise, it likely falls forever and the level never completes.
+      if (!this._insideBox(body.x, body.y) && this.objectIds.has(body.id)) {
+        World.remove(this.engine.world, body);
+      }
     });
     if (this._isEverythingSleeping()) {
-      if (this.remainingObjectIds.size === 0) {
+      if (this.objectIdsRemaining.size === 0) {
         this.levelComplete();
       } else {
         this.magnet.setEnabled(true);
       }
     }
     this.lastUpdateTimestamp = event.timestamp;
+  }
+
+  _insideBox(x: number, y: number): boolean {
+    return !(x < 0 || x > this.boxWidth || y < 0 || y > this.boxHeight);
   }
 
   _isEverythingSleeping() {

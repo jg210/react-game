@@ -1,7 +1,3 @@
-* Objects can fall out of box if fling or spin ball fast enough and game never ends.
-  - check for lost objects
-  - thicker walls?
-
 * Reattaching ball to magnet stops next-level detection working.
   - have to release it before can progress
 
@@ -61,4 +57,4 @@
 
 * Localization.
 
-* High Scrore table.
+* High Score table.
