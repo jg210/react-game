@@ -18,6 +18,7 @@ import seedrandom from 'seedrandom';
 
 import { Log } from '../util/Log';
 import { Magnet } from './Magnet';
+import { Util } from '../util/Util';
 
 export class GameEngine {
 
@@ -34,6 +35,8 @@ export class GameEngine {
   +magnet: Magnet;
   +magnetHeight: number = 15;
   +magnetWidth: number = 50;
+  +maxSpeedSquared: number = Math.pow(7, 2);
+  +maxAngularVelocity: number = 0.5;
   +levelComplete: () => void;
   +remainingObjectIds: Set<number>;
   +renderer: Render;
@@ -188,6 +191,22 @@ export class GameEngine {
       const dt: number = event.timestamp - this.lastUpdateTimestamp;
       this.magnet.update(dt);
     }
+    Composite.allBodies(this.engine.world).forEach((body: Body) => {
+      // Speed and angular velocity are clamped to reduce chance
+      // that ball or object can pass through walls.
+      const angularVelocity: number = Util.clamp(body.angularVelocity,
+        -this.maxAngularVelocity, this.maxAngularVelocity);
+      Body.setAngularVelocity(body, angularVelocity);
+      const velocity = body.velocity;
+      const speedSquared = velocity.x * velocity.x + velocity.y * velocity.y;
+      if (speedSquared > this.maxSpeedSquared) {
+        const ratio = Math.sqrt(this.maxSpeedSquared / speedSquared);
+        Body.setVelocity(body, {
+          x: velocity.x * ratio,
+          y: velocity.y * ratio
+        });
+      }
+    });
     if (this._isEverythingSleeping()) {
       if (this.remainingObjectIds.size === 0) {
         this.levelComplete();
