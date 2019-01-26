@@ -1,9 +1,3 @@
-* Having ball attached to magnet prevents progression to next level.
-  - contact probably prevents magnet and ball from sleeping.
-
-* When dragging magnet, don't move centre of magnet to pointerdown coordinates.
-  - record offset when start dragging
-
 * mobile and other browser support.
   - test on safari
 
@@ -41,6 +35,9 @@
   - rename js field
   
 * Add images for objects.
+
+* When dragging magnet, don't move centre of magnet to pointerdown coordinates.
+  - record offset when start dragging
 
 * Electromagnet image.
 

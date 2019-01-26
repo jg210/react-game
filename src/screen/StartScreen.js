@@ -33,7 +33,7 @@ export class StartScreen extends Component<Props> {
         <p>Touch screen, click or press any key to start game.</p>
         <p>Use your finger, mouse or arrow keys to position the magnet.</p>
         <p>Release or press space to turn the magnet on or off.</p>
-        <p>You move to the next level when all objects have been dislodged.</p>
+        <p>You move to the next level when all the objects (including the ball) are at the bottom of the box.</p>
       </div>
     );
   }
