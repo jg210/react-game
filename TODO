@@ -1,3 +1,10 @@
+* replace ToggleWireframeMode check box with double clicking on Score.
+  X replace
+  X add unit test for double clicking
+  - expand Game to fill more of GameScreen.
+    - use finger-width border
+  - mention this mode in StartScreen
+
 * mobile and other browser support.
   - test on safari
 

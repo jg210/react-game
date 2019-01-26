@@ -3,17 +3,15 @@
 // (c) 2019 Jeremy Green
 
 import { debug } from '../debug'
-import { setWireframeMode } from '../../actions';
+import { toggleWireframeMode } from '../../actions';
 
-function testSetWireframeMode(oldValue: boolean, newValue: boolean) {
-  const state = debug({ wireframe: oldValue}, setWireframeMode(newValue));
-  expect(state.wireframe).toEqual(newValue);
+function testSetWireframeMode(oldValue: boolean) {
+  const state = debug({ wireframe: oldValue}, toggleWireframeMode());
+  expect(state.wireframe).toEqual(!oldValue);
 
 }
 
-it("tests SET_WIREFRAME_MODE", () => {
-  testSetWireframeMode(false, false);
-  testSetWireframeMode(false, true);
-  testSetWireframeMode(true, false);
-  testSetWireframeMode(true, true);
+it("tests TOGGLE_WIREFRAME_MODE", () => {
+  testSetWireframeMode(false);
+  testSetWireframeMode(true);
 });

@@ -42,8 +42,7 @@ export type ScreenChangeAction = {
   payload: { screen: ScreenType }
 };
 
-export const SET_WIREFRAME_MODE = 'SET_WIREFRAME_MODE';
-export type SetWireframeModeAction = {
-  type: typeof(SET_WIREFRAME_MODE),
-  payload: { enabled: boolean }
+export const TOGGLE_WIREFRAME_MODE = 'TOGGLE_WIREFRAME_MODE';
+export type ToggleWireframeModeAction = {
+  type: typeof(TOGGLE_WIREFRAME_MODE)
 };

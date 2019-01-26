@@ -3,9 +3,8 @@
 exports[`renders correctly 1`] = `
 <div
   className="Scores"
+  onDoubleClick={[MockFunction]}
 >
-  <div>
-    123
-  </div>
+  123
 </div>
 `;
