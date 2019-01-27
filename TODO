@@ -1,5 +1,4 @@
-* Allow new StartLevelScreen to be dismissed.
-  - unit test for clicking
+* Preloading of images.
 
 * Why does ball move inside the magnet?
   - makes it wobble too much
@@ -10,8 +9,6 @@
 
 * mobile and other browser support.
   - test on safari
-
-* Preloading of images.
 
 * Polish the CSS.
 
