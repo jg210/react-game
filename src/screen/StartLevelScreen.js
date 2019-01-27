@@ -14,7 +14,11 @@ type Props = {
 
 export const StartLevelScreen = (props: Props) => {
   return (
-    <div onClick={props.dismissStartLevelScreen}>Level {props.level}</div>
+    <div
+      className="StartLevelScreen"
+      onClick={props.dismissStartLevelScreen}>
+      Level {props.level}
+    </div>
   );
 };
 

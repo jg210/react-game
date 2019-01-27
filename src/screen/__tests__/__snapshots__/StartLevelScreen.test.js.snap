@@ -2,6 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <div
+  className="StartLevelScreen"
   onClick={[MockFunction]}
 >
   Level 
