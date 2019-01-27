@@ -25,7 +25,10 @@
 * connected components have poor/no jest coverage.
 
 * pointerevent test coverage.
-  
+
+* GameEngine and Magnet coverage
+  - use mock renderer to avoid need for canvas implementation?
+
 * js crash (in reducer) only shown in debug console, which you might not notice.
 
 * Indicate when points are won.
