@@ -1,13 +1,3 @@
-* Higher score if release ball fewer times.
-  - subtract one each time release?
-    => negative score likely.
-  - limited number of balls for each levels>?
-    - one per object
-  - indicate number of balls available
-  - game over if run out of balls
-  - extra points if complete level with balls remaining
-  - bonus if complete game
-
 * Why does ball move inside the magnet?
   - makes it wobble too much
 
