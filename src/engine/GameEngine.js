@@ -281,7 +281,8 @@ export class GameEngine {
       maxX: this.boxWidth - xLimit,
       width: this.magnetWidth,
       height: this.magnetHeight,
-      world: this.engine.world});
+      world: this.engine.world,
+      onRelease: () => this.scoreUpdate(-1)});
   }
 
   _createBall(magnet: Magnet): Body {

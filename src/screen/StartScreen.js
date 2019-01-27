@@ -39,6 +39,7 @@ export class StartScreen extends Component<Props> {
         <p>Use your finger, mouse or arrow keys to position the magnet.</p>
         <p>Release finger/button or press space to turn the magnet on or off.</p>
         <p>You move to the next level when all the objects (including the ball) are at the bottom of the box.</p>
+        <p>You gain a point for each dislodged object, but lose a point each time release ball.</p>
         <p>Double clicking/tapping on score toggles debug mode.</p>
         {level}
       </div>

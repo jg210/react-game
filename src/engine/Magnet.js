@@ -22,7 +22,8 @@ type Args = {
   +height: number,
   +world: World,
   +maxAcceleration?: number,
-  +maxSpeed?: number
+  +maxSpeed?: number,
+  +onRelease: () => void
 }
 
 type Rect = {
@@ -44,6 +45,7 @@ export class Magnet {
   +maxX: number;
   +objects: Body[] = [];
   +world: World;
+  +onRelease: () => void;
 
   acceleration: number = 0;
   enabled: boolean = true;
@@ -60,6 +62,7 @@ export class Magnet {
     this.world = args.world;
     this.maxAcceleration = (args.maxAcceleration === undefined) ? 0.005 : args.maxAcceleration;
     this.maxSpeed = (args.maxSpeed === undefined) ? 1.3 : args.maxSpeed;
+    this.onRelease = args.onRelease;
     const peakHeight = this.height * 0.2;
     const vertices = [
       { x: -this.width / 2, y: - this.height / 2 },
@@ -127,6 +130,7 @@ export class Magnet {
       // Ignoring pointerup event if it's outside the box means there's a way to
       // change your mind about releasing the ball after start moving it.
       this.setEnabled(false);
+      this.onRelease();
     }
     if (!this.leftButtonPressed(event)) {
       this.dragging = false;
