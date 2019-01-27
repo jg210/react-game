@@ -4,10 +4,10 @@
 
 import { startLevel, startLevelListener } from '../startLevel';
 
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, race, take, takeEvery } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 
-import { START_LEVEL } from '../../actionTypes';
+import { START_LEVEL, DISMISS_START_LEVEL_SCREEN } from '../../actionTypes';
 import { scoreUpdate, screenChange } from '../../actions';
 it(`listens for ${START_LEVEL}`, () => {
   const generator = startLevelListener();
@@ -18,7 +18,9 @@ it(`listens for ${START_LEVEL}`, () => {
 it('handles startLevel', () => {
   const generator = startLevel();
   expect(generator.next().value).toEqual(put(screenChange("startLevel")));
-  expect(generator.next().value).toEqual(call(delay, 2500));
+  const sleep = call(delay, 2500);
+  const dismissal = take(DISMISS_START_LEVEL_SCREEN);
+  expect(generator.next().value).toEqual(race({sleep, dismissal}));
   expect(generator.next().value).toEqual(put(scoreUpdate(1)));
   expect(generator.next().value).toEqual(put(screenChange("game")));
   expect(generator.next().done).toBe(true);

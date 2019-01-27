@@ -30,6 +30,11 @@ export type StartLevelAction = {
   type: typeof(START_LEVEL)
 };
 
+export const DISMISS_START_LEVEL_SCREEN = 'DISMISS_START_LEVEL_SCREEN';
+export type DismissStartLevelScreen = {
+  type: typeof(DISMISS_START_LEVEL_SCREEN)
+};
+
 export const SCORE_UPDATE = 'SCORE_UPDATE';
 export type ScoreUpdateAction = {
   type: typeof(SCORE_UPDATE),

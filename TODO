@@ -1,3 +1,7 @@
+* Allow new StartLevelScreen to be dismissed.
+  - expand div size
+  - unit test for clicking
+
 * Why does ball move inside the magnet?
   - makes it wobble too much
 
@@ -76,8 +80,6 @@
 
 * The game's harder on larger screens.
   - scale ball and objects proportionally?
-
-* Allow new StartLevelScreen to be dismissed.
 
 * Browser zooming interacts badly with game.
   - objects and ball can become very small

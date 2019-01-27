@@ -3,6 +3,7 @@
 // (c) 2018-2019 Jeremy Green
 
 import {
+  DISMISS_START_LEVEL_SCREEN,
   GAME_COMPLETE,
   LEVEL_COMPLETE,
   LEVEL_CHANGE,
@@ -35,6 +36,12 @@ export const levelChange = (level: ?number = null) => ({
 
 export const startLevel = () => ({
   type: START_LEVEL
+});
+
+// Sent if user clicks on start level screen, dismissing
+// the screen immediately, not after the usual delay.
+export const dismissStartLevelScreen = () => ({
+  type: DISMISS_START_LEVEL_SCREEN
 });
 
 export const scoreUpdate = (points: number) => ({
