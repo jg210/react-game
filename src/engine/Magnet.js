@@ -130,7 +130,6 @@ export class Magnet {
       // Ignoring pointerup event if it's outside the box means there's a way to
       // change your mind about releasing the ball after start moving it.
       this.setEnabled(false);
-      this.onRelease();
     }
     if (!this.leftButtonPressed(event)) {
       this.dragging = false;
@@ -207,6 +206,7 @@ export class Magnet {
     } else {
       if (this.enabled) {
         World.remove(this.world, this.constraints);
+        this.onRelease();
       }
     }
     this.enabled = enabled;

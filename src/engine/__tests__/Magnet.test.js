@@ -64,6 +64,7 @@ it("can have things attached to it", () => {
     world,
     onRelease
   });
+  expect(magnet.enabled).toBe(true);
   magnet.addToWorld();
   expect(Composite.allBodies(world).length).toEqual(1);
   expect(Composite.allConstraints(world).length).toEqual(0);
@@ -73,19 +74,28 @@ it("can have things attached to it", () => {
   expect(Composite.allConstraints(world).length).toEqual(0);
   magnet.attachToMagnet(otherBody);
   expect(Composite.allConstraints(world).length).toEqual(1);
-  magnet.setEnabled(false);
-  expect(Composite.allConstraints(world).length).toEqual(0);
-  magnet.setEnabled(false);
-  expect(Composite.allConstraints(world).length).toEqual(0);
-  magnet.setEnabled(true);
-  expect(Composite.allConstraints(world).length).toEqual(1);
-  magnet.setEnabled(true);
-  expect(Composite.allConstraints(world).length).toEqual(1);
-  magnet.toggle();
-  expect(Composite.allConstraints(world).length).toEqual(0);
-  magnet.toggle();
-  expect(Composite.allConstraints(world).length).toEqual(1);
+  expect(magnet.enabled).toBe(true);
   expect(onRelease).toHaveBeenCalledTimes(0);
+  magnet.setEnabled(false);
+  expect(magnet.enabled).toBe(false);
+  expect(onRelease).toHaveBeenCalledTimes(1);
+  expect(Composite.allConstraints(world).length).toEqual(0);
+  magnet.setEnabled(false);
+  expect(onRelease).toHaveBeenCalledTimes(1);
+  expect(Composite.allConstraints(world).length).toEqual(0);
+  magnet.setEnabled(true);
+  expect(onRelease).toHaveBeenCalledTimes(1);
+  expect(Composite.allConstraints(world).length).toEqual(1);
+  magnet.setEnabled(true);
+  expect(onRelease).toHaveBeenCalledTimes(1);
+  expect(Composite.allConstraints(world).length).toEqual(1);
+  magnet.toggle();
+  expect(onRelease).toHaveBeenCalledTimes(2);
+  expect(Composite.allConstraints(world).length).toEqual(0);
+  magnet.toggle();
+  expect(onRelease).toHaveBeenCalledTimes(2);
+  expect(Composite.allConstraints(world).length).toEqual(1);
+  expect(onRelease).toHaveBeenCalledTimes(2);
 });
 
 it("can have things attached to it when disabled", () => {
@@ -104,7 +114,9 @@ it("can have things attached to it when disabled", () => {
   magnet.addToWorld();
   expect(Composite.allBodies(world).length).toEqual(1);
   expect(Composite.allConstraints(world).length).toEqual(0);
+  expect(onRelease).toHaveBeenCalledTimes(0);
   magnet.setEnabled(false);
+  expect(onRelease).toHaveBeenCalledTimes(1);
   const otherBody = Bodies.circle(12, 12, 2, 2);
   World.add(world, otherBody);
   expect(Composite.allBodies(world).length).toEqual(2);
@@ -112,18 +124,24 @@ it("can have things attached to it when disabled", () => {
   magnet.attachToMagnet(otherBody);
   expect(Composite.allConstraints(world).length).toEqual(0);
   magnet.setEnabled(false);
+  expect(onRelease).toHaveBeenCalledTimes(1);
   expect(Composite.allConstraints(world).length).toEqual(0);
   magnet.setEnabled(false);
+  expect(onRelease).toHaveBeenCalledTimes(1);
   expect(Composite.allConstraints(world).length).toEqual(0);
   magnet.setEnabled(true);
+  expect(onRelease).toHaveBeenCalledTimes(1);
   expect(Composite.allConstraints(world).length).toEqual(1);
   magnet.setEnabled(true);
+  expect(onRelease).toHaveBeenCalledTimes(1);
   expect(Composite.allConstraints(world).length).toEqual(1);
   magnet.toggle();
+  expect(onRelease).toHaveBeenCalledTimes(2);
   expect(Composite.allConstraints(world).length).toEqual(0);
   magnet.toggle();
+  expect(onRelease).toHaveBeenCalledTimes(2);
   expect(Composite.allConstraints(world).length).toEqual(1);
-  expect(onRelease).toHaveBeenCalledTimes(0);
+  expect(onRelease).toHaveBeenCalledTimes(2);
 });
 
 it("moves left", () => {
