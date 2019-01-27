@@ -1,5 +1,3 @@
-* Preloading of images.
-
 * Why does ball move inside the magnet?
   - makes it wobble too much
 
@@ -82,3 +80,8 @@
     - makes ball move slowly too.
   - or box doesn't fit on screen
   
+* Refine image preloading
+  - keep prefetching in StartScreen
+  - add onLoad handlers that wait for images to onLoad
+  - show spinner screen after StartScreen if preloading isn't complete
+    - sharing prefetching markup using a Prefetch component.
