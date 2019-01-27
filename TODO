@@ -78,3 +78,5 @@
 
 * The game's harder on larger screens.
   - scale ball and objects proportionally?
+
+* Allow new StartLevelScreen to be dismissed.
