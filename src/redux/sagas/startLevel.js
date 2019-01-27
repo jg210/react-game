@@ -6,11 +6,12 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import { delay } from 'redux-saga'
 
 import { START_LEVEL } from '../actionTypes';
-import { screenChange } from '../actions';
+import { scoreUpdate, screenChange } from '../actions';
 
 export function* startLevel(): Generator<*,*,*> {
   yield put(screenChange("startLevel"));
   yield call(delay, 2500);
+  yield put(scoreUpdate(1));
   yield put(screenChange("game"));
 }
 

@@ -1,3 +1,6 @@
+* Why does ball move inside the magnet?
+  - makes it wobble too much
+
 * It's occasionally possible to drag magnet without having reattached the ball.
 
 * finger-width border, not 5% of screen size.
@@ -16,17 +19,11 @@
 
 * pointerevent test coverage.
 
-* Higher score if release ball fewer times.
-  - subtract one each time release?
-    => negative score likely.
-  - limited number of balls for each levels>?
-    - one per object
-  - indicate number of balls available
-  - game over if run out of balls
-  - extra points if complete level with balls remaining
-  - bonus if complete game
-  - 
-  
+* GameEngine and Magnet coverage
+  - use mock renderer to avoid need for canvas implementation?
+
+* Magnet.test.js has test cases that move Magnet but that don't check position afterwards.
+
 * js crash (in reducer) only shown in debug console, which you might not notice.
 
 * Indicate when points are won.
@@ -62,9 +59,24 @@
 * Localization.
 
 * High Score table.
+  - persistence => cookies => annoying GDPR banner.
+  - persist on server?
 
-* Chrome audits?
+* Chrome audit.
+
+* Offline web app?
 
 * A way to restore full screen mode if exit it.
 
 * Different StartScreen text for mobile/desktop.
+
+* The game's harder on larger screens.
+  - scale ball and objects proportionally?
+
+* Allow new StartLevelScreen to be dismissed.
+
+* Browser zooming interacts badly with game.
+  - objects and ball can become very small
+    - makes ball move slowly too.
+  - or box doesn't fit on screen
+  
