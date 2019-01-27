@@ -12,9 +12,7 @@
 * mobile and other browser support.
   - test on safari
 
-* Ball image missing.
-  - saw on mobile device using github pages hosted app after a new release.
-  - something to do with atomicity of deployment and caching?
+* Preloading of images.
 
 * configure travis-ci test server.
   - deploy coverage report to github pages.
