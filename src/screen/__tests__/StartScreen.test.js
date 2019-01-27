@@ -10,7 +10,8 @@ import { Provider } from 'react-redux';
 
 it('renders correctly', () => {
   let focusCalled = 0;
-  let startGameCalled = 0;
+  let startGame = jest.fn();
+  let toggleFullscreen = jest.fn();
   const store = {
     dispatch: jest.fn(),
     getState: () => ({
@@ -32,13 +33,14 @@ it('renders correctly', () => {
   const tree = renderer.create(
     <Provider store={store}>
       <StartScreen
-        startGame={() => {startGameCalled++}}
-        toggleFullscreen={() => {}}
+        startGame={startGame}
+        toggleFullscreen={toggleFullscreen}
       />
     </Provider>,
     options
   ).toJSON();
   expect(tree).toMatchSnapshot();
   expect(focusCalled).toEqual(1);
-  expect(startGameCalled).toEqual(0);
+  expect(startGame).toHaveBeenCalledTimes(0);
+  expect(toggleFullscreen).toHaveBeenCalledTimes(0);
 });
