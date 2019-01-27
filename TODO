@@ -1,5 +1,4 @@
 * Allow new StartLevelScreen to be dismissed.
-  - expand div size
   - unit test for clicking
 
 * Why does ball move inside the magnet?
@@ -13,6 +12,8 @@
   - test on safari
 
 * Preloading of images.
+
+* Polish the CSS.
 
 * configure travis-ci test server.
   - deploy coverage report to github pages.
