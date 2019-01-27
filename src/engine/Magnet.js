@@ -187,6 +187,7 @@ export class Magnet {
       this.minX, this.maxX);
     const y = this.body.position.y;
     Body.setPosition(this.body, { x, y });
+    Body.setVelocity(this.body, { x: this.speed, y: 0 });
   }
 
   // Turn the magnet on or off.
