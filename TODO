@@ -59,8 +59,12 @@
 * Localization.
 
 * High Score table.
+  - persistence => cookies => annoying GDPR banner.
+  - persist on server?
 
-* Chrome audits?
+* Chrome audit.
+
+* Offline web app?
 
 * A way to restore full screen mode if exit it.
 
@@ -70,3 +74,9 @@
   - scale ball and objects proportionally?
 
 * Allow new StartLevelScreen to be dismissed.
+
+* Browser zooming interacts badly with game.
+  - objects and ball can become very small
+    - makes ball move slowly too.
+  - or box doesn't fit on screen
+  
