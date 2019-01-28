@@ -7,13 +7,23 @@ import {
   GAME_COMPLETE,
   LEVEL_COMPLETE,
   LEVEL_CHANGE,
+  RESET_SCORE,
+  START,
+  START_GAME,
   START_LEVEL,
   SCORE_UPDATE,
   SCREEN_CHANGE,
-  TOGGLE_WIREFRAME_MODE,
-  START_GAME
+  TOGGLE_WIREFRAME_MODE
 } from './actionTypes'
 import type { ScreenType } from '../screen';
+
+export const start = () => ({
+  type: START
+});
+
+export const resetScore = () => ({
+  type: RESET_SCORE
+});
 
 export const startGame = () => ({
   type: START_GAME

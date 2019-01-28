@@ -4,9 +4,19 @@
 
 import type { ScreenType } from '../screen';
 
+export const START = 'START';
+export type StartAction = {
+  type: typeof(START)
+};
+
 export const START_GAME = 'START_GAME';
 export type StartGameAction = {
   type: typeof(START_GAME)
+};
+
+export const RESET_SCORE = 'RESET_SCORE';
+export type ResetScoreAction = {
+  type: typeof(RESET_SCORE)
 };
 
 export const LEVEL_COMPLETE = 'LEVEL_COMPLETE';

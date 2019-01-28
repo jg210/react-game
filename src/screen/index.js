@@ -8,12 +8,14 @@ import { connect } from 'react-redux';
 import type { ScreenState } from '../redux/reducers/screen';
 import GameScreen from './GameScreen';
 import GameCompleteScreen from './GameCompleteScreen';
+import SplashScreen from './SplashScreen';
 import StartLevelScreen from './StartLevelScreen';
 import StartScreen from './StartScreen';
 
 const screens = {
   "game": GameScreen,
   "gameComplete": GameCompleteScreen,
+  "splash": SplashScreen,
   "startLevel": StartLevelScreen,
   "start": StartScreen
 }

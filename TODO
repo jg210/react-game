@@ -1,3 +1,14 @@
+* restart game if exit full screen
+  - a bug
+    - from StartScreen
+    - click to show StartLevelScreen
+    - exit full screen mode by pressing esc (before GameScreen is shown)
+    - go back to StartScreen, but StartLevelSceen saga isn't cancelled, so
+      are taken to GameScreen when it completes but without being in fullscreen mode
+    - to fix, check screen in startLevel saga.
+  - a separate bug
+    - sometimes get error about trying to enter fullscreen mode from non-event code
+
 * Why does ball move inside the magnet?
   - makes it wobble too much
 
@@ -63,12 +74,13 @@
 * High Score table.
   - persistence => cookies => annoying GDPR banner.
   - persist on server?
+  - make sure score can't be lost wherever exit game
+    - e.g. by exiting fullscreen mode
+    => update highscore every time score changes.
 
 * Chrome audit.
 
 * Offline web app?
-
-* A way to restore full screen mode if exit it.
 
 * Different StartScreen text for mobile/desktop.
 
