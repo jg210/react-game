@@ -8,6 +8,7 @@
     - to fix, check screen in startLevel saga.
   - a separate bug
     - sometimes get error about trying to enter fullscreen mode from non-event code
+  - can UI be re-rendered in between start saga's actions?
 
 * Why does ball move inside the magnet?
   - makes it wobble too much

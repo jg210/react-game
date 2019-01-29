@@ -7,6 +7,7 @@ import { put, takeEvery } from 'redux-saga/effects';
 import { start as startSaga, startListener } from '../start';
 import { START } from '../../actionTypes';
 import {
+  levelChange,
   resetScore,
   screenChange
 } from '../../actions';
@@ -20,6 +21,7 @@ it(`listens for ${START}`, () => {
 it('handles start action', () => {
   const generator = startSaga();
   expect(generator.next().value).toEqual(put(resetScore()));
+  expect(generator.next().value).toEqual(put(levelChange(1)));
   expect(generator.next().value).toEqual(put(screenChange("start")));
   expect(generator.next().done).toBe(true);
 });

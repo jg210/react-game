@@ -5,10 +5,11 @@
 import { put, takeEvery } from 'redux-saga/effects';
 
 import { START } from '../actionTypes';
-import { resetScore, screenChange } from '../actions';
+import { levelChange, resetScore, screenChange } from '../actions';
 
 export function* start(): Generator<*,*,*> {
   yield put(resetScore());
+  yield put(levelChange(1));
   yield put(screenChange("start"));
 }
 
