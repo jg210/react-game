@@ -1,14 +1,10 @@
 * restart game if exit full screen
-  - a bug
-    - from StartScreen
-    - click to show StartLevelScreen
-    - exit full screen mode by pressing esc (before GameScreen is shown)
-    - go back to StartScreen, but StartLevelSceen saga isn't cancelled, so
-      are taken to GameScreen when it completes but without being in fullscreen mode
-    - to fix, check screen in startLevel saga.
   - a separate bug
     - sometimes get error about trying to enter fullscreen mode from non-event code
   - can UI be re-rendered in between start saga's actions?
+
+* It's possible to get to GameScreen and not be in full screen mode
+  - using Level component bypasses the fullscreen mode code
 
 * Why does ball move inside the magnet?
   - makes it wobble too much
