@@ -1,7 +1,4 @@
-* restart game if exit full screen
-  - a separate bug
-    - sometimes get error about trying to enter fullscreen mode from non-event code
-  - can UI be re-rendered in between start saga's actions?
+* Can UI be re-rendered in between the various saga's actions?
 
 * It's possible to get to GameScreen and not be in full screen mode
   - using Level component bypasses the fullscreen mode code
