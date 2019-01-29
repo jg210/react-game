@@ -9,7 +9,10 @@ import { startGame as startGameSaga, startGameListener } from '../startGame';
 import { put, takeEvery } from 'redux-saga/effects';
 
 import { START_GAME } from '../../actionTypes';
-import { startGame as startGameAction, startLevel } from '../../actions';
+import {
+  startGame as startGameAction,
+  startLevel
+} from '../../actions';
 
 import { storeFactory } from '../../store';
 

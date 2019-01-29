@@ -6,13 +6,14 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import Fullscreenable from 'react-fullscreenable';
 
+import { start } from '../redux/actions';
 import { storeFactory } from '../redux/store';
 import './App.css';
 import Screen from '../screen';
 
 type Props = {
-  isFullscreen: boolean,
-  toggleFullscreen: () => void
+  isFullscreen: boolean, // From Fullscreenable.
+  toggleFullscreen: () => void // From Fullscreenable.
 };
 
 type State = {
@@ -38,6 +39,12 @@ class App extends Component<Props,State> {
         </div>
       </Provider>
     );
+  }
+
+  componentDidUpdate(prevProps: Props, prevState: State) {
+    if (prevProps.isFullscreen && !this.props.isFullscreen) {
+      this.store.dispatch(start());
+    }
   }
 
 }
