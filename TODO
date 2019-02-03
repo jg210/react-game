@@ -2,6 +2,7 @@
 
 * It's possible to get to GameScreen and not be in full screen mode
   - using Level component bypasses the fullscreen mode code
+    - for firefox, but not chrome
 
 * Why does ball move inside the magnet?
   - makes it wobble too much
