@@ -1,4 +1,4 @@
-Learning [React](https://reactjs.org/) by writing a very simple game.
+Learning [React](https://reactjs.org/), [redux](https://redux.js.org/) and [redux-saga](https://redux-saga.js.org/) by writing a very simple game.
 
 [![Build Status](https://travis-ci.org/jg210/react-game.svg?branch=master)](https://travis-ci.org/jg210/react-game)
 
@@ -7,6 +7,8 @@ Learning [React](https://reactjs.org/) by writing a very simple game.
 Drop the ball and dislodge the objects.
 
 The game is hosted [here](https://jg210.github.io/react-game/).
+
+The game uses the [matter.js](http://brm.io/matter-js/) 2D physics engine.
 
 ## Development Build Instructions
 
