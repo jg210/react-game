@@ -37,6 +37,7 @@
     "eject": "react-scripts eject"
   },
   "homepage": "https://jg210.github.io/react-game/",
+  "license": "MIT",
   "eslintConfig": {
     "extends": "react-app"
   },
