@@ -1,6 +1,7 @@
 language: node_js
 script:
   - npm ci
+  - npm run ci
   - npm run build
 branches:
   # Travis is configured to build branches and PRs. Need to
