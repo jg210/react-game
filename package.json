@@ -11,7 +11,7 @@
     "react-dom": "16.6.3",
     "react-fullscreenable": "2.5.1-0",
     "react-redux": "5.1.1",
-    "react-scripts": "2.1.3",
+    "react-scripts": "2.1.5",
     "redux": "4.0.1",
     "redux-saga": "0.16.2",
     "reselect": "4.0.0",
@@ -30,7 +30,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "ci": "npm run eslint && CI=true npm run test -- --coverage && npm run flow && npm audit",
+    "ci": "npm run eslint && CI=true npm run test -- --coverage && npm run flow",
     "test": "react-scripts test",
     "eslint": "eslint src",
     "flow": "flow status",

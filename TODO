@@ -1,3 +1,5 @@
+* Find way to run npm audit on CI.
+
 * Can UI be re-rendered in between the various saga's actions?
 
 * It's possible to get to GameScreen and not be in full screen mode
