@@ -6,7 +6,7 @@ Learning [React](https://reactjs.org/), [redux](https://redux.js.org/) and [redu
 
 Drop the ball and dislodge the objects.
 
-The game is hosted [here](https://jg210.github.io/react-game/).
+The game is published from the master branch to [here](https://jg210.github.io/react-game/) using [Travis CI](https://travis-ci.org/jg210/react-game).
 
 The game uses the [matter.js](http://brm.io/matter-js/) 2D physics engine.
 
