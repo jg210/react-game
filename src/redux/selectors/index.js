@@ -3,15 +3,12 @@
 // (c) 2018-2019 Jeremy Green
 
 import { createSelector } from 'reselect'
+import { type StoreState } from '../reducers';
 
-import { type LevelState } from '../reducers/level';
+const getLevel = (state: StoreState) => state.level.current;
+const getLastLevel = (state: StoreState) => state.level.last;
 
-type State = { level: LevelState }
-
-const getLevel = (state: State) => state.level.current;
-const getLastLevel = (state: State) => state.level.last;
-
-export const isLastLevel = createSelector(
+export const isLastLevel: ( StoreState => boolean) = createSelector(
   [getLevel, getLastLevel],
   (level: number, lastLevel: number) => {
     return level === lastLevel;

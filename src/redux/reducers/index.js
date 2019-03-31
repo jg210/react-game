@@ -4,10 +4,18 @@
 
 import { combineReducers } from "redux";
 
-import { debug } from "./debug";
-import { level } from "./level";
-import { score } from "./score";
-import { screen } from "./screen";
+import { debug, type DebugState } from "./debug";
+import { level, type LevelState } from "./level";
+import { score, type ScoreState } from "./score";
+import { screen, type ScreenState } from "./screen";
+
+// The whole store's state.
+export type StoreState = {
+  debug: DebugState,
+  level: LevelState,
+  score: ScoreState,
+  screen: ScreenState
+}
 
 export default combineReducers({
   debug,
