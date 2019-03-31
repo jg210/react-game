@@ -1,4 +1,4 @@
-Learning [React](https://reactjs.org/), [redux](https://redux.js.org/) and [redux-saga](https://redux-saga.js.org/) by writing a very simple game.
+Learning [React](https://reactjs.org/), [redux](https://redux.js.org/), [redux-saga](https://redux-saga.js.org/) and [flow](https://flow.org/) by writing a very simple game.
 
 [![Build Status](https://travis-ci.org/jg210/react-game.svg?branch=master)](https://travis-ci.org/jg210/react-game)
 
