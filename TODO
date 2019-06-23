@@ -36,6 +36,17 @@
     - extra points at end of level
     - extra points at end of game.
  
+* Change ball image to something ferromagnetic.
+    - https://clipartimage.com/clipart/12640-anvil-clipart.html?
+  - use anvil-shaped matter.js Body
+    => might need to take more care over angular momentum
+  - rename js field
+
+* Electromagnet image.
+
+* Add cable for electromagnet?
+  - http://brm.io/matter-js/demo/#chains
+
 * Add images for objects.
 
 * When dragging magnet, don't move centre of magnet to pointerdown coordinates.
