@@ -1,29 +1,23 @@
-* Find way to run npm audit on CI.
-
-* Can UI be re-rendered in between the various saga's actions?
-
-* It's possible to get to GameScreen and not be in full screen mode
-  - using Level component bypasses the fullscreen mode code
-    - for firefox, but not chrome
+* Add sentry crash reporting.
+  - add logo to README
+  - add data-privacy screen
 
 * Why does ball move inside the magnet?
   - makes it wobble too much
 
 * It's occasionally possible to drag magnet without having reattached the ball.
 
+* Can UI be re-rendered in between the various saga's actions?
+
 * finger-width border, not 5% of screen size.
 
-* mobile and other browser support.
-  - test on safari
+* Deploy coverage report from travis to github pages.
+  - coverage is measured (https://travis-ci.org/jg210/react-game)
+  - detailed report is not kept
 
-* Polish the CSS.
+* Run flow coverage report on test server.
 
-* configure travis-ci test server.
-  - deploy coverage report to github pages.
-  - link from game to source code.
-  - link from game to coverage report.
-  - flow coverage
-  - is better reporting possible?
+* Jest unit-test coverage has dropped in some areas.
 
 * connected components have poor/no jest coverage.
 
@@ -41,39 +35,35 @@
     - when hit balls
     - extra points at end of level
     - extra points at end of game.
-
-* Replace ball image.
-  - change image
-    - https://clipartimage.com/clipart/12640-anvil-clipart.html?
-  - use anvil-shaped matter.js Body?
-  - rename js field
-  
+ 
 * Add images for objects.
 
 * When dragging magnet, don't move centre of magnet to pointerdown coordinates.
   - record offset when start dragging
 
-* Electromagnet image.
-
-* Add cable for electromagnet.
-
 * No typescript extensions => no js formatter in VSC?
+
+* Polish the CSS.
 
 * Importing Foo wrapped with react-redux connect as Foo using default export is unclear.
   - it's not immediately obvious that component Foo is wrapped.
 
 * Deploying to gh-pages creates a lot of blobs in git (e.g. node_modules)
   - deploy somewhere else?
-  - uses fewer files somehow.
+  - uses fewer files somehow?
 
 * Localization.
 
 * High Score table.
-  - persistence => cookies => annoying GDPR banner.
+  - persistence => cookies => banner.
   - persist on server?
   - make sure score can't be lost wherever exit game
     - e.g. by exiting fullscreen mode
     => update highscore every time score changes.
+
+* Allowing negative scores looks odd.
+
+* Find way to run npm audit on CI.
 
 * Chrome audit.
 
