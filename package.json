@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@sentry/browser": "5.5.0",
     "lodash": "4.17.11",
     "matter-js": "0.14.2",
     "pepjs": "0.4.3",
