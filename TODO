@@ -4,7 +4,8 @@
   X add text to start page
   X pass release version to sentry init method
   - upload source markup
-  - configure context with browser details etc.
+  - clickable sentry link on start screen
+  - configure context with browser details etc.  
   - upload source code
   - github integration
   - breadcrumbs
