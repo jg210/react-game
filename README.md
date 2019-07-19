@@ -1,5 +1,7 @@
 Learning [React](https://reactjs.org/), [redux](https://redux.js.org/), [redux-saga](https://redux-saga.js.org/), [reselect](https://github.com/reduxjs/reselect) and [flow](https://flow.org/) by writing a very simple game.
 
+JavaScript crashes are recorded using https://sentry.io.
+
 [![Build Status](https://travis-ci.org/jg210/react-game.svg?branch=master)](https://travis-ci.org/jg210/react-game)
 
 ## The Game
@@ -54,3 +56,6 @@ Same as Build Instructions, but also need to:
 
 * Install React Developer Tools in Chrome.
 
+# Travis CI configuration
+
+* Configure GITHUB_TOKEN and SENTRY_DSN environment variables.

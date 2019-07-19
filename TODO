@@ -1,6 +1,16 @@
 * Add sentry crash reporting.
-  - add logo to README
-  - add data-privacy screen
+  X configure sentry
+  X mention sentry in README
+  X add text to start page
+  X pass release version to sentry init method
+  - upload source markup
+  - configure context with browser details etc.
+  - upload source code
+  - github integration
+  - breadcrumbs
+  - CSP reports
+  - connect client and server sessions
+  - feedback page
 
 * Why does ball move inside the magnet?
   - makes it wobble too much
