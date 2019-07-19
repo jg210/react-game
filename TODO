@@ -1,10 +1,10 @@
 * Add sentry crash reporting.
   X configure sentry
   X mention sentry in README
-  - add data-privacy text
-  - pass release version to sentry init method
-  - configure context with browser details etc.
+  X add text to start page
+  X pass release version to sentry init method
   - upload source markup
+  - configure context with browser details etc.
   - upload source code
   - github integration
   - breadcrumbs

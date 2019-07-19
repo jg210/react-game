@@ -12,9 +12,13 @@ import 'pepjs';
 
 // Crash reporting - should be configured as early as possible.
 const SENTRY_DSN = "__SENTRY_DSN__";
+const SENTRY_RELEASE = "__SENTRY_RELEASE__";
 // eslint-disable-next-line no-useless-concat
 if (SENTRY_DSN !== "__SENTRY" + "_DSN__") {
-  Sentry.init({dsn: SENTRY_DSN});
+  Sentry.init({
+    dsn: SENTRY_DSN,
+    release: SENTRY_RELEASE
+  });
 }
 
 // https://github.com/liabru/matter-js/issues/559
