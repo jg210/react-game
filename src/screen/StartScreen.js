@@ -21,6 +21,8 @@ export class StartScreen extends Component<Props> {
   constructor(props: Props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
+    this.handleCrashClick = this.handleCrashClick.bind(this);
+    this.stopPropagation = this.stopPropagation.bind(this);
   }
 
   render() {
@@ -41,10 +43,10 @@ export class StartScreen extends Component<Props> {
         <p>You move to the next level when all the objects (including the ball) are at the bottom of the box.</p>
         <p>You gain a point for each dislodged object and starting a new level, but lose a point each time release ball.</p>
         <p>Double clicking/tapping on score toggles debug mode.</p>
-        <p>JavaScript crashes are recorded using https://sentry.io</p>
-        {level}
+        <div><p>JavaScript <span onClick={this.handleCrashClick}>crashes</span> are recorded using <a href="https://sentry.io" onClick={this.stopPropagation}>Sentry</a></p></div>
         {/* Precache content that is required later. */}
         <img hidden={true} alt="" src="ball.png"/>
+        {level}
       </div>
     );
   }
@@ -65,6 +67,15 @@ export class StartScreen extends Component<Props> {
         // NotSupportedError.
       }
     }
+  }
+
+  handleCrashClick = (e: SyntheticEvent<HTMLElement>) => {
+    e.stopPropagation();
+    throw new Error("testing 123 - clicked on 'crash' in start page.");
+  }
+
+  stopPropagation = (e: SyntheticEvent<HTMLElement>) => {
+    e.stopPropagation();
   }
 
   componentDidMount() {
