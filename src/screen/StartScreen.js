@@ -41,7 +41,7 @@ export class StartScreen extends Component<Props> {
         <p>You move to the next level when all the objects (including the ball) are at the bottom of the box.</p>
         <p>You gain a point for each dislodged object and starting a new level, but lose a point each time release ball.</p>
         <p>Double clicking/tapping on score toggles debug mode.</p>
-        <p>Crashes are recorded using https://sentry.io/</p>
+        <p>JavaScript crashes are recorded using https://sentry.io</p>
         {level}
         {/* Precache content that is required later. */}
         <img hidden={true} alt="" src="ball.png"/>

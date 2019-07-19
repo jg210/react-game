@@ -26,7 +26,7 @@ exports[`renders correctly 1`] = `
     Double clicking/tapping on score toggles debug mode.
   </p>
   <p>
-    Crashes are recorded using https://sentry.io/
+    JavaScript crashes are recorded using https://sentry.io
   </p>
   <select
     onChange={[Function]}
