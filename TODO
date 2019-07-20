@@ -9,9 +9,7 @@
   X upload source code
   X github integration  
   X breadcrumbs
-  - release name should be prefixed by project name.
-    - although commit id is unique across projects anyway.
-  - https://docs.sentry.io/workflow/releases/?platform=browsernpm#associate-commits-with-a-release
+  X https://docs.sentry.io/workflow/releases/?platform=browsernpm#associate-commits-with-a-release
   - CSP reports
   - connect client and server sessions
   - feedback page
