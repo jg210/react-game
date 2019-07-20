@@ -12,10 +12,16 @@ branches:
   only:
     - master
 deploy:
-  provider: pages
-  local-dir: build
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN  # from travis-ci settings page
-  keep-history: true
-  on:
-    branch: master
+  - provider: script
+    script:
+      - npm run sentry-cli -- releases new -p react-game "${TRAVIS_COMMIT}"
+      - npm run sentry-cli -- releases set-commits --auto "${TRAVIS_COMMIT}"
+    on:
+      branch: master
+  - provider: pages
+    local-dir: build
+    skip-cleanup: true
+    github-token: $GITHUB_TOKEN  # from travis-ci settings page
+    keep-history: true
+    on:
+      branch: master
