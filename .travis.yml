@@ -2,7 +2,7 @@ language: node_js
 script:
   - npm ci
   - npm run ci
-  - sed -i "s,__SENTRY_DSN__,${SENTRY_DSN}," src/index.js
+  - sed -i "s,__SENTRY_DSN__,${SENTRY_DSN:-__SENTRY_DSN__}," src/index.js
   - sed -i "s,__SENTRY_RELEASE__,${TRAVIS_COMMIT}," src/index.js
   - npm run build
 branches:
