@@ -55,7 +55,7 @@ Same as Build Instructions, but also need to:
 
 * Install React Developer Tools in Chrome.
 
-## Travis CI configuration
+## Travis CI Configuration
 
 Configure the following environment variables:
 
