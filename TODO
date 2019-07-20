@@ -3,12 +3,13 @@
   X mention sentry in README
   X add text to start page
   X pass release version to sentry init method
-  - upload source markup
-  - clickable sentry link on start screen
-  - configure context with browser details etc.  
-  - upload source code
-  - github integration
-  - breadcrumbs
+  X upload source markup
+  X clickable sentry link on start screen
+  X configure context with browser details etc.  
+  X upload source code
+  X github integration  
+  X breadcrumbs
+  - https://docs.sentry.io/workflow/releases/?platform=browsernpm#associate-commits-with-a-release
   - CSP reports
   - connect client and server sessions
   - feedback page
