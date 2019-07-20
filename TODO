@@ -10,6 +10,7 @@
   X github integration  
   X breadcrumbs
   X https://docs.sentry.io/workflow/releases/?platform=browsernpm#associate-commits-with-a-release
+  - backtraces are minified when come from android tablet.
   - CSP reports
   - connect client and server sessions
   - feedback page
