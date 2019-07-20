@@ -14,9 +14,7 @@ branches:
 deploy:
   - skip_cleanup: true
   - provider: script
-    script:
-      - npm run sentry-cli -- releases new -p react-game "${TRAVIS_COMMIT}"
-      - npm run sentry-cli -- releases set-commits --auto "${TRAVIS_COMMIT}"
+    script: npm run sentry-cli -- releases new -p react-game "${TRAVIS_COMMIT}" && npm run sentry-cli -- releases set-commits --auto "${TRAVIS_COMMIT}"
     on:
       branch: master
   - provider: pages
