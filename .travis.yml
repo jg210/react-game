@@ -12,6 +12,7 @@ branches:
   only:
     - master
 deploy:
+  - skip_cleanup: true
   - provider: script
     script:
       - npm run sentry-cli -- releases new -p react-game "${TRAVIS_COMMIT}"
