@@ -56,6 +56,11 @@ Same as Build Instructions, but also need to:
 
 * Install React Developer Tools in Chrome.
 
-# Travis CI configuration
+£# Travis CI configuration
 
-* Configure GITHUB_TOKEN and SENTRY_DSN environment variables.
+Configure the following environment variables:
+
+* GITHUB_TOKEN - for upload artifacts to github pages.
+* SENTRY_AUTH_TOKEN - for uploading release metadata to sentry crash reporting system.
+* SENTRY_ORG
+* SENTRY_DSN - the app's key for uploading crashes to sentry.
