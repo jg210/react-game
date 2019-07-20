@@ -1,16 +1,15 @@
 Learning [React](https://reactjs.org/), [redux](https://redux.js.org/), [redux-saga](https://redux-saga.js.org/), [reselect](https://github.com/reduxjs/reselect) and [flow](https://flow.org/) by writing a very simple game.
 
-JavaScript crashes are recorded using https://sentry.io.
-
 [![Build Status](https://travis-ci.org/jg210/react-game.svg?branch=master)](https://travis-ci.org/jg210/react-game)
 
 ## The Game
 
-Drop the ball and dislodge the objects.
+https://jg210.github.io/react-game/
 
-The game is published to https://jg210.github.io/react-game/ using [Travis CI](https://travis-ci.org/jg210/react-game).
-
-The game uses the [matter.js](http://brm.io/matter-js/) 2D physics engine.
+* Drop the ball and dislodge the objects.
+* The game is published using [Travis CI](https://travis-ci.org/jg210/react-game).
+* JavaScript crashes are recorded using https://sentry.io.
+* The game uses the [matter.js](http://brm.io/matter-js/) 2D physics engine.
 
 ## Development Build Instructions
 
@@ -60,7 +59,7 @@ Same as Build Instructions, but also need to:
 
 Configure the following environment variables:
 
-* GITHUB_TOKEN - for upload artifacts to github pages.
-* SENTRY_AUTH_TOKEN - for uploading release metadata to sentry crash reporting system.
+* GITHUB_TOKEN - for upload artifacts to github pages (master branch only).
+* SENTRY_AUTH_TOKEN - for uploading release metadata to sentry crash reporting system (master branch only).
 * SENTRY_ORG
-* SENTRY_DSN - the app's key for uploading crashes to sentry.
+* SENTRY_DSN - the app's key for uploading crashes to sentry (master branch only).
