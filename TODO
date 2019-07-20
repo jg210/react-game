@@ -110,3 +110,5 @@
   - add onLoad handlers that wait for images to onLoad
   - show spinner screen after StartScreen if preloading isn't complete
     - sharing prefetching markup using a Prefetch component.
+
+* Error page says "This screen is visible only in development. It will not appear if the app crashes in production" for production builds.
