@@ -8,7 +8,7 @@ https://jg210.github.io/react-game/
 
 * Drop the ball and dislodge the objects.
 * The game is published using [Travis CI](https://travis-ci.org/jg210/react-game).
-* JavaScript crashes are recorded using https://sentry.io.
+* JavaScript crashes are recorded using [Sentry](https://sentry.io).
 * The game uses the [matter.js](http://brm.io/matter-js/) 2D physics engine.
 
 ## Development Build Instructions
