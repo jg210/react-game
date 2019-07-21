@@ -3,7 +3,7 @@ script:
   - npm ci
   - npm run ci
   - sed -i "s,__SENTRY_DSN__,${SENTRY_DSN:-__SENTRY_DSN__}," src/index.js
-  - sed -i "s,__SENTRY_RELEASE__,${TRAVIS_COMMIT}," src/index.js
+  - sed -i "s,__SENTRY_RELEASE__,react-game@${TRAVIS_COMMIT}," src/index.js
   - npm run build
 branches:
   # Travis is configured to build branches and PRs. Need to
@@ -14,7 +14,7 @@ branches:
 deploy:
   - provider: script
     skip_cleanup: true
-    script: npm run sentry-cli -- releases new -p react-game "${TRAVIS_COMMIT}" && npm run sentry-cli -- releases set-commits --auto "${TRAVIS_COMMIT}"
+    script: npm run sentry-cli -- releases new -p react-game "react-game@${TRAVIS_COMMIT}" && npm run sentry-cli -- releases set-commits --auto "react-game@${TRAVIS_COMMIT}"
     on:
       branch: master
   - provider: pages
