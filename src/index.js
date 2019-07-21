@@ -17,7 +17,8 @@ const SENTRY_RELEASE = "__SENTRY_RELEASE__";
 if (SENTRY_DSN !== "__SENTRY" + "_DSN__") {
   Sentry.init({
     dsn: SENTRY_DSN,
-    release: SENTRY_RELEASE
+    release: SENTRY_RELEASE,
+    environment: "production"
   });
 }
 

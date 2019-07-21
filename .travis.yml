@@ -25,3 +25,8 @@ deploy:
     keep-history: true
     on:
       branch: master
+  - provider: script
+    skip_cleanup: true
+    script: npm run sentry-cli -- releases deploys "react-game@${TRAVIS_COMMIT}" new -e production
+    on:
+      branch: master

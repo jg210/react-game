@@ -10,14 +10,14 @@
   X github integration  
   X breadcrumbs
   X https://docs.sentry.io/workflow/releases/?platform=browsernpm#associate-commits-with-a-release
+  X notify sentry after release created
+    X configure a sentry environment.
+    X https://docs.sentry.io/workflow/releases/#create-deploy
   - backtraces are minified when come from android tablet.
-  - notify sentry after release created
-    - configure an environment
-    - https://docs.sentry.io/workflow/releases/#create-deploy
   - CSP reports
   - connect client and server sessions
   - feedback page
-  - environments?
+  - more environments?
 
 * Why does ball move inside the magnet?
   - makes it wobble too much
