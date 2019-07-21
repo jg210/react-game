@@ -13,6 +13,7 @@
   X notify sentry after release created
     X configure a sentry environment.
     X https://docs.sentry.io/workflow/releases/#create-deploy
+  - adding "react-game@" prefix to sentry release name has stopped it working out which commits are in the release.
   - backtraces are minified when come from android tablet.
   - CSP reports
   - connect client and server sessions
