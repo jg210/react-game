@@ -20,7 +20,6 @@ deploy:
   - provider: pages
     skip_cleanup: true
     local-dir: build
-    skip-cleanup: true
     github-token: $GITHUB_TOKEN  # from travis-ci settings page
     keep-history: true
     on:
