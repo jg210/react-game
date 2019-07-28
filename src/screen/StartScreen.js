@@ -8,6 +8,8 @@ import { connect } from "react-redux";
 import Level from '../components/Level';
 import { startGame } from '../redux/actions';
 import CookieConsent from "react-cookie-consent";
+import { COOKIE_CONSENT } from '../util/cookies';
+import { initializeReactGoogleAnalytics } from '../util/google_analytics';
 
 type Props = {
   startGame: () => void,
@@ -51,7 +53,12 @@ export class StartScreen extends Component<Props> {
           <img hidden={true} alt="" src="ball.png"/>
           {level}
         </div>
-        <CookieConsent>This site uses cookies.</CookieConsent>
+        <CookieConsent
+          cookieName={COOKIE_CONSENT}
+          onAccept={ initializeReactGoogleAnalytics }
+        >
+            This site uses cookies.
+        </CookieConsent>
       </div>
     );
   }

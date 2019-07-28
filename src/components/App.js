@@ -10,6 +10,8 @@ import { start } from '../redux/actions';
 import { storeFactory } from '../redux/store';
 import './App.css';
 import Screen from '../screen';
+import { cookieConsentGiven } from '../util/cookies';
+import { initializeReactGoogleAnalytics } from '../util/google_analytics';
 
 type Props = {
   isFullscreen: boolean, // From Fullscreenable.
@@ -23,6 +25,7 @@ class App extends Component<Props,State> {
 
   // eslint-disable-next-line flowtype/no-weak-types
   store: Object;
+  reactGAInitialized: boolean = false;
 
   constructor(props: Props) {
     super(props);
@@ -39,6 +42,13 @@ class App extends Component<Props,State> {
         </div>
       </Provider>
     );
+  }
+
+  componentDidMount() {
+    if (!this.reactGAInitialized && cookieConsentGiven()) {
+      initializeReactGoogleAnalytics();
+      this.reactGAInitialized = true;
+    }
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {

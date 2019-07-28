@@ -1,82 +1,84 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<div
-  className="StartScreen"
-  onClick={[Function]}
-  onKeyPress={[Function]}
-  tabIndex="0"
->
-  <p>
-    Touch screen, click or press any key to start game.
-  </p>
-  <p>
-    Use your finger, mouse or arrow keys to position the magnet.
-  </p>
-  <p>
-    Release finger/button or press space to turn the magnet on or off.
-  </p>
-  <p>
-    You move to the next level when all the objects (including the ball) are at the bottom of the box.
-  </p>
-  <p>
-    You gain a point for each dislodged object and starting a new level, but lose a point each time release ball.
-  </p>
-  <p>
-    Double clicking/tapping on score toggles debug mode.
-  </p>
-  <div>
+<div>
+  <div
+    className="StartScreen"
+    onClick={[Function]}
+    onKeyPress={[Function]}
+    tabIndex="0"
+  >
     <p>
-      JavaScript 
-      <span
-        onClick={[Function]}
-      >
-        crashes
-      </span>
-       are recorded using 
+      Touch screen, click or press any key to start game.
+    </p>
+    <p>
+      Use your finger, mouse or arrow keys to position the magnet.
+    </p>
+    <p>
+      Release finger/button or press space to turn the magnet on or off.
+    </p>
+    <p>
+      You move to the next level when all the objects (including the ball) are at the bottom of the box.
+    </p>
+    <p>
+      You gain a point for each dislodged object and starting a new level, but lose a point each time release ball.
+    </p>
+    <p>
+      Double clicking/tapping on score toggles debug mode.
+    </p>
+    <div>
+      <p>
+        JavaScript 
+        <span
+          onClick={[Function]}
+        >
+          crashes
+        </span>
+         are recorded using 
+        <a
+          href="https://sentry.io"
+          onClick={[Function]}
+        >
+          Sentry
+        </a>
+        .
+      </p>
+    </div>
+    <p>
+      Use of this site is tracked using 
       <a
-        href="https://sentry.io"
-        onClick={[Function]}
+        href="https://analytics.google.com/analytics/web/"
       >
-        Sentry
+        Google Analytics
       </a>
       .
     </p>
-  </div>
-  <p>
-    Use of this site is tracked using 
-    <a
-      href="https://analytics.google.com/analytics/web/"
-    >
-      Google Analytics
-    </a>
-    .
-  </p>
-  <img
-    alt=""
-    hidden={true}
-    src="ball.png"
-  />
-  <select
-    onChange={[Function]}
-    value={1}
-  >
-    <option
+    <img
+      alt=""
+      hidden={true}
+      src="ball.png"
+    />
+    <select
+      onChange={[Function]}
       value={1}
     >
-      1
-    </option>
-    <option
-      value={2}
-    >
-      2
-    </option>
-    <option
-      value={3}
-    >
-      3
-    </option>
-  </select>
+      <option
+        value={1}
+      >
+        1
+      </option>
+      <option
+        value={2}
+      >
+        2
+      </option>
+      <option
+        value={3}
+      >
+        3
+      </option>
+    </select>
+  </div>
   <div
     className="cookieConsent "
     style={
@@ -104,7 +106,7 @@ exports[`renders correctly 1`] = `
         }
       }
     >
-      This website uses cookies.
+      This site uses cookies.
     </div>
     <button
       className=""

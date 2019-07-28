@@ -12,6 +12,7 @@
     "react-cookie-consent": "2.3.2",
     "react-dom": "16.6.3",
     "react-fullscreenable": "2.5.1-0",
+    "react-ga": "2.6.0",
     "react-redux": "5.1.1",
     "react-scripts": "2.1.5",
     "redux": "4.0.1",
