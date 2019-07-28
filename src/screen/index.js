@@ -49,7 +49,7 @@ class Screen extends Component<Props,State> {
       Log.info(() => "GA page: " + page);
       if (cookieConsentGiven()) {
         ReactGA.set({page: page});
-        ReactGA.pageview();
+        ReactGA.pageview(page);
       } else {
         Log.info("GA pageview not sent since cookie consent not given.");
       }
