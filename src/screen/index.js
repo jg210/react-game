@@ -44,11 +44,15 @@ class Screen extends Component<Props,State> {
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
-    if (prevProps.screen !== this.props.screen && cookieConsentGiven()) {
+    if (prevProps.screen !== this.props.screen) {
       const page = window.location.pathname + this.props.screen;
       Log.info(() => "GA page: " + page);
-      ReactGA.set({page: page});
-      ReactGA.pageview();
+      if (cookieConsentGiven()) {
+        ReactGA.set({page: page});
+        ReactGA.pageview();
+      } else {
+        Log.info("GA pageview not sent since cookie consent not given.");
+      }
     }
   }
 
