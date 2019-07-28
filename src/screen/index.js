@@ -12,6 +12,8 @@ import GameCompleteScreen from './GameCompleteScreen';
 import SplashScreen from './SplashScreen';
 import StartLevelScreen from './StartLevelScreen';
 import StartScreen from './StartScreen';
+import { Log } from '../util/Log';
+import { cookieConsentGiven } from '../util/cookies';
 
 const screens = {
   "game": GameScreen,
@@ -42,8 +44,11 @@ class Screen extends Component<Props,State> {
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
-    if (prevProps.screen !== this.props.screen) {
-      ReactGA.pageview("/" + this.props.screen);
+    if (prevProps.screen !== this.props.screen && cookieConsentGiven()) {
+      const page = window.location.pathname + this.props.screen;
+      Log.info(() => "GA page: " + page);
+      ReactGA.set({page: page});
+      ReactGA.pageview();
     }
   }
 

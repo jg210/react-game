@@ -1,18 +1,8 @@
+* GA page views
+  - not being sent for first screen
+  - otherwise appear to be sent, but don't appear in GA console.
+
 * Add sentry crash reporting.
-  X configure sentry
-  X mention sentry in README
-  X add text to start page
-  X pass release version to sentry init method
-  X upload source markup
-  X clickable sentry link on start screen
-  X configure context with browser details etc.  
-  X upload source code
-  X github integration  
-  X breadcrumbs
-  X https://docs.sentry.io/workflow/releases/?platform=browsernpm#associate-commits-with-a-release
-  X notify sentry after release created
-    X configure a sentry environment.
-    X https://docs.sentry.io/workflow/releases/#create-deploy
   - adding "react-game@" prefix to sentry release name has stopped it working out which commits are in the release.
   - backtraces are minified when come from android tablet.
   - CSP reports
