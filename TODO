@@ -23,6 +23,9 @@
 * Cookie banner etc.
   - https://developers.google.com/analytics/devguides/collection/analyticsjs/cookie-usage#analyticsjs
   - https://ec.europa.eu/ipg/basics/legal/cookies/index_en.htm
+  - https://www.npmjs.com/package/react-cookie-consent
+  - only enable GA if accept.
+    => move it out of index.html
 
 * Why does ball move inside the magnet?
   - makes it wobble too much
