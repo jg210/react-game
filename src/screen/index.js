@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ReactGA from 'react-ga';
 
 import type { ScreenState } from '../redux/reducers/screen';
 import GameScreen from './GameScreen';
@@ -38,6 +39,12 @@ class Screen extends Component<Props,State> {
       { toggleFullscreen: this.props.toggleFullscreen },
       null
     );
+  }
+
+  componentDidUpdate(prevProps: Props, prevState: State) {
+    if (prevProps.screen !== this.props.screen) {
+      ReactGA.pageview("/" + this.props.screen);
+    }
   }
 
 }
