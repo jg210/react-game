@@ -2,7 +2,7 @@
 //
 // (c) 2018-2019 Jeremy Green
 
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import type { ScreenState } from '../redux/reducers/screen';
@@ -27,13 +27,19 @@ type Props = {
   +toggleFullscreen: () => void
 }
 
-const Screen = (props: Props) => {
-  const component = screens[props.screen];
-  return React.createElement(
-    component,
-    { toggleFullscreen: props.toggleFullscreen },
-    null
-  );
+type State = {}
+
+class Screen extends Component<Props,State> {
+
+  render() {
+    const component = screens[this.props.screen];
+    return React.createElement(
+      component,
+      { toggleFullscreen: this.props.toggleFullscreen },
+      null
+    );
+  }
+
 }
 
 export const mapStateToProps = (state: {screen: ScreenState}) => {
