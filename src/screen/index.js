@@ -8,13 +8,11 @@ import { connect } from 'react-redux';
 import type { ScreenState } from '../redux/reducers/screen';
 import GameScreen from './GameScreen';
 import GameCompleteScreen from './GameCompleteScreen';
-import SplashScreen from './SplashScreen';
 import StartLevelScreen from './StartLevelScreen';
 import StartScreen from './StartScreen';
 import { pageview } from '../util/google_analytics';
 
 const screens = {
-  "splash": SplashScreen,
   "start": StartScreen,
   "startLevel": StartLevelScreen,
   "game": GameScreen,
