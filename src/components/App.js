@@ -46,7 +46,7 @@ class App extends Component<Props,State> {
 
   componentDidMount() {
     if (!this.reactGAInitialized && cookieConsentGiven()) {
-      initializeReactGoogleAnalytics();
+      initializeReactGoogleAnalytics("start");
       this.reactGAInitialized = true;
     }
   }

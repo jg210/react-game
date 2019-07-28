@@ -4,7 +4,6 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ReactGA from 'react-ga';
 
 import type { ScreenState } from '../redux/reducers/screen';
 import GameScreen from './GameScreen';
@@ -12,15 +11,14 @@ import GameCompleteScreen from './GameCompleteScreen';
 import SplashScreen from './SplashScreen';
 import StartLevelScreen from './StartLevelScreen';
 import StartScreen from './StartScreen';
-import { Log } from '../util/Log';
-import { cookieConsentGiven } from '../util/cookies';
+import { pageview } from '../util/google_analytics';
 
 const screens = {
-  "game": GameScreen,
-  "gameComplete": GameCompleteScreen,
   "splash": SplashScreen,
+  "start": StartScreen,
   "startLevel": StartLevelScreen,
-  "start": StartScreen
+  "game": GameScreen,
+  "gameComplete": GameCompleteScreen
 }
 
 export type ScreenType = $Keys<typeof screens>;
@@ -45,14 +43,7 @@ class Screen extends Component<Props,State> {
 
   componentDidUpdate(prevProps: Props, prevState: State) {
     if (prevProps.screen !== this.props.screen) {
-      const page = window.location.pathname + this.props.screen;
-      Log.info(() => "GA page: " + page);
-      if (cookieConsentGiven()) {
-        ReactGA.set({page: page});
-        ReactGA.pageview(page);
-      } else {
-        Log.info("GA pageview not sent since cookie consent not given.");
-      }
+      pageview(this.props.screen);
     }
   }
 

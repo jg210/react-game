@@ -55,7 +55,9 @@ export class StartScreen extends Component<Props> {
         </div>
         <CookieConsent
           cookieName={COOKIE_CONSENT}
-          onAccept={ initializeReactGoogleAnalytics }
+          onAccept={() => {
+            initializeReactGoogleAnalytics("start")
+          }}
         >
             This site uses cookies.
         </CookieConsent>
