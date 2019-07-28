@@ -44,6 +44,7 @@ export class StartScreen extends Component<Props> {
         <p>You gain a point for each dislodged object and starting a new level, but lose a point each time release ball.</p>
         <p>Double clicking/tapping on score toggles debug mode.</p>
         <div><p>JavaScript <span onClick={this.handleCrashClick}>crashes</span> are recorded using <a href="https://sentry.io" onClick={this.stopPropagation}>Sentry</a>.</p></div>
+        <p>Use of this site is tracked using <a href="https://analytics.google.com/analytics/web/">Google Analytics</a>.</p>
         {/* Precache content that is required later. */}
         <img hidden={true} alt="" src="ball.png"/>
         {level}

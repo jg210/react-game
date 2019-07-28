@@ -43,6 +43,15 @@ exports[`renders correctly 1`] = `
       .
     </p>
   </div>
+  <p>
+    Use of this site is tracked using 
+    <a
+      href="https://analytics.google.com/analytics/web/"
+    >
+      Google Analytics
+    </a>
+    .
+  </p>
   <img
     alt=""
     hidden={true}
