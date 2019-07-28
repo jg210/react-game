@@ -2,8 +2,9 @@
 //
 // (c) 2018-2019 Jeremy Green
 
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ReactGA from 'react-ga';
 
 import type { ScreenState } from '../redux/reducers/screen';
 import GameScreen from './GameScreen';
@@ -27,13 +28,25 @@ type Props = {
   +toggleFullscreen: () => void
 }
 
-const Screen = (props: Props) => {
-  const component = screens[props.screen];
-  return React.createElement(
-    component,
-    { toggleFullscreen: props.toggleFullscreen },
-    null
-  );
+type State = {}
+
+class Screen extends Component<Props,State> {
+
+  render() {
+    const component = screens[this.props.screen];
+    return React.createElement(
+      component,
+      { toggleFullscreen: this.props.toggleFullscreen },
+      null
+    );
+  }
+
+  componentDidUpdate(prevProps: Props, prevState: State) {
+    if (prevProps.screen !== this.props.screen) {
+      ReactGA.pageview("/" + this.props.screen);
+    }
+  }
+
 }
 
 export const mapStateToProps = (state: {screen: ScreenState}) => {

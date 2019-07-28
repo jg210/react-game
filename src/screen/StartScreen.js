@@ -7,6 +7,9 @@ import { connect } from "react-redux";
 
 import Level from '../components/Level';
 import { startGame } from '../redux/actions';
+import CookieConsent from "react-cookie-consent";
+import { COOKIE_CONSENT } from '../util/cookies';
+import { initializeReactGoogleAnalytics } from '../util/google_analytics';
 
 type Props = {
   startGame: () => void,
@@ -31,23 +34,31 @@ export class StartScreen extends Component<Props> {
       process.env.NODE_ENV === "test";
     const level = showLevelSelector ? <Level /> : null;
     return (
-      <div
-        ref={this.ref}
-        tabIndex="0"
-        onClick={this.handleClick}
-        onKeyPress={this.handleClick}
-        className="StartScreen">
-        <p>Touch screen, click or press any key to start game.</p>
-        <p>Use your finger, mouse or arrow keys to position the magnet.</p>
-        <p>Release finger/button or press space to turn the magnet on or off.</p>
-        <p>You move to the next level when all the objects (including the ball) are at the bottom of the box.</p>
-        <p>You gain a point for each dislodged object and starting a new level, but lose a point each time release ball.</p>
-        <p>Double clicking/tapping on score toggles debug mode.</p>
-        <div><p>JavaScript <span onClick={this.handleCrashClick}>crashes</span> are recorded using <a href="https://sentry.io" onClick={this.stopPropagation}>Sentry</a>.</p></div>
-        <p>Use of this site is tracked using <a href="https://analytics.google.com/analytics/web/">Google Analytics</a>.</p>
-        {/* Precache content that is required later. */}
-        <img hidden={true} alt="" src="ball.png"/>
-        {level}
+      <div>
+        <div
+          ref={this.ref}
+          tabIndex="0"
+          onClick={this.handleClick}
+          onKeyPress={this.handleClick}
+          className="StartScreen">
+          <p>Touch screen, click or press any key to start game.</p>
+          <p>Use your finger, mouse or arrow keys to position the magnet.</p>
+          <p>Release finger/button or press space to turn the magnet on or off.</p>
+          <p>You move to the next level when all the objects (including the ball) are at the bottom of the box.</p>
+          <p>You gain a point for each dislodged object and starting a new level, but lose a point each time release ball.</p>
+          <p>Double clicking/tapping on score toggles debug mode.</p>
+          <div><p>JavaScript <span onClick={this.handleCrashClick}>crashes</span> are recorded using <a href="https://sentry.io" onClick={this.stopPropagation}>Sentry</a>.</p></div>
+          <p>Use of this site is tracked using <a href="https://analytics.google.com/analytics/web/">Google Analytics</a>.</p>
+          {/* Precache content that is required later. */}
+          <img hidden={true} alt="" src="ball.png"/>
+          {level}
+        </div>
+        <CookieConsent
+          cookieName={COOKIE_CONSENT}
+          onAccept={ initializeReactGoogleAnalytics }
+        >
+            This site uses cookies.
+        </CookieConsent>
       </div>
     );
   }
