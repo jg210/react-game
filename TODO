@@ -64,7 +64,7 @@
 
 * No typescript extensions => no js formatter in VSC?
 
-* Active "Google signals" in GA.
+* Active "Google signals" and "Demographics and Interest Reports" in GA.
   - google ask that get permission from users before do this.
     => need to new or changed cookie for any existing users.
 
