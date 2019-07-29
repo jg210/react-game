@@ -64,6 +64,10 @@
 
 * No typescript extensions => no js formatter in VSC?
 
+* Active "Google signals" in GA.
+  - google ask that get permission from users before do this.
+    => need to new or changed cookie for any existing users.
+
 * Polish the CSS.
 
 * Importing Foo wrapped with react-redux connect as Foo using default export is unclear.
