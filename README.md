@@ -58,7 +58,9 @@ Same as Build Instructions, but also need to:
 
 ## Travis CI Configuration
 
-Configure the following environment variables:
+Commits to the master branch are built by travis and published using github pages.
+
+Configure the following environment variables in travis:
 
 * GITHUB_TOKEN - for upload artifacts to github pages (master branch only).
 * GOOGLE_ANALYTICS_TRACKING_ID - the ID is available from the GA console under Tracking Info > Tracking Code (master branch only).
