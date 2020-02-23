@@ -58,7 +58,7 @@ Same as Build Instructions, but also need to:
 
 ## Travis CI Configuration
 
-Commits to the master branch are built by travis and published using github pages.
+Commits to the master branch are tested and built by travis, then published to sentry and github pages.
 
 Need to configure the following environment variables in travis:
 
