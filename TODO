@@ -74,6 +74,8 @@
 
 * Polish the CSS.
 
+* Cookie banner is temporarily dismissed if start game.
+
 * Importing Foo wrapped with react-redux connect as Foo using default export is unclear.
   - it's not immediately obvious that component Foo is wrapped.
 
