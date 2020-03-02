@@ -292,7 +292,7 @@ export class GameEngine {
       label: "ball",
       render: {
         sprite: {
-          texture: 'ball.png'
+          texture: `${process.env.PUBLIC_URL || '/public'}/ball.png`
         }
       },
       restitution: 0.5,
