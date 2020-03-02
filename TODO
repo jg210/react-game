@@ -1,6 +1,7 @@
 * Upgrading packages has broken rendering of Game.
   - OK in wireframe mode.
   - OK if comment out ball.png texture in GameEngine.js
+  - ball.png not rendered even if just add is to <img/> in index.html
 
   matter.js:8988 Uncaught DOMException: Failed to execute 'drawImage' on 'CanvasRenderingContext2D': The HTMLImageElement provided is in the 'broken' state.
     at Object.Render.bodies (http://localhost:3000/react-game/static/js/1.chunk.js:41837:19)
