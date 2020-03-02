@@ -149,9 +149,9 @@ export class GameEngine {
     this.stopped = true;
   }
 
-  _handleCollision = (event: (pairs: [Pair]) => void) => {
+  _handleCollision = (event: {pairs: Pair[]}) => {
     const that = this;
-    const pairs = event.pairs;
+    const { pairs } = event;
     pairs.forEach((pair: Pair) => {
       [pair.bodyA, pair.bodyB].forEach((body: Body) => {
         Sleeping.set(body, false);
@@ -292,7 +292,7 @@ export class GameEngine {
       label: "ball",
       render: {
         sprite: {
-          texture: 'ball.png'
+          texture: `${process.env.PUBLIC_URL || '/public'}/ball.png`
         }
       },
       restitution: 0.5,

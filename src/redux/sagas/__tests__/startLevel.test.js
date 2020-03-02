@@ -1,11 +1,10 @@
 // @flow
 //
-// (c) 2018-2019 Jeremy Green
+// (c) 2018-2020 Jeremy Green
 
 import { startLevel, startLevelListener } from '../startLevel';
 
-import { call, put, race, take, takeEvery } from 'redux-saga/effects';
-import { delay } from 'redux-saga';
+import { delay, put, race, take, takeEvery } from 'redux-saga/effects';
 
 import { START_LEVEL, DISMISS_START_LEVEL_SCREEN, START } from '../../actionTypes';
 import { scoreUpdate, screenChange } from '../../actions';
@@ -18,7 +17,7 @@ it(`listens for ${START_LEVEL}`, () => {
 it('handles startLevel', () => {
   const generator = startLevel();
   expect(generator.next().value).toEqual(put(screenChange("startLevel")));
-  const sleep = call(delay, 2500);
+  const sleep = delay(2500);
   const dismissal = take(DISMISS_START_LEVEL_SCREEN);
   expect(generator.next().value).toEqual(race({sleep, dismissal, cancel: take(START)}));
   expect(generator.next({cancel: undefined}).value).toEqual(put(scoreUpdate(1)));
@@ -29,7 +28,7 @@ it('handles startLevel', () => {
 it('handles startLevel with START cancelling the saga', () => {
   const generator = startLevel();
   expect(generator.next().value).toEqual(put(screenChange("startLevel")));
-  const sleep = call(delay, 2500);
+  const sleep = delay(2500);
   const dismissal = take(DISMISS_START_LEVEL_SCREEN);
   expect(generator.next().value).toEqual(race({sleep, dismissal, cancel: take(START)}));
   expect(generator.next({cancel: true}).done).toBe(true);
