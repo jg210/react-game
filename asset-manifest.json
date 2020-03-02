@@ -1,13 +1,22 @@
 {
-  "main.css": "/react-game/static/css/main.be3cf3a3.chunk.css",
-  "main.js": "/react-game/static/js/main.5afffdc8.chunk.js",
-  "main.js.map": "/react-game/static/js/main.5afffdc8.chunk.js.map",
-  "runtime~main.js": "/react-game/static/js/runtime~main.b21343aa.js",
-  "runtime~main.js.map": "/react-game/static/js/runtime~main.b21343aa.js.map",
-  "static/js/2.2fb5e0f0.chunk.js": "/react-game/static/js/2.2fb5e0f0.chunk.js",
-  "static/js/2.2fb5e0f0.chunk.js.map": "/react-game/static/js/2.2fb5e0f0.chunk.js.map",
-  "index.html": "/react-game/index.html",
-  "precache-manifest.2e59d1d0be0f7dbe17ff0dab63eeb88a.js": "/react-game/precache-manifest.2e59d1d0be0f7dbe17ff0dab63eeb88a.js",
-  "service-worker.js": "/react-game/service-worker.js",
-  "static/css/main.be3cf3a3.chunk.css.map": "/react-game/static/css/main.be3cf3a3.chunk.css.map"
+  "files": {
+    "main.css": "/react-game/static/css/main.ef067600.chunk.css",
+    "main.js": "/react-game/static/js/main.05ae66f6.chunk.js",
+    "main.js.map": "/react-game/static/js/main.05ae66f6.chunk.js.map",
+    "runtime-main.js": "/react-game/static/js/runtime-main.78fbfa5d.js",
+    "runtime-main.js.map": "/react-game/static/js/runtime-main.78fbfa5d.js.map",
+    "static/js/2.66c57ce5.chunk.js": "/react-game/static/js/2.66c57ce5.chunk.js",
+    "static/js/2.66c57ce5.chunk.js.map": "/react-game/static/js/2.66c57ce5.chunk.js.map",
+    "index.html": "/react-game/index.html",
+    "precache-manifest.606ef11578c23a3e916e7bac67b85511.js": "/react-game/precache-manifest.606ef11578c23a3e916e7bac67b85511.js",
+    "service-worker.js": "/react-game/service-worker.js",
+    "static/css/main.ef067600.chunk.css.map": "/react-game/static/css/main.ef067600.chunk.css.map",
+    "static/js/2.66c57ce5.chunk.js.LICENSE.txt": "/react-game/static/js/2.66c57ce5.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.78fbfa5d.js",
+    "static/js/2.66c57ce5.chunk.js",
+    "static/css/main.ef067600.chunk.css",
+    "static/js/main.05ae66f6.chunk.js"
+  ]
 }
