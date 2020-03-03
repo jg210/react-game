@@ -5,7 +5,7 @@
 import React from 'react';
 
 import Game from '../components/Game';
-import Score from '../components/Score';
+import { Score } from '../components/Score';
 
 type Props = {};
 
