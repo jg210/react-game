@@ -1,11 +1,13 @@
 {
   "extends": [
     "react-app",
-    "plugin:flowtype/recommended"
+    "plugin:flowtype/recommended",
+    "plugin:promise/recommended"
   ],
   "plugins": [
     "flowtype",
-    "jest"
+    "jest",
+    "promise"
   ],
   "rules":{
     "indent": ["error", 2, {"SwitchCase": 1}],
