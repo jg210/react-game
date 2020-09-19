@@ -1,6 +1,7 @@
 A game implemented using [React](https://reactjs.org/), [redux](https://redux.js.org/), [redux-saga](https://redux-saga.js.org/), [reselect](https://github.com/reduxjs/reselect) and [flow](https://flow.org/).
 
-[![Build Status](https://travis-ci.org/jg210/react-game.svg?branch=master)](https://travis-ci.org/jg210/react-game)
+[![Build Status](https://travis-ci.com/jg210/react-game.svg?branch=master)](https://travis-ci.com/jg210/react-game)
+
 
 ## The Game
 
