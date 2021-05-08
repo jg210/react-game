@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@sentry/browser": "5.13.0",
-    "lodash": "4.17.15",
+    "lodash": "4.17.21",
     "matter-js": "0.14.2",
     "pepjs": "0.5.2",
     "poly-decomp": "0.3.0",
