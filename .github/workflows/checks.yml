@@ -21,17 +21,21 @@ jobs:
     - run: npm run ci
 
     - name: update tokens
+      env:
+        SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+        GOOGLE_ANALYTICS_TRACKING_ID: ${{ secrets.GOOGLE_ANALYTICS_TRACKING_ID }}
       run: |
         sed -i "s,__SENTRY_DSN__,${SENTRY_DSN:-__SENTRY_DSN__}," src/index.js
-        sed -i "s,__SENTRY_RELEASE__,react-game@${TRAVIS_COMMIT}," src/index.js
+        sed -i "s,__SENTRY_RELEASE__,react-game@${GITHUB_SHA}," src/index.js
         sed -i "s,__GOOGLE_ANALYTICS_TRACKING_ID__,${GOOGLE_ANALYTICS_TRACKING_ID:-__GOOGLE_ANALYTICS_TRACKING_ID__},g" src/util/google_analytics.js
 
     - run: npm run build
 
 
+  # TODO prevent repetition of react-game@${GITHUB_SHA}
   # TODO deployment
   #
-  # - script: npm run sentry-cli -- releases new -p react-game "react-game@${TRAVIS_COMMIT}" && npm run sentry-cli -- releases set-commits --auto "react-game@${TRAVIS_COMMIT}"
+  # - script: npm run sentry-cli -- releases new -p react-game "react-game@${GITHUB_SHA}" && npm run sentry-cli -- releases set-commits --auto "react-game@${GITHUB_SHA}"
   #   on:
   #     branch: master
 
@@ -45,6 +49,6 @@ jobs:
 
   # - provider: script
   #   skip_cleanup: true
-  #   script: npm run sentry-cli -- releases deploys "react-game@${TRAVIS_COMMIT}" new -e production
+  #   script: npm run sentry-cli -- releases deploys "react-game@${GITHUB_SHA}" new -e production
   #   on:
   #     branch: master
