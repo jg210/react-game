@@ -1,6 +1,6 @@
 // @flow
 //
-// (c) 2018-2019 Jeremy Green
+// (c) 2018-2020 Jeremy Green
 
 import { createSelector } from 'reselect'
 import { type StoreState } from '../reducers';
@@ -14,3 +14,5 @@ export const isLastLevel: ( StoreState => boolean) = createSelector(
     return level === lastLevel;
   }
 )
+
+export const currentScore = (state: StoreState) => state.score.current;
