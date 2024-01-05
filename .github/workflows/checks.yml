@@ -1,0 +1,50 @@
+name: checks
+
+on: push
+
+jobs:
+  checks:
+    runs-on: ubuntu-20.04
+    permissions:
+      contents: read
+
+    steps:
+
+    - uses: actions/checkout@v3
+
+    - uses: actions/setup-node@v4
+      with:
+        node-version-file: '.node-version'
+
+    - run: npm ci
+    
+    - run: npm run ci
+
+    - name: update tokens
+      run: |
+        sed -i "s,__SENTRY_DSN__,${SENTRY_DSN:-__SENTRY_DSN__}," src/index.js
+        sed -i "s,__SENTRY_RELEASE__,react-game@${TRAVIS_COMMIT}," src/index.js
+        sed -i "s,__GOOGLE_ANALYTICS_TRACKING_ID__,${GOOGLE_ANALYTICS_TRACKING_ID:-__GOOGLE_ANALYTICS_TRACKING_ID__},g" src/util/google_analytics.js
+
+    - run: npm run build
+
+
+  # TODO deployment
+  #
+  # - script: npm run sentry-cli -- releases new -p react-game "react-game@${TRAVIS_COMMIT}" && npm run sentry-cli -- releases set-commits --auto "react-game@${TRAVIS_COMMIT}"
+  #   on:
+  #     branch: master
+
+  # - provider: pages
+  #   skip_cleanup: true
+  #   local-dir: build
+  #   github-token: $GITHUB_TOKEN  # from travis-ci settings page
+  #   keep-history: true
+  #   on:
+  #     branch: master
+
+  # - provider: script
+  #   skip_cleanup: true
+  #   script: npm run sentry-cli -- releases deploys "react-game@${TRAVIS_COMMIT}" new -e production
+  #   on:
+  #     branch: master
