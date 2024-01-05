@@ -7,7 +7,7 @@ A game implemented using [React](https://reactjs.org/), [redux](https://redux.js
 https://jg210.github.io/react-game/
 
 * Drop the ball and dislodge the objects.
-* The game is published using [Travis CI](https://travis-ci.org/jg210/react-game).
+* The game is published using [github actions](https://github.com/jg210/react-game/actions/workflows/checks.yml).
 * JavaScript crashes are recorded using [Sentry](https://sentry.io).
 * [Google Analytics](https://analytics.google.com/analytics/web/) is used to track use.
 * The game uses the [matter.js](http://brm.io/matter-js/) 2D physics engine.
@@ -56,13 +56,12 @@ Same as Build Instructions, but also need to:
 
 * Install React Developer Tools in Chrome.
 
-## Travis CI Configuration
+## GitHub Actions Configuration
 
-Commits to the master branch are tested and built by travis, then published to sentry and github pages.
+Commits to the master branch are tested and built by CI, then published to sentry and github pages.
 
-Need to configure the following environment variables in travis:
+Need to configure the following repository secrets in github actions:
 
-* GITHUB_TOKEN - for upload artifacts to github pages (master branch only).
 * GOOGLE_ANALYTICS_TRACKING_ID - the ID is available from the GA console under Tracking Info > Tracking Code (master branch only).
 * SENTRY_AUTH_TOKEN - for uploading release metadata to sentry crash reporting system (master branch only).
 * SENTRY_ORG
