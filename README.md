@@ -14,7 +14,7 @@ https://jg210.github.io/react-game/
 
 ## Development Build Instructions
 
-Install nodenv and node-build (or use any other way to put correct
+Install nodenv and node-build into ~/.nodenv (or use any other way to put correct
 version of node on PATH):
 
 * https://github.com/nodenv/nodenv#installation
@@ -23,6 +23,7 @@ version of node on PATH):
 Then run this:
 
 ```
+. ./environment
 nodenv install $(cat .node-version)
 npm install
 npm start
