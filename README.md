@@ -67,3 +67,5 @@ Need to configure the following repository secrets in github actions:
 * SENTRY_AUTH_TOKEN - for uploading release metadata to sentry crash reporting system (master branch only).
 * SENTRY_ORG
 * SENTRY_DSN - the app's key for uploading crashes to sentry (master branch only).
+
+Need to configure Settings > Pages > Build and deployment > source to GitHub Actions
