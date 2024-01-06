@@ -39,18 +39,21 @@ jobs:
         path: build
         if-no-files-found: error
 
+  deploy:
+    runs-on: ubuntu-20.04
+    permissions:
+      pages: write
+    needs: checks
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - uses: actions/upload-pages-artifact
+        name: react-game
+
   # TODO prevent repetition of react-game@${GITHUB_SHA}
+  # TODO prevent repetition of "react-game" artifact name
   # TODO deployment
   #
   # - script: npm run sentry-cli -- releases new -p react-game "react-game@${GITHUB_SHA}" && npm run sentry-cli -- releases set-commits --auto "react-game@${GITHUB_SHA}"
-  #   on:
-  #     branch: master
-
-  # - provider: pages
-  #   skip_cleanup: true
-  #   local-dir: build
-  #   github-token: $GITHUB_TOKEN  # from travis-ci settings page
-  #   keep-history: true
   #   on:
   #     branch: master
 
