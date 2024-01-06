@@ -25,8 +25,8 @@
 
 * finger-width border, not 5% of screen size.
 
-* Deploy coverage report from travis to github pages.
-  - coverage is measured (https://travis-ci.org/jg210/react-game)
+* Deploy coverage report to github pages.
+  - coverage is measured
   - detailed report is not kept
 
 * Run flow coverage report on test server.

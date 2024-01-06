@@ -1,0 +1,14 @@
+# -*- mode: shell-script -*-
+#
+# Copyright (c) 2019-2024 Jeremy Green.
+
+SOURCE_DIR="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")"
+
+# node
+if [ -d "${HOME}/.nodenv/bin" ] ; then
+    PATH="${HOME}/.nodenv/bin:${PATH}"
+fi
+if which nodenv > /dev/null 2> /dev/null ; then
+    eval "$(nodenv init -)"
+    PATH="${SOURCE_DIR}/src/frontend/node_modules/.bin:${PATH}"
+fi
