@@ -33,21 +33,21 @@ jobs:
 
     - name: Upload artifact
       if: github.ref == 'refs/heads/master'
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-pages-artifact@v4
       with:
         name: react-game
         path: build
-        if-no-files-found: error
 
   deploy:
+    needs: checks
     runs-on: ubuntu-20.04
     permissions:
       pages: write
-    needs: checks
+      id-token: write
     if: github.ref == 'refs/heads/master'
     steps:
-      - uses: actions/upload-pages-artifact
-        name: react-game
+      - uses: actions/deploy-pages@v4.0.2
+        artifact_name: react-game
 
   # TODO prevent repetition of react-game@${GITHUB_SHA}
   # TODO prevent repetition of "react-game" artifact name
