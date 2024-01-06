@@ -47,8 +47,10 @@ jobs:
     if: github.ref == 'refs/heads/master'
     environment:
       name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/deploy-pages@v4.0.2
+        id: deployment
         with:
           artifact_name: react-game
 
