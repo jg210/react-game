@@ -45,6 +45,8 @@ jobs:
       pages: write
       id-token: write
     if: github.ref == 'refs/heads/master'
+    environment:
+      name: github-pages
     steps:
       - uses: actions/deploy-pages@v4.0.2
         with:
