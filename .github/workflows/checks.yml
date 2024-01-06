@@ -20,7 +20,7 @@ jobs:
     
     - run: npm run ci
 
-    - name: update tokens
+    - name: Update tokens
       env:
         SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         GOOGLE_ANALYTICS_TRACKING_ID: ${{ secrets.GOOGLE_ANALYTICS_TRACKING_ID }}
@@ -31,7 +31,7 @@ jobs:
 
     - run: npm run build
 
-    - name: upload artifact
+    - name: Upload artifact
       if: github.ref == 'refs/heads/master'
       uses: actions/upload-artifact@v4
       with:
