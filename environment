@@ -10,5 +10,7 @@ if [ -d "${HOME}/.nodenv/bin" ] ; then
 fi
 if which nodenv > /dev/null 2> /dev/null ; then
     eval "$(nodenv init -)"
-    PATH="${SOURCE_DIR}/src/frontend/node_modules/.bin:${PATH}"
 fi
+
+# npm
+PATH="${SOURCE_DIR}/node_modules/.bin:${PATH}"
