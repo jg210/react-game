@@ -63,9 +63,9 @@ Commits to the master branch are tested and built by CI, then published to sentr
 
 Need to configure the following repository secrets in github actions:
 
-* GOOGLE_ANALYTICS_TRACKING_ID - the ID is available from the GA console under Tracking Info > Tracking Code (master branch only).
-* SENTRY_AUTH_TOKEN - for uploading release metadata to sentry crash reporting system (master branch only).
-* SENTRY_ORG - settings > organization - organization slug
-* SENTRY_DSN - the app's key for uploading crashes to sentry (master branch only).
+* GOOGLE_ANALYTICS_TRACKING_ID - the ID is available from the GA console under Tracking Info > Tracking Code (master branch only)
+* SENTRY_AUTH_TOKEN - for uploading release metadata to sentry crash reporting system (master branch only). Settings > Auth Tokens
+* SENTRY_ORG - Settings > General Settings > Organization Slug
+* SENTRY_DSN - the app's key for uploading crashes to sentry (master branch only) - https://docs.sentry.io/product/sentry-basics/concepts/dsn-explainer/
 
 Need to configure Settings > Pages > Build and deployment > source to GitHub Actions

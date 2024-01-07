@@ -56,6 +56,7 @@ jobs:
     - name: sentry pre release
       env:
         SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+        SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN}}
       run: |
         npm run sentry-cli -- releases new -p react-game "react-game@${GITHUB_SHA}"
         npm run sentry-cli -- releases set-commits --auto "react-game@${GITHUB_SHA}"
@@ -66,6 +67,9 @@ jobs:
         artifact_name: react-game
 
     - name: sentry post release
+      env:
+        SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+        SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN}}
       run: npm run sentry-cli -- releases deploys "react-game@${GITHUB_SHA}" new -e production
 
   # TODO prevent repetition of react-game@${GITHUB_SHA}
