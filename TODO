@@ -1,3 +1,10 @@
+
+* Upgrades
+
+* End-to-end test.
+
+* Convert to TypeScript
+
 * Crash if switch tab at same time as request full screen mode.
   - "Request for fullscreen was denied because requesting element is not in the currently focused tab. DOMFullscreenChild.jsm:20:23"
   - "TypeError: The expression cannot be converted to return the specified type."
@@ -13,8 +20,6 @@
   - connect client and server sessions
   - feedback page
   - more environments?
-
-* Add stict mode comments.
 
 * Why does ball move inside the magnet?
   - makes it wobble too much
