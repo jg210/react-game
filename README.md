@@ -65,7 +65,7 @@ Need to configure the following repository secrets in github actions:
 
 * GOOGLE_ANALYTICS_TRACKING_ID - the ID is available from the GA console under Tracking Info > Tracking Code (master branch only).
 * SENTRY_AUTH_TOKEN - for uploading release metadata to sentry crash reporting system (master branch only).
-* SENTRY_ORG
+* SENTRY_ORG - settings > organization - organization slug
 * SENTRY_DSN - the app's key for uploading crashes to sentry (master branch only).
 
 Need to configure Settings > Pages > Build and deployment > source to GitHub Actions

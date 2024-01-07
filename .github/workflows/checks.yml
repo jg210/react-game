@@ -54,6 +54,8 @@ jobs:
     - run: npm ci
 
     - name: sentry pre release
+      env:
+        SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
       run: |
         npm run sentry-cli -- releases new -p react-game "react-game@${GITHUB_SHA}"
         npm run sentry-cli -- releases set-commits --auto "react-game@${GITHUB_SHA}"
