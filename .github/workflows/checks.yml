@@ -20,16 +20,11 @@ jobs:
     
     - run: npm run ci
 
-    - name: Update tokens
+    - name: Build
       env:
         SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         GOOGLE_ANALYTICS_TRACKING_ID: ${{ secrets.GOOGLE_ANALYTICS_TRACKING_ID }}
-      run: |
-        sed -i "s,__SENTRY_DSN__,${SENTRY_DSN:-__SENTRY_DSN__}," src/index.js
-        sed -i "s,__SENTRY_RELEASE__,react-game@${GITHUB_SHA}," src/index.js
-        sed -i "s,__GOOGLE_ANALYTICS_TRACKING_ID__,${GOOGLE_ANALYTICS_TRACKING_ID:-__GOOGLE_ANALYTICS_TRACKING_ID__},g" src/util/google_analytics.js
-
-    - run: npm run build
+      run: npm run build
 
     - name: Upload artifact
       if: github.ref == 'refs/heads/master'

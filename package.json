@@ -34,7 +34,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "bin/private/update_tokens && react-scripts build",
     "ci": "npm run eslint && CI=true npm run test -- --coverage && npm run flow",
     "test": "react-scripts test",
     "eslint": "eslint src",
