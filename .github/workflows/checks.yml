@@ -20,16 +20,11 @@ jobs:
     
     - run: npm run ci
 
-    - name: Update tokens
+    - name: Build
       env:
         SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         GOOGLE_ANALYTICS_TRACKING_ID: ${{ secrets.GOOGLE_ANALYTICS_TRACKING_ID }}
-      run: |
-        sed -i "s,__SENTRY_DSN__,${SENTRY_DSN:-__SENTRY_DSN__}," src/index.js
-        sed -i "s,__SENTRY_RELEASE__,react-game@${GITHUB_SHA}," src/index.js
-        sed -i "s,__GOOGLE_ANALYTICS_TRACKING_ID__,${GOOGLE_ANALYTICS_TRACKING_ID:-__GOOGLE_ANALYTICS_TRACKING_ID__},g" src/util/google_analytics.js
-
-    - run: npm run build
+      run: npm run build
 
     - name: Upload artifact
       if: github.ref == 'refs/heads/master'
@@ -49,21 +44,27 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/deploy-pages@v4.0.2
-        id: deployment
-        with:
-          artifact_name: react-game
+
+    - uses: actions/checkout@v3
+
+    - uses: actions/setup-node@v4
+      with:
+        node-version-file: '.node-version'
+
+    - run: npm ci
+
+    - name: sentry pre release
+      run: |
+        npm run sentry-cli -- releases new -p react-game "react-game@${GITHUB_SHA}"
+        npm run sentry-cli -- releases set-commits --auto "react-game@${GITHUB_SHA}"
+
+    - uses: actions/deploy-pages@v4.0.2
+      id: deployment
+      with:
+        artifact_name: react-game
+
+    - name: sentry post release
+      run: npm run sentry-cli -- releases deploys "react-game@${GITHUB_SHA}" new -e production
 
   # TODO prevent repetition of react-game@${GITHUB_SHA}
   # TODO prevent repetition of "react-game" artifact name
-  # TODO deployment
-  #
-  # - script: npm run sentry-cli -- releases new -p react-game "react-game@${GITHUB_SHA}" && npm run sentry-cli -- releases set-commits --auto "react-game@${GITHUB_SHA}"
-  #   on:
-  #     branch: master
-
-  # - provider: script
-  #   skip_cleanup: true
-  #   script: npm run sentry-cli -- releases deploys "react-game@${GITHUB_SHA}" new -e production
-  #   on:
-  #     branch: master

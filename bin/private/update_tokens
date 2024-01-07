@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+# This script is used by CI to pass tokens etc. from CI secrets -> env. vars. -> files.
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# TODO backtraces
+
+sed -i "s,__SENTRY_DSN__,${SENTRY_DSN:-__SENTRY_DSN__}," src/index.js
+if [ -n "${GITHUB_SHA:-}" ] ; then
+  sed -i "s,__SENTRY_RELEASE__,react-game@${GITHUB_SHA}," src/index.js
+fi
+sed -i "s,__GOOGLE_ANALYTICS_TRACKING_ID__,${GOOGLE_ANALYTICS_TRACKING_ID:-__GOOGLE_ANALYTICS_TRACKING_ID__},g" src/util/google_analytics.js
