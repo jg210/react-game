@@ -1,8 +1,8 @@
 
+* Automated test for release build.
+
 * Upgrades
-
-* End-to-end test.
-
+  
 * Convert to TypeScript
 
 * Crash if switch tab at same time as request full screen mode.
