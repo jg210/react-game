@@ -24,13 +24,13 @@ describe("logging", () => {
 
   it("logs string at debug level", () => {
     jest.spyOn(console, "log");
-    Log.debug("bar");
+    Log.debug("bar"); // eslint-disable-line testing-library/no-debugging-utils
     expect(console.log).toBeCalledWith(`${T} DEBUG bar`);
   });
 
   it("logs function at debug level", () => {
     jest.spyOn(console, "log");
-    Log.debug(() => "bar");
+    Log.debug(() => "bar"); // eslint-disable-line testing-library/no-debugging-utils
     expect(console.log).toBeCalledWith(`${T} DEBUG bar`);
   });
 
