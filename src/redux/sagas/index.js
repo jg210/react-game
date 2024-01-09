@@ -9,7 +9,7 @@ import { startListener } from './start';
 import { startLevelListener } from './startLevel';
 import { startGameListener } from './startGame';
 
-export default [
+export const sagas = [
   actionLoggerListener,
   gameCompleteListener,
   levelCompleteListener,

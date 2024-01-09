@@ -2,7 +2,7 @@
 //
 // (c) 2019 Jeremy Green
 
-import GameCompleteScreen from '../GameCompleteScreen';
+import { GameCompleteScreen } from '../GameCompleteScreen';
 
 import React from 'react';
 import renderer from 'react-test-renderer';

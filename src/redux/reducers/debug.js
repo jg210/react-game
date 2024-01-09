@@ -3,7 +3,7 @@
 // (c) 2018-2019 Jeremy Green
 
 
-import { Action } from 'redux';
+import { type Action } from 'redux';
 import { TOGGLE_WIREFRAME_MODE } from '../actionTypes';
 
 export type DebugState = {

@@ -1,6 +1,7 @@
 {
   "extends": [
     "react-app",
+    "react-app/jest",
     "plugin:flowtype/recommended",
     "plugin:promise/recommended"
   ],
@@ -9,6 +10,7 @@
     "jest",
     "promise"
   ],
+  "parser": "@babel/eslint-parser",
   "rules":{
     "indent": ["error", 2, {"SwitchCase": 1}],
     "flowtype/boolean-style": [

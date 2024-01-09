@@ -58,9 +58,6 @@ export class GameEngine {
     wireframe: boolean,
     levelComplete: () => void,
     scoreUpdate: (points: number) => void) {
-    
-    this._dislodgeCheck = this._dislodgeCheck.bind(this);
-
     this.levelComplete = levelComplete;
     this.scoreUpdate = scoreUpdate;
     this.level = level;
@@ -160,8 +157,7 @@ export class GameEngine {
     });
   }
 
-  _dislodgeCheck: (Body => void);
-  _dislodgeCheck(body: Body) {
+  _dislodgeCheck = (body: Body) => {
     const dislodged = this.objectIdsRemaining.delete(body.id);
     if (dislodged) {
       Log.debug(`dislodged: ${body.id}`);

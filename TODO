@@ -1,8 +1,17 @@
-* Automated test for release build.
+* Stop using enzyme.
+  - no longer supported
+  - won't work with react 18
 
-* Upgrades
-  
+* Upgrade more things.
+
+* Stop using create-react-app - it's not maintained any more.
+
+* GameScreen.test.js commented out
+  - would need redux store in current form
+
 * Convert to TypeScript
+
+* Automated test for release build.
 
 * Crash if switch tab at same time as request full screen mode.
   - "Request for fullscreen was denied because requesting element is not in the currently focused tab. DOMFullscreenChild.jsm:20:23"

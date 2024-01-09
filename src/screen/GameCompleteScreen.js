@@ -6,7 +6,7 @@ import React from 'react';
 
 type Props = {};
 
-export default (props: Props) => {
+export const GameCompleteScreen = (props: Props) => {
   return (
     <div>Game Complete</div>
   );
