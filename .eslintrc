@@ -1,6 +1,7 @@
 {
   "extends": [
     "react-app",
+    "react-app/jest",
     "plugin:flowtype/recommended",
     "plugin:promise/recommended"
   ],
