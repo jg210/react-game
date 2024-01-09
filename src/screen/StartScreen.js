@@ -23,7 +23,6 @@ export class StartScreen extends Component<Props> {
 
   constructor(props: Props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
     this.handleCrashClick = this.handleCrashClick.bind(this);
     this.stopPropagation = this.stopPropagation.bind(this);
   }
@@ -66,8 +65,7 @@ export class StartScreen extends Component<Props> {
     );
   }
 
-  handleClick: () => void; // Allows binding in constructor without flow error.
-  async handleClick() {
+  handleClick = async () => {
     this.props.toggleFullscreen(); // Can only be called from UI event.
     this.props.startGame();
     // Avoid resizing the screen while physics engine is running.
