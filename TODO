@@ -1,5 +1,3 @@
-* Bottom of game cropped off on mobile device.
-
 * Game restarts if lock phone.
 
 * Stop using enzyme.
@@ -16,6 +14,8 @@
 * Convert to TypeScript
 
 * Automated test for release build.
+
+* Bottom of game sometimes cropped off on mobile device.
 
 * Crash if switch tab at same time as request full screen mode.
   - "Request for fullscreen was denied because requesting element is not in the currently focused tab. DOMFullscreenChild.jsm:20:23"
