@@ -21,6 +21,7 @@
     "seedrandom": "3.0.5"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "7.21.11",
     "@sentry/cli": "1.51.1",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.2",
