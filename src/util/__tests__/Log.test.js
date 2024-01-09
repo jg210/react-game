@@ -8,7 +8,10 @@ describe("logging", () => {
 
   const FAKE_DATE = new Date("2018-12-11T12:34:00z");
   const T = FAKE_DATE.toISOString();
-  global.Date = jest.fn(() => FAKE_DATE);
+
+  beforeEach(() => {
+    jest.spyOn(global, 'Date').mockImplementation(() => FAKE_DATE)
+  });
 
   it("logs string at info level", () => {
     jest.spyOn(console, "log");
