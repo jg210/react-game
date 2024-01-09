@@ -34,7 +34,7 @@ it('handles levelComplete for last level', () => {
   expect(generator.next().done).toBe(true);
 });
 
-it('handles levelComplete for last level', () => {
+it('handles levelComplete for non-last level', () => {
   const generator = levelCompleteSaga();
   expect(generator.next().value).toEqual(select(isLastLevel));
   const lastLevel = false;

@@ -77,7 +77,7 @@ describe("nonNull()", () => {
     expect(() => Util.nonNull(null)).toThrow('null value.');
   });
 
-  it("rejects null", () => {
+  it("rejects undefined", () => {
     expect(() => Util.nonNull(undefined)).toThrow('undefined value.');
   });
 
