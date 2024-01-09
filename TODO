@@ -1,15 +1,15 @@
-* Upgrades
+* Stop using enzyme.
+  - no longer supported
+  - won't work with react 18
+
+* Upgrade more things.
+
+* Stop using create-react-app - it's not maintained any more.
 
 * GameScreen.test.js commented out
   - would need redux store in current form
 
 * Convert to TypeScript
-
-* Stop using create-react-app - it's not maintained any more.
-
-* Stop using enzyme.
-  - no longer supported
-  - won't work with react 18
 
 * Automated test for release build.
 
