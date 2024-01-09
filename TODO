@@ -1,5 +1,8 @@
 * Upgrades
-  
+
+* GameScreen.test.js commented out
+  - would need redux store in current form
+
 * Convert to TypeScript
 
 * Stop using create-react-app - it's not maintained any more.
