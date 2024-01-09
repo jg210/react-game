@@ -9,7 +9,7 @@ import Score from '../components/Score';
 
 type Props = {};
 
-export default (props: Props) => {
+export const GameScreen = (props: Props) => {
   return (
     <div className="GameScreen">
       <Score />

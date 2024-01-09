@@ -6,8 +6,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import type { ScreenState } from '../redux/reducers/screen';
-import GameScreen from './GameScreen';
-import GameCompleteScreen from './GameCompleteScreen';
+import { GameScreen } from './GameScreen';
+import { GameCompleteScreen } from './GameCompleteScreen';
 import StartLevelScreen from './StartLevelScreen';
 import StartScreen from './StartScreen';
 import { pageview } from '../util/google_analytics';
