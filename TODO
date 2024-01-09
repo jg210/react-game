@@ -1,3 +1,5 @@
+* Bottom of game cropped off on mobile device.
+
 * Stop using enzyme.
   - no longer supported
   - won't work with react 18
