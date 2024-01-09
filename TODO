@@ -1,5 +1,7 @@
 * Bottom of game cropped off on mobile device.
 
+* Game restarts if lock phone.
+
 * Stop using enzyme.
   - no longer supported
   - won't work with react 18
