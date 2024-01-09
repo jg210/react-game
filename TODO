@@ -8,6 +8,8 @@
 * Stop using create-react-app - it's not maintained any more.
 
 * Stop using enzyme.
+  - no longer supported
+  - won't work with react 18
 
 * Automated test for release build.
 
