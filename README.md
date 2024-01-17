@@ -1,5 +1,14 @@
 A game implemented using [React](https://reactjs.org/), [redux](https://redux.js.org/), [redux-saga](https://redux-saga.js.org/), [reselect](https://github.com/reduxjs/reselect) and [flow](https://flow.org/).
 
+This old project is using some technologies that are no longer the best choice:
+
+| Using | Replacements |
+| ------| ------|
+| flow | TypeScript |
+| create-react-app | [vite?](https://vitejs.dev/) |
+| redux-saga | https://redux.js.org/usage/side-effects-approaches |
+| enzyme | [react testing library](https://testing-library.com/docs/react-testing-library/intro/) |
+
 [![build status](https://github.com/jg210/react-game/actions/workflows/checks.yml/badge.svg)](https://github.com/jg210/react-game/actions/workflows/checks.yml)
 
 ## The Game
