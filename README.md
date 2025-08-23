@@ -6,7 +6,7 @@ This old project is using some technologies that are no longer the best choice:
 | ------| ------|
 | flow | TypeScript |
 | [class components](https://react.dev/reference/react/Component) | function components and hooks |
-| create-react-app | [vite?](https://vitejs.dev/) |
+| create-react-app | [vite](https://vitejs.dev/), [next.js](https://nextjs.org/),... |
 | redux-saga | https://redux.js.org/usage/side-effects-approaches |
 | enzyme | [react testing library](https://testing-library.com/docs/react-testing-library/intro/) |
 
