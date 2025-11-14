@@ -1,28 +1,19 @@
 // @flow
 //
-// (c) 2018-2019 Jeremy Green
+// (c) 2018-2020 Jeremy Green
 
 import React from 'react';
-import { connect } from "react-redux";
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-import type { ScoreState } from '../redux/reducers/score';
 import { toggleWireframeMode } from '../redux/actions';
+import { currentScore } from '../redux/selectors';
 
-type Props = {
-  score: number,
-  toggleWireframeMode: () => void
-}
-
-export const Score = (props: Props) => {
+export const Score = () => {
+  const score = useSelector(currentScore);
+  const dispatch = useDispatch();
+  const onDoubleClick = () => dispatch(toggleWireframeMode);
   return (
-    <div className="Score" onDoubleClick={props.toggleWireframeMode}>{props.score}</div>
+    <div className="Score" onDoubleClick={onDoubleClick}>{score}</div>
   );
 }
-
-const mapStateToProps = (state: {score: ScoreState}) => {
-  return { score: state.score.current };
-}
-const actionCreators = {
-  toggleWireframeMode
-};
-export default connect(mapStateToProps, actionCreators)(Score);

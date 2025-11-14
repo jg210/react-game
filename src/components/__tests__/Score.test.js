@@ -13,7 +13,7 @@ import { mount } from 'enzyme';
 it('renders without crashing', () => {
   const div = document.createElement('div');
   const toggleWireframeMode = jest.fn();
-  ReactDOM.render(<Score score={123} toggleWireframeMode={toggleWireframeMode}/>, div);
+  ReactDOM.render(<Score/>, div);
   ReactDOM.unmountComponentAtNode(div);
   expect(toggleWireframeMode).toHaveBeenCalledTimes(0);
 });
@@ -21,7 +21,7 @@ it('renders without crashing', () => {
 it('renders correctly', () => {
   const toggleWireframeMode = jest.fn();
   const tree = renderer
-    .create(<Score score={123} toggleWireframeMode={toggleWireframeMode}/>)
+    .create(<Score/>)
     .toJSON();
   expect(tree).toMatchSnapshot();
   expect(toggleWireframeMode).toHaveBeenCalledTimes(0);
@@ -29,9 +29,7 @@ it('renders correctly', () => {
 
 it('double clicking', () => {
   const handler = jest.fn();
-  const component = mount(<Score
-    score={123}
-    toggleWireframeMode={handler}/>
+  const component = mount(<Score/>
   );
   const div = component.find('div');
   const domNode = div.getDOMNode();
